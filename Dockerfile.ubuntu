@@ -1,0 +1,22 @@
+# Fallback serving image: Ubuntu 22.04 + apt python3 (3.10) + venv. Use it if python:3.12-slim has no variant
+# for the target platform (spec 16.1). Serving code supports Python 3.10 (rule E1).
+FROM ubuntu:22.04
+ENV DEBIAN_FRONTEND=noninteractive PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONHASHSEED=0 PIP_NO_CACHE_DIR=1
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-venv python3-pip ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+WORKDIR /app
+ARG REQS=requirements-serve.txt
+COPY ${REQS} ./requirements.txt
+RUN pip install --upgrade pip && pip install --only-binary=:all: -r requirements.txt
+COPY pyproject.toml ./
+COPY chainwatch ./chainwatch
+COPY configs ./configs
+COPY models/default ./models/default
+COPY data/replay ./data/replay
+RUN useradd --uid 10001 --no-create-home chainwatch
+USER 10001
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=3s --start-period=20s CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=2).status==200 else 1)"
+CMD ["python", "-m", "chainwatch", "serve", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,156 @@
+{
+ "seed": 1000,
+ "note": "B0 and B1 only; G2 never trained here",
+ "runs": [
+  {
+   "preset": "medium",
+   "seed": 1000,
+   "world_params": {
+    "noise_level": 1.0,
+    "hard_negative_boost": 1.0,
+    "mule_mix": {
+     "new": 0.4,
+     "dormant": 0.35,
+     "active": 0.25
+    }
+   },
+   "detectors": {
+    "B0": {
+     "pr_auc_val": 0.15596269615615316,
+     "recall_at_1pct_fpr_val": 0.41491085899513774,
+     "recall_at_0.5pct_fpr_val": 0.3095623987034036
+    },
+    "B1": {
+     "pr_auc_val": 0.9656481610073135,
+     "recall_at_1pct_fpr_val": 0.9918962722852512,
+     "recall_at_0.5pct_fpr_val": 0.9870340356564019
+    }
+   },
+   "fraud_share": 0.0018717687425887557,
+   "fraud_share_in_band": true,
+   "n_events": 2218757,
+   "b1_in_target_band": false,
+   "utc": "2026-10-17T18:40:28+00:00",
+   "setting": {
+    "name": "default",
+    "world.noise_level": 1.0,
+    "world.hard_negative_boost": 1.0
+   }
+  },
+  {
+   "preset": "medium",
+   "seed": 1000,
+   "world_params": {
+    "noise_level": 1.5,
+    "hard_negative_boost": 2.0,
+    "mule_mix": {
+     "new": 0.4,
+     "dormant": 0.35,
+     "active": 0.25
+    }
+   },
+   "detectors": {
+    "B0": {
+     "pr_auc_val": 0.10704660212610227,
+     "recall_at_1pct_fpr_val": 0.40879478827361565,
+     "recall_at_0.5pct_fpr_val": 0.31758957654723124
+    },
+    "B1": {
+     "pr_auc_val": 0.9644827654816223,
+     "recall_at_1pct_fpr_val": 0.99185667752443,
+     "recall_at_0.5pct_fpr_val": 0.9869706840390879
+    }
+   },
+   "fraud_share": 0.0015923298630573346,
+   "fraud_share_in_band": true,
+   "n_events": 2611896,
+   "b1_in_target_band": false,
+   "utc": "2026-10-17T18:52:03+00:00",
+   "setting": {
+    "name": "n1.5_h2",
+    "world.noise_level": 1.5,
+    "world.hard_negative_boost": 2.0
+   }
+  },
+  {
+   "preset": "medium",
+   "seed": 1000,
+   "world_params": {
+    "noise_level": 1.5,
+    "hard_negative_boost": 2.0,
+    "mule_mix": {
+     "new": 0.25,
+     "dormant": 0.3,
+     "active": 0.45
+    }
+   },
+   "detectors": {
+    "B0": {
+     "pr_auc_val": 0.11956501547895591,
+     "recall_at_1pct_fpr_val": 0.36585365853658536,
+     "recall_at_0.5pct_fpr_val": 0.30272596843615496
+    },
+    "B1": {
+     "pr_auc_val": 0.9292782458603118,
+     "recall_at_1pct_fpr_val": 0.9727403156384505,
+     "recall_at_0.5pct_fpr_val": 0.9598278335724534
+    }
+   },
+   "fraud_share": 0.0015702391073753388,
+   "fraud_share_in_band": true,
+   "n_events": 2612341,
+   "b1_in_target_band": false,
+   "utc": "2026-10-17T18:50:22+00:00",
+   "setting": {
+    "name": "n1.5_h2_active",
+    "world.noise_level": 1.5,
+    "world.hard_negative_boost": 2.0,
+    "world.mule_mix": {
+     "new": 0.25,
+     "dormant": 0.3,
+     "active": 0.45
+    }
+   }
+  },
+  {
+   "preset": "medium",
+   "seed": 1000,
+   "world_params": {
+    "noise_level": 2.0,
+    "hard_negative_boost": 3.0,
+    "mule_mix": {
+     "new": 0.2,
+     "dormant": 0.3,
+     "active": 0.5
+    }
+   },
+   "detectors": {
+    "B0": {
+     "pr_auc_val": 0.06900816710998475,
+     "recall_at_1pct_fpr_val": 0.3378995433789954,
+     "recall_at_0.5pct_fpr_val": 0.2663622526636225
+    },
+    "B1": {
+     "pr_auc_val": 0.9381340358542406,
+     "recall_at_1pct_fpr_val": 0.9817351598173516,
+     "recall_at_0.5pct_fpr_val": 0.9726027397260274
+    }
+   },
+   "fraud_share": 0.0013803301482996902,
+   "fraud_share_in_band": true,
+   "n_events": 3059413,
+   "b1_in_target_band": false,
+   "utc": "2026-10-17T19:14:55+00:00",
+   "setting": {
+    "name": "n2_h3_active",
+    "world.noise_level": 2.0,
+    "world.hard_negative_boost": 3.0,
+    "world.mule_mix": {
+     "new": 0.2,
+     "dormant": 0.3,
+     "active": 0.5
+    }
+   }
+  }
+ ]
+}

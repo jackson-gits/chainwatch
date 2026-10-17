@@ -1,0 +1,14 @@
+[
+  {
+    "name": "n2_h6_active100",
+    "world.noise_level": 2.0,
+    "world.hard_negative_boost": 6.0,
+    "world.mule_mix": {"new": 0.0, "dormant": 0.0, "active": 1.0}
+  },
+  {
+    "name": "n2_h8_active100",
+    "world.noise_level": 2.0,
+    "world.hard_negative_boost": 8.0,
+    "world.mule_mix": {"new": 0.0, "dormant": 0.0, "active": 1.0}
+  }
+]

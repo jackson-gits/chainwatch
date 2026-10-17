@@ -1,0 +1,1462 @@
+{
+ "provenance": "ChainWorld",
+ "n_worlds": 2,
+ "worlds": [
+  "world_small_seed0",
+  "world_small_seed1"
+ ],
+ "fpr_target": 0.005,
+ "variants": {
+  "RULE": {
+   "ring_recall": {
+    "mean": 0.5583333333333333,
+    "min": 0.45,
+    "max": 0.6666666666666666,
+    "per_seed": [
+     0.6666666666666666,
+     0.45
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 21.544074999998944,
+    "min": 21.175316666664244,
+    "max": 21.912833333333644,
+    "per_seed": [
+     21.912833333333644,
+     21.175316666664244
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.4083333333333333,
+    "min": 0.35,
+    "max": 0.4666666666666667,
+    "per_seed": [
+     0.4666666666666667,
+     0.35
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "per_seed": [
+     1.0,
+     1.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.11374081971096897,
+    "min": 0.06031746031746032,
+    "max": 0.16716417910447762,
+    "per_seed": [
+     0.16716417910447762,
+     0.06031746031746032
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.005005853554586012,
+    "min": 0.004947465061715802,
+    "max": 0.005064242047456222,
+    "per_seed": [
+     0.005064242047456222,
+     0.004947465061715802
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.018704627536450077,
+    "min": 0.012868982861467941,
+    "max": 0.024540272211432214,
+    "per_seed": [
+     0.024540272211432214,
+     0.012868982861467941
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.5543674830781915,
+    "min": 0.5276849976278722,
+    "max": 0.5810499685285107,
+    "per_seed": [
+     0.5810499685285107,
+     0.5276849976278722
+    ]
+   },
+   "within_1h": {
+    "mean": 0.4666666666666667,
+    "min": 0.4,
+    "max": 0.5333333333333333,
+    "per_seed": [
+     0.5333333333333333,
+     0.4
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.5299169311200339,
+    "min": 0.43455698333936166,
+    "max": 0.6252768789007062,
+    "per_seed": [
+     0.6252768789007062,
+     0.43455698333936166
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "per_seed": [
+     0.0,
+     0.0
+    ]
+   },
+   "false_rings_per_day": null,
+   "fpr_off_target_any": false,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 19,
+    "ring_recall": 0.5428571428571428,
+    "ring_recall_ci": [
+     0.37142857142857144,
+     0.7142857142857143
+    ],
+    "ttc_median_min": 21.83980000000447,
+    "ttc_median_ci": [
+     9.407233333339294,
+     29.131383333331904
+    ],
+    "before_exit": 0.4,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.2571428571428571,
+     0.5714285714285714
+    ],
+    "hops_remaining_median": 1.0,
+    "hops_remaining_mean": 1.1578947368421053,
+    "deployed_recall": 0.09740932642487046,
+    "deployed_recall_ci": [
+     0.05803259805732014,
+     0.13771057094403616
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 0.8333333333333334,
+      "n": 12,
+      "ci": [
+       0.5833333333333334,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 0.6666666666666666,
+      "n": 6,
+      "ci": [
+       0.3333333333333333,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 0.0,
+      "n": 1,
+      "ci": [
+       0.0,
+       0.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 0.0,
+      "n": 10,
+      "ci": [
+       0.0,
+       0.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 0.75,
+      "n": 4,
+      "ci": [
+       0.25,
+       1.0
+      ]
+     }
+    }
+   }
+  },
+  "B0": {
+   "ring_recall": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 37.07191249999936,
+    "min": 31.678366666665532,
+    "max": 42.46545833333318,
+    "per_seed": [
+     42.46545833333318,
+     31.678366666665532
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.7749999999999999,
+    "min": 0.6,
+    "max": 0.95,
+    "per_seed": [
+     0.6,
+     0.95
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "per_seed": [
+     1.0,
+     1.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.35262970859985787,
+    "min": 0.3380952380952381,
+    "max": 0.36716417910447763,
+    "per_seed": [
+     0.36716417910447763,
+     0.3380952380952381
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.004171201659322156,
+    "min": 0.004029378761603591,
+    "max": 0.004313024557040721,
+    "per_seed": [
+     0.004313024557040721,
+     0.004029378761603591
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.30827348894155127,
+    "min": 0.3005061753771535,
+    "max": 0.316040802505949,
+    "per_seed": [
+     0.3005061753771535,
+     0.316040802505949
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.9242373366294792,
+    "min": 0.9180039536541725,
+    "max": 0.9304707196047858,
+    "per_seed": [
+     0.9180039536541725,
+     0.9304707196047858
+    ]
+   },
+   "within_1h": {
+    "mean": 0.5583333333333333,
+    "min": 0.4666666666666667,
+    "max": 0.65,
+    "per_seed": [
+     0.4666666666666667,
+     0.65
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.8463944114954719,
+    "min": 0.7427888229909438,
+    "max": 0.95,
+    "per_seed": [
+     0.7427888229909438,
+     0.95
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.25205206039943057,
+    "min": 0.19455254243264702,
+    "max": 0.3095515783662141,
+    "per_seed": [
+     0.3095515783662141,
+     0.19455254243264702
+    ]
+   },
+   "false_rings_per_day": null,
+   "fpr_off_target_any": true,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 34,
+    "ring_recall": 0.9714285714285714,
+    "ring_recall_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "ttc_median_min": 31.678366666665532,
+    "ttc_median_ci": [
+     19.37583333333799,
+     75.44481666667076
+    ],
+    "before_exit": 0.8,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.6571428571428571,
+     0.9142857142857143
+    ],
+    "hops_remaining_median": 1.0,
+    "hops_remaining_mean": 1.2941176470588236,
+    "deployed_recall": 0.34818652849740933,
+    "deployed_recall_ci": [
+     0.2895213963963964,
+     0.4079427973547171
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 1.0,
+      "n": 12,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 1.0,
+      "n": 6,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 1.0,
+      "n": 1,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 1.0,
+      "n": 10,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 0.75,
+      "n": 4,
+      "ci": [
+       0.25,
+       1.0
+      ]
+     }
+    }
+   }
+  },
+  "B0+R": {
+   "ring_recall": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 37.07191249999936,
+    "min": 31.678366666665532,
+    "max": 42.46545833333318,
+    "per_seed": [
+     42.46545833333318,
+     31.678366666665532
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.7749999999999999,
+    "min": 0.6,
+    "max": 0.95,
+    "per_seed": [
+     0.6,
+     0.95
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "per_seed": [
+     1.0,
+     1.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.5551409618573797,
+    "min": 0.5222222222222223,
+    "max": 0.5880597014925373,
+    "per_seed": [
+     0.5880597014925373,
+     0.5222222222222223
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.0041319439280634,
+    "min": 0.004080383556054269,
+    "max": 0.004183504300072531,
+    "per_seed": [
+     0.004183504300072531,
+     0.004080383556054269
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.47292847684228745,
+    "min": 0.45524804837815264,
+    "max": 0.49060890530642226,
+    "per_seed": [
+     0.49060890530642226,
+     0.45524804837815264
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.9518584723396781,
+    "min": 0.9513802059298336,
+    "max": 0.9523367387495225,
+    "per_seed": [
+     0.9523367387495225,
+     0.9513802059298336
+    ]
+   },
+   "within_1h": {
+    "mean": 0.5583333333333333,
+    "min": 0.4666666666666667,
+    "max": 0.65,
+    "per_seed": [
+     0.4666666666666667,
+     0.65
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.8463944114954719,
+    "min": 0.7427888229909438,
+    "max": 0.95,
+    "per_seed": [
+     0.7427888229909438,
+     0.95
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.4461394097560348,
+    "min": 0.39157918431005245,
+    "max": 0.5006996352020171,
+    "per_seed": [
+     0.5006996352020171,
+     0.39157918431005245
+    ]
+   },
+   "false_rings_per_day": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "per_seed": [
+     0.0,
+     0.0
+    ]
+   },
+   "fpr_off_target_any": true,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 34,
+    "ring_recall": 0.9714285714285714,
+    "ring_recall_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "ttc_median_min": 31.678366666665532,
+    "ttc_median_ci": [
+     19.37583333333799,
+     75.44481666667076
+    ],
+    "before_exit": 0.8,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.6571428571428571,
+     0.9142857142857143
+    ],
+    "hops_remaining_median": 1.0,
+    "hops_remaining_mean": 1.2941176470588236,
+    "deployed_recall": 0.5450777202072539,
+    "deployed_recall_ci": [
+     0.4388860544217687,
+     0.6484253409963503
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 1.0,
+      "n": 12,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 1.0,
+      "n": 6,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 1.0,
+      "n": 1,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 1.0,
+      "n": 10,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 0.75,
+      "n": 4,
+      "ci": [
+       0.25,
+       1.0
+      ]
+     }
+    }
+   }
+  },
+  "B1": {
+   "ring_recall": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 19.476416666666047,
+    "min": 18.739408333331813,
+    "max": 20.213425000000278,
+    "per_seed": [
+     18.739408333331813,
+     20.213425000000278
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.5,
+    "min": 1.0,
+    "max": 2.0,
+    "per_seed": [
+     1.0,
+     2.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.8538261075574509,
+    "min": 0.8031746031746032,
+    "max": 0.9044776119402985,
+    "per_seed": [
+     0.9044776119402985,
+     0.8031746031746032
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.0059138998217215695,
+    "min": 0.005413946741270334,
+    "max": 0.006413852902172805,
+    "per_seed": [
+     0.005413946741270334,
+     0.006413852902172805
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.8450164128973161,
+    "min": 0.7972080055226319,
+    "max": 0.8928248202720004,
+    "per_seed": [
+     0.8928248202720004,
+     0.7972080055226319
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.9908863322877395,
+    "min": 0.9881832213656655,
+    "max": 0.9935894432098136,
+    "per_seed": [
+     0.9935894432098136,
+     0.9881832213656655
+    ]
+   },
+   "within_1h": {
+    "mean": 0.7583333333333333,
+    "min": 0.65,
+    "max": 0.8666666666666667,
+    "per_seed": [
+     0.8666666666666667,
+     0.65
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.8247679947755127,
+    "min": 0.7494566429876262,
+    "max": 0.900079346563399,
+    "per_seed": [
+     0.900079346563399,
+     0.7494566429876262
+    ]
+   },
+   "false_rings_per_day": null,
+   "fpr_off_target_any": true,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 34,
+    "ring_recall": 0.9714285714285714,
+    "ring_recall_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "ttc_median_min": 19.43168333333451,
+    "ttc_median_ci": [
+     10.054949999996461,
+     23.59246666666586
+    ],
+    "before_exit": 0.9714285714285714,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "hops_remaining_median": 1.5,
+    "hops_remaining_mean": 1.7352941176470589,
+    "deployed_recall": 0.8383419689119171,
+    "deployed_recall_ci": [
+     0.7742973943494778,
+     0.8985833573318884
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 1.0,
+      "n": 12,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 1.0,
+      "n": 6,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 1.0,
+      "n": 1,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 0.9,
+      "n": 10,
+      "ci": [
+       0.7,
+       1.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 1.0,
+      "n": 4,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     }
+    }
+   }
+  },
+  "B1+R": {
+   "ring_recall": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 19.476416666666047,
+    "min": 18.739408333331813,
+    "max": 20.213425000000278,
+    "per_seed": [
+     18.739408333331813,
+     20.213425000000278
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.5,
+    "min": 1.0,
+    "max": 2.0,
+    "per_seed": [
+     1.0,
+     2.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.865257048092869,
+    "min": 0.8111111111111111,
+    "max": 0.9194029850746268,
+    "per_seed": [
+     0.9194029850746268,
+     0.8111111111111111
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.006383586807237593,
+    "min": 0.0059803121493420385,
+    "max": 0.006786861465133147,
+    "per_seed": [
+     0.006786861465133147,
+     0.0059803121493420385
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.8415018960644829,
+    "min": 0.8033311784308127,
+    "max": 0.879672613698153,
+    "per_seed": [
+     0.879672613698153,
+     0.8033311784308127
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.9914952595973435,
+    "min": 0.9887149665878117,
+    "max": 0.9942755526068754,
+    "per_seed": [
+     0.9942755526068754,
+     0.9887149665878117
+    ]
+   },
+   "within_1h": {
+    "mean": 0.7583333333333333,
+    "min": 0.65,
+    "max": 0.8666666666666667,
+    "per_seed": [
+     0.8666666666666667,
+     0.65
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.8260276684873333,
+    "min": 0.7211346984684563,
+    "max": 0.9309206385062103,
+    "per_seed": [
+     0.9309206385062103,
+     0.7211346984684563
+    ]
+   },
+   "false_rings_per_day": {
+    "mean": 0.5,
+    "min": 0.4,
+    "max": 0.6,
+    "per_seed": [
+     0.4,
+     0.6
+    ]
+   },
+   "fpr_off_target_any": true,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 34,
+    "ring_recall": 0.9714285714285714,
+    "ring_recall_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "ttc_median_min": 19.43168333333451,
+    "ttc_median_ci": [
+     9.773583333333955,
+     23.59246666666586
+    ],
+    "before_exit": 0.9714285714285714,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "hops_remaining_median": 1.5,
+    "hops_remaining_mean": 1.7647058823529411,
+    "deployed_recall": 0.8487046632124352,
+    "deployed_recall_ci": [
+     0.7872617102396514,
+     0.9057583481407645
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 1.0,
+      "n": 12,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 1.0,
+      "n": 6,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 1.0,
+      "n": 1,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 0.9,
+      "n": 10,
+      "ci": [
+       0.7,
+       1.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 1.0,
+      "n": 4,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     }
+    }
+   }
+  },
+  "G2": {
+   "ring_recall": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "per_seed": [
+     1.0,
+     1.0
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 17.679537500000635,
+    "min": 15.145650000000993,
+    "max": 20.213425000000278,
+    "per_seed": [
+     15.145650000000993,
+     20.213425000000278
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.975,
+    "min": 0.95,
+    "max": 1.0,
+    "per_seed": [
+     1.0,
+     0.95
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.5,
+    "min": 1.0,
+    "max": 2.0,
+    "per_seed": [
+     1.0,
+     2.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.847287372660507,
+    "min": 0.7841269841269841,
+    "max": 0.9104477611940298,
+    "per_seed": [
+     0.9104477611940298,
+     0.7841269841269841
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.006181775406129705,
+    "min": 0.005426898766967153,
+    "max": 0.0069366520452922575,
+    "per_seed": [
+     0.005426898766967153,
+     0.0069366520452922575
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.8338656498124153,
+    "min": 0.7735024040859906,
+    "max": 0.8942288955388401,
+    "per_seed": [
+     0.8942288955388401,
+     0.7735024040859906
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.9893053536059697,
+    "min": 0.9858126521035834,
+    "max": 0.9927980551083562,
+    "per_seed": [
+     0.9927980551083562,
+     0.9858126521035834
+    ]
+   },
+   "within_1h": {
+    "mean": 0.7916666666666667,
+    "min": 0.65,
+    "max": 0.9333333333333333,
+    "per_seed": [
+     0.9333333333333333,
+     0.65
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.9797369708938855,
+    "min": 0.9594739417877708,
+    "max": 1.0,
+    "per_seed": [
+     1.0,
+     0.9594739417877708
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.7987698032597205,
+    "min": 0.7087944793050796,
+    "max": 0.8887451272143614,
+    "per_seed": [
+     0.8887451272143614,
+     0.7087944793050796
+    ]
+   },
+   "false_rings_per_day": null,
+   "fpr_off_target_any": true,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 35,
+    "ring_recall": 1.0,
+    "ring_recall_ci": [
+     1.0,
+     1.0
+    ],
+    "ttc_median_min": 19.37583333333799,
+    "ttc_median_ci": [
+     7.658933333338549,
+     23.086700000000807
+    ],
+    "before_exit": 0.9714285714285714,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "hops_remaining_median": 2.0,
+    "hops_remaining_mean": 1.8,
+    "deployed_recall": 0.827979274611399,
+    "deployed_recall_ci": [
+     0.7606606823208962,
+     0.8892152027932615
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 1.0,
+      "n": 12,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 1.0,
+      "n": 6,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 1.0,
+      "n": 1,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 1.0,
+      "n": 10,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 1.0,
+      "n": 4,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     }
+    }
+   }
+  },
+  "G2+R": {
+   "ring_recall": {
+    "mean": 0.9666666666666667,
+    "min": 0.9333333333333333,
+    "max": 1.0,
+    "per_seed": [
+     0.9333333333333333,
+     1.0
+    ]
+   },
+   "ttc_median_min": {
+    "mean": 15.409841666665548,
+    "min": 10.606258333330818,
+    "max": 20.213425000000278,
+    "per_seed": [
+     10.606258333330818,
+     20.213425000000278
+    ]
+   },
+   "caught_before_exit": {
+    "mean": 0.9416666666666667,
+    "min": 0.9333333333333333,
+    "max": 0.95,
+    "per_seed": [
+     0.9333333333333333,
+     0.95
+    ]
+   },
+   "hops_remaining_median": {
+    "mean": 1.75,
+    "min": 1.5,
+    "max": 2.0,
+    "per_seed": [
+     1.5,
+     2.0
+    ]
+   },
+   "deployed_recall": {
+    "mean": 0.8558280028429281,
+    "min": 0.7952380952380952,
+    "max": 0.9164179104477612,
+    "per_seed": [
+     0.9164179104477612,
+     0.7952380952380952
+    ]
+   },
+   "test_fpr": {
+    "mean": 0.005044357523663799,
+    "min": 0.0042741684799502645,
+    "max": 0.005814546567377334,
+    "per_seed": [
+     0.0042741684799502645,
+     0.005814546567377334
+    ]
+   },
+   "pr_auc": {
+    "mean": 0.8456298635868251,
+    "min": 0.7842365017135027,
+    "max": 0.9070232254601476,
+    "per_seed": [
+     0.9070232254601476,
+     0.7842365017135027
+    ]
+   },
+   "roc_auc": {
+    "mean": 0.9899840878051409,
+    "min": 0.9866712935301634,
+    "max": 0.9932968820801185,
+    "per_seed": [
+     0.9932968820801185,
+     0.9866712935301634
+    ]
+   },
+   "within_1h": {
+    "mean": 0.7916666666666667,
+    "min": 0.65,
+    "max": 0.9333333333333333,
+    "per_seed": [
+     0.9333333333333333,
+     0.65
+    ]
+   },
+   "prevented_upper_mean": {
+    "mean": 0.946403637560552,
+    "min": 0.9333333333333333,
+    "max": 0.9594739417877708,
+    "per_seed": [
+     0.9333333333333333,
+     0.9594739417877708
+    ]
+   },
+   "prevented_lower_mean": {
+    "mean": 0.8131682125122177,
+    "min": 0.6978284704642668,
+    "max": 0.9285079545601688,
+    "per_seed": [
+     0.9285079545601688,
+     0.6978284704642668
+    ]
+   },
+   "false_rings_per_day": {
+    "mean": 0.44999999999999996,
+    "min": 0.3,
+    "max": 0.6,
+    "per_seed": [
+     0.3,
+     0.6
+    ]
+   },
+   "fpr_off_target_any": true,
+   "pooled": {
+    "n_rings": 35,
+    "n_caught": 34,
+    "ring_recall": 0.9714285714285714,
+    "ring_recall_ci": [
+     0.9142857142857143,
+     1.0
+    ],
+    "ttc_median_min": 19.12506666666983,
+    "ttc_median_ci": [
+     7.09696666666617,
+     23.086700000000807
+    ],
+    "before_exit": 0.9428571428571428,
+    "n_with_exit": 35,
+    "before_exit_ci": [
+     0.8571428571428571,
+     1.0
+    ],
+    "hops_remaining_median": 2.0,
+    "hops_remaining_mean": 1.8235294117647058,
+    "deployed_recall": 0.8373056994818653,
+    "deployed_recall_ci": [
+     0.7736001278422062,
+     0.8961393537104018
+    ],
+    "recall_by_typology": {
+     "funnel": {
+      "recall": 1.0,
+      "n": 12,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "layered_chain": {
+      "recall": 1.0,
+      "n": 6,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "round_trip": {
+      "recall": 1.0,
+      "n": 1,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "slow_roll": {
+      "recall": 0.9,
+      "n": 10,
+      "ci": [
+       0.7,
+       1.0
+      ]
+     },
+     "split_merge": {
+      "recall": 1.0,
+      "n": 2,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     },
+     "structuring": {
+      "recall": 1.0,
+      "n": 4,
+      "ci": [
+       1.0,
+       1.0
+      ]
+     }
+    }
+   }
+  }
+ },
+ "paired": {
+  "G2+R_minus_RULE": {
+   "ring_recall_diff": 0.42857142857142855,
+   "ring_recall_diff_ci": [
+    0.2571428571428571,
+    0.6
+   ],
+   "discordant_g2r_only": 15,
+   "discordant_other_only": 0,
+   "n_rings": 35,
+   "ttc_diff_min_median": -15.780766666665048,
+   "ttc_diff_min_ci": [
+    -21.83980000000447,
+    -0.30926666666443126
+   ],
+   "n_caught_by_both": 19,
+   "before_exit_diff": 0.5428571428571428,
+   "before_exit_diff_ci": [
+    0.37142857142857144,
+    0.7142857142857143
+   ],
+   "deployed_recall_diff": 0.7398963730569948,
+   "deployed_recall_diff_ci": [
+    0.6793779304064789,
+    0.8048505886329071
+   ]
+  },
+  "G2+R_minus_B0": {
+   "ring_recall_diff": 0.0,
+   "ring_recall_diff_ci": [
+    -0.08571428571428572,
+    0.08571428571428572
+   ],
+   "discordant_g2r_only": 1,
+   "discordant_other_only": 1,
+   "n_rings": 35,
+   "ttc_diff_min_median": -0.30926666666443126,
+   "ttc_diff_min_ci": [
+    -18.1625,
+    0.0
+   ],
+   "n_caught_by_both": 33,
+   "before_exit_diff": 0.14285714285714285,
+   "before_exit_diff_ci": [
+    0.0,
+    0.3142857142857143
+   ],
+   "deployed_recall_diff": 0.48911917098445595,
+   "deployed_recall_diff_ci": [
+    0.42062559413618855,
+    0.5575278999103842
+   ]
+  },
+  "G2+R_minus_B0+R": {
+   "ring_recall_diff": 0.0,
+   "ring_recall_diff_ci": [
+    -0.08571428571428572,
+    0.08571428571428572
+   ],
+   "discordant_g2r_only": 1,
+   "discordant_other_only": 1,
+   "n_rings": 35,
+   "ttc_diff_min_median": -0.30926666666443126,
+   "ttc_diff_min_ci": [
+    -18.1625,
+    0.0
+   ],
+   "n_caught_by_both": 33,
+   "before_exit_diff": 0.14285714285714285,
+   "before_exit_diff_ci": [
+    0.0,
+    0.3142857142857143
+   ],
+   "deployed_recall_diff": 0.2922279792746114,
+   "deployed_recall_diff_ci": [
+    0.20090311585241769,
+    0.3864089969368257
+   ]
+  },
+  "G2+R_minus_B1": {
+   "ring_recall_diff": 0.0,
+   "ring_recall_diff_ci": [
+    0.0,
+    0.0
+   ],
+   "discordant_g2r_only": 0,
+   "discordant_other_only": 0,
+   "n_rings": 35,
+   "ttc_diff_min_median": 0.0,
+   "ttc_diff_min_ci": [
+    0.0,
+    0.0
+   ],
+   "n_caught_by_both": 34,
+   "before_exit_diff": -0.02857142857142857,
+   "before_exit_diff_ci": [
+    -0.08571428571428572,
+    0.0
+   ],
+   "deployed_recall_diff": -0.0010362694300518134,
+   "deployed_recall_diff_ci": [
+    -0.022421883982982636,
+    0.01602802164278386
+   ]
+  },
+  "G2+R_minus_B1+R": {
+   "ring_recall_diff": 0.0,
+   "ring_recall_diff_ci": [
+    0.0,
+    0.0
+   ],
+   "discordant_g2r_only": 0,
+   "discordant_other_only": 0,
+   "n_rings": 35,
+   "ttc_diff_min_median": 0.0,
+   "ttc_diff_min_ci": [
+    0.0,
+    0.0
+   ],
+   "n_caught_by_both": 34,
+   "before_exit_diff": -0.02857142857142857,
+   "before_exit_diff_ci": [
+    -0.08571428571428572,
+    0.0
+   ],
+   "deployed_recall_diff": -0.011398963730569948,
+   "deployed_recall_diff_ci": [
+    -0.022729867164798672,
+    -0.0021689048946172563
+   ]
+  },
+  "G2+R_minus_G2": {
+   "ring_recall_diff": -0.02857142857142857,
+   "ring_recall_diff_ci": [
+    -0.08571428571428572,
+    0.0
+   ],
+   "discordant_g2r_only": 0,
+   "discordant_other_only": 1,
+   "n_rings": 35,
+   "ttc_diff_min_median": 0.0,
+   "ttc_diff_min_ci": [
+    0.0,
+    0.0
+   ],
+   "n_caught_by_both": 34,
+   "before_exit_diff": -0.02857142857142857,
+   "before_exit_diff_ci": [
+    -0.08571428571428572,
+    0.0
+   ],
+   "deployed_recall_diff": 0.00932642487046632,
+   "deployed_recall_diff_ci": [
+    -0.008121020874464828,
+    0.024786347957329723
+   ]
+  }
+ },
+ "claim": {
+  "headline": "On our synthetic benchmark (2 worlds, time-based split), at the same false-alarm rate (0.5% of legitimate transactions, thresholds fixed on validation), the ring-aware detector (G2+R) found 97% of mule rings, versus 97% for the one-payment-at-a-time model (B0) and 97% for the account-history baseline with ring grouping (B1+R); it found a similar share of rings as the one-payment-at-a-time model (paired 95% interval of the difference -9 points to +9 points, includes zero). Realised test false-alarm rates differed from the target by more than 10% for B0, B1+R, G2+R in at least one world (see the operating-point table).",
+  "vs_strong_baseline": "Against the strong account-history baseline with the same ring layer (B1+R), G2+R found a similar share of rings as it (97% versus 97%; paired 95% interval of the difference +0 points to +0 points, includes zero; 0 rings caught only by G2+R and 0 only by B1+R).",
+  "earliness": "Among the 34 rings caught by both, G2+R caught them at a similar time than B1+R (median paired difference +0.0 minutes; 95% interval +0.0 min to +0.0 min, includes zero).",
+  "before_exit": "G2+R caught 94% of rings before their first cash-out (of 35 rings with a cash-out), versus 80% for B0.",
+  "hops": "At the moment G2+R caught a ring, a median of 2 hop(s) remained before the first cash-out.",
+  "weakest_typology": "The weakest typology for G2+R was slow roll (90% of 10 rings caught)."
+ },
+ "utc": "2026-10-17T20:08:47+00:00"
+}

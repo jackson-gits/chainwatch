@@ -1,0 +1,34 @@
+# Robustness grid (spec section 14.6). Models trained on the default medium world are NOT retrained,
+# except for R6. Each cell generates small-preset worlds (2 seeds) with one change at a time.
+seeds = [100, 101]
+preset = "small"
+
+[[cell]]
+id = "R1"
+key = "world.noise_level"
+values = [0.5, 1.0, 1.5, 2.0]
+
+[[cell]]
+id = "R2"
+key = "world.hard_negative_boost"
+values = [1.0, 2.0, 4.0]
+
+[[cell]]
+id = "R3"
+key = "world.mix.slow_roll"
+values = [0.08, 0.30]          # the other typologies are rescaled so the mix still sums to 1
+
+[[cell]]
+id = "R4"
+key = "world.mule_mix"
+values = ["default", "all_active"]
+
+[[cell]]
+id = "R5"
+key = "world.delay_scale"
+values = [0.5, 2.0]
+
+[[cell]]
+id = "R6"
+key = "heldout_typology"
+values = ["round_trip"]        # train on worlds without round_trip, test on worlds with it

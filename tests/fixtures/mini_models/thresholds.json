@@ -1,0 +1,117 @@
+{
+ "format": "chainwatch-thresholds-1",
+ "created_from": {
+  "world": "world_tiny_seed7",
+  "split": "validation",
+  "config_hash": "sha256:57bc2f1c698f6a3bc24a417d8e7ab28e7c3a163708eb966348616a81b2167b5e",
+  "world_events_sha256": "sha256:7babfe0f68f8f905878da7f8b1769763c6a6e8af1e0f4f9e65f9d3bff150b552",
+  "val_days": 2.0
+ },
+ "targets": {
+  "fpr_verify": 0.005,
+  "fpr_hold": 0.0005,
+  "fpr_edge": 0.005,
+  "max_false_rings_per_day": 5.0
+ },
+ "variants": {
+  "B0": {
+   "verify": 0.49021448242270477,
+   "hold": 0.6263289693524559,
+   "edge": 0.49021448242270477,
+   "val": {
+    "n_neg": 3597,
+    "fpr_verify": 0.0050041701417848205,
+    "fpr_hold": 0.0005560189046427579,
+    "n_pos": 90
+   },
+   "ring_alert": null
+  },
+  "B0+R": {
+   "verify": 0.5100279752897297,
+   "hold": 0.6263289693524559,
+   "edge": 0.5100279752897297,
+   "ring_alert": 0.0,
+   "val": {
+    "n_neg": 3597,
+    "n_pos": 90,
+    "fpr_verify": 0.004726160689463442,
+    "fpr_hold": 0.0005560189046427579,
+    "false_rings_per_day": 0.0,
+    "rings_tracked": 21
+   },
+   "calibration": {
+    "mode": "matched_fpr",
+    "iterations": 12,
+    "fpr_verify_effective": 0.004171142578125,
+    "fpr_before_escalation": 0.004170141784820684,
+    "fpr_after_escalation": 0.004726160689463442
+   }
+  },
+  "B1": {
+   "verify": 0.13764300426712034,
+   "hold": 0.29035873656392513,
+   "edge": 0.13764300426712034,
+   "val": {
+    "n_neg": 3597,
+    "fpr_verify": 0.0050041701417848205,
+    "fpr_hold": 0.0005560189046427579,
+    "n_pos": 90
+   },
+   "ring_alert": null
+  },
+  "B1+R": {
+   "verify": 0.20318412569442154,
+   "hold": 0.3053012687618038,
+   "edge": 0.20318412569442154,
+   "ring_alert": 0.0,
+   "val": {
+    "n_neg": 3597,
+    "n_pos": 90,
+    "fpr_verify": 0.004726160689463442,
+    "fpr_hold": 0.00027800945232137893,
+    "false_rings_per_day": 0.0,
+    "rings_tracked": 13
+   },
+   "calibration": {
+    "mode": "matched_fpr",
+    "iterations": 12,
+    "fpr_verify_effective": 0.0022241210937500003,
+    "fpr_before_escalation": 0.0022240756185710315,
+    "fpr_after_escalation": 0.004726160689463442
+   }
+  },
+  "G2": {
+   "verify": 0.19703366087544405,
+   "hold": 0.3750609721457885,
+   "edge": 0.19703366087544405,
+   "val": {
+    "n_neg": 3597,
+    "fpr_verify": 0.0050041701417848205,
+    "fpr_hold": 0.0005560189046427579,
+    "n_pos": 90
+   },
+   "ring_alert": null
+  },
+  "G2+R": {
+   "verify": 0.29947239825118926,
+   "hold": 0.4608517952245924,
+   "edge": 0.29947239825118926,
+   "ring_alert": 0.0,
+   "val": {
+    "n_neg": 3597,
+    "n_pos": 90,
+    "fpr_verify": 0.004726160689463442,
+    "fpr_hold": 0.00027800945232137893,
+    "false_rings_per_day": 0.0,
+    "rings_tracked": 12
+   },
+   "calibration": {
+    "mode": "matched_fpr",
+    "iterations": 12,
+    "fpr_verify_effective": 0.0022241210937500003,
+    "fpr_before_escalation": 0.0022240756185710315,
+    "fpr_after_escalation": 0.004726160689463442
+   }
+  }
+ }
+}

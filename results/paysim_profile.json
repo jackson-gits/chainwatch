@@ -1,0 +1,5 @@
+{
+ "provenance": "PaySim",
+ "status": "missing",
+ "message": "no PaySim CSV in D:\\projects\\upi-mule-ring-detection\\data\\raw\\paysim. Download 'paysim1' from Kaggle (free account) and place the CSV there; it is about 470 MB and must never be committed."
+}

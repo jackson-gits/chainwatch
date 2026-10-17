@@ -1,0 +1,161 @@
+# ChainWatch default configuration (spec section 7). Preset files override only what differs.
+
+[project]
+name = "chainwatch"
+seed = 2026
+tz_offset_s = 19800            # IST; used only for t_hour
+currency = "INR"
+
+[world]                        # ChainWorld, section 8.2
+preset = "medium"              # small | medium | large (preset files override counts below)
+days = 30
+t0_weekday = 0                 # 0 = Monday at sim time 0
+n_customers = 60000
+n_merchants = 3000
+n_traders = 400
+n_salary_payers = 150
+n_landlords = 1500
+n_agents = 500                 # cash-out agents (legitimate, high fan-in and fan-out)
+n_campaigns = 140              # mule-ring campaigns over the whole period
+fraud_target_share = [0.0008, 0.004]   # sanity band: ring txns / all txns
+upi_txn_cap_inr = 100000       # illustrative per-transaction cap, UNVERIFIED against NPCI
+structuring_cap_inr = 49999    # illustrative cap used by the structuring typology
+hard_negative_boost = 1.0      # multiplies hard-negative archetype activity
+noise_level = 1.0              # 0..2, scales background randomness
+# Additions beyond the spec table (each is logged in docs/decisions.md)
+campaign_start_min_day = 3.0   # campaigns start in [this, days - campaign_end_margin_days); equals eval.burn_in_days
+campaign_end_margin_days = 1.0 # keeps rings from being cut off by the end of the simulation (slow_roll gets +1.5 days)
+delay_scale = 1.0              # multiplies every typology delay (robustness R5)
+family_hub_share = 0.01
+new_customer_share = 0.05
+dormant_customer_share = 0.03
+split_bill_rate = 0.003        # split-bill groups per customer per day (0.3 per 100 customers)
+n_charity = 10                 # charity collections per world
+force_typologies = []          # if non-empty, campaigns cycle through these typologies in order (demo world)
+
+[world.mix]                    # typology weights, must sum to 1
+funnel = 0.35
+layered_chain = 0.25
+split_merge = 0.15
+round_trip = 0.05
+structuring = 0.12
+slow_roll = 0.08
+
+[world.mule_mix]               # mule profile mix (section 8.2.3), must sum to 1
+new = 0.40
+dormant = 0.35
+active = 0.25
+
+[features]
+windows_s = [600, 3600, 86400]
+fifo_lookback_s = 86400
+state_ttl_s = 172800           # evict accounts idle this long
+max_lateness_s = 5
+amount_history_n = 20
+dwell_ewma_alpha = 0.3
+dwell_default_s = 86400
+trail_depth_cap = 8
+trail_min_share = 0.10
+funnel_cap = 50
+susp_matched_share_min = 0.7
+susp_dwell_max_s = 900
+susp_min_in_uniq_1h = 2
+susp_ttl_s = 3600
+flow_edge_min_matched = 0.5
+flow_rebuild_every_s = 300
+flow_comp_cap = 200
+hub_degree_cap = 30            # accounts with more distinct 1h counterparties than this are hubs, never joined into flow components
+nbr_scan_cap = 50              # scan at most this many most-recent distinct neighbours for neighbour features
+round_min_amount = 1000
+near_cap_inr = 49999           # t_near_cap: amount in [near_cap_lo_frac x cap, cap]; illustrative, UNVERIFIED as a real limit
+near_cap_lo_frac = 0.85
+deque_cap = 500                # max events kept per account per direction; window counters saturate beyond this
+payee_memory_n = 200           # counterparties remembered per account (LRU); older ones count as new again
+flow_window_s = 3600           # flow edges older than this are dropped at each rebuild
+priority = "P1"                # P0 = core subset only, P1 = all features
+
+[model]
+objective = "binary"
+n_estimators = 600
+learning_rate = 0.05
+num_leaves = 31
+max_depth = 8                  # bounds per-event evaluation cost in the pure-Python evaluator
+ship_max_trees = 300           # cap for exported models (latency budget); accuracy impact is reported
+min_child_samples = 50
+subsample = 0.8
+subsample_freq = 1
+colsample_bytree = 0.8
+reg_lambda = 1.0
+early_stopping_rounds = 50
+neg_downsample = 0.2           # keep 20% of legitimate rows when training; weights compensate
+use_missing = false            # features never contain NaN; keeps the portable evaluator simple
+zero_as_missing = false
+deterministic = true
+n_jobs = 4
+detectors = ["B0", "B1", "G2"]
+min_train_positives = 200      # refuse to train below this many positives (tests lower it)
+
+[thresholds]
+fpr_verify = 0.005             # share of legitimate test transactions allowed to be verify or above
+fpr_hold = 0.0005              # share allowed to be hold
+fpr_edge = 0.005               # suspicious-edge threshold for ring grouping
+max_false_rings_per_day = 5    # ring alert threshold is chosen to respect this on validation
+false_ring_purity = 0.5        # a ring is false when fewer than this share of its flagged edges are fraud transactions
+calibrate_with_rings = true    # P1: bisect base thresholds so FPR after ring escalation matches the target
+bisect_iters = 12
+
+[rings]
+min_accounts = 3
+min_flagged_edges = 2
+link_window_s = 3600
+ttl_s = 21600
+rebuild_every_s = 300
+top_k_noisy_or = 5
+require_pass_node = true       # a ring needs at least one relay account (flagged money in and flagged money out)
+hub_degree_cap = 30            # an account with more distinct flagged counterparties than this never links edges
+terminal_types = ["CASH_OUT", "PAYMENT", "DEBIT"]   # the receiver of such an edge is an exit and does not link other edges
+escalation = true
+escalate_out_to = "hold"       # a transaction DEBITING a member of an alerting ring is raised to at least this tier
+escalate_in_to = "verify"      # a transaction CREDITING such a member is raised to at least this tier
+escalate_linking_only = true   # only members that link edges (entry/relay accounts, non-terminal receivers) escalate;
+                               # exit accounts reached only by terminal edges (cash-out agents, merchants) do not
+max_edges_in_alert = 200
+update_delta = 0.1             # emit a ring update event when ring_score grows by this much or membership changes
+
+[serving]
+host = "0.0.0.0"
+port = 8000
+workers = 1                    # stateful engine, keep 1 (rule E8)
+compare_mode = false           # if true, also evaluate B0 and B1 per event (about 3x model cost); the demo toggles it
+ws_batch_ms = 250
+max_batch = 500
+request_id_lru = 100000
+api_key_env = "CHAINWATCH_API_KEY"   # if this env var is set, X-API-Key is required on /v1
+cors_origins = []
+rate_limit_rps = 0             # 0 = off
+latency_hist_max_ms = 2000
+
+[replay]
+dataset = "data/replay/demo.csv.gz"
+accounts = "data/replay/demo_accounts.csv.gz"
+rings = "data/replay/demo_rings.json"   # ground-truth rings of the demo world (UI overlay and next-campaign seek only)
+warmup_until_ts = 259200       # 3 days: events before this are processed silently at start-up
+default_speed = 300.0          # simulated seconds per wall-clock second
+inject_max_per_minute = 6      # cap on live-injected campaigns
+inject_time_scale = 0.5        # multiplies typology delays for injected campaigns so they unfold in minutes
+
+[eval]
+seeds = [0, 1, 2, 3, 4]
+split_days = [15, 20, 30]      # train [0,15), validation [15,20), test [20,30)
+burn_in_days = 3               # events in the first days build state but are excluded from training and scoring metrics
+bootstrap = 2000
+bootstrap_seed = 2026
+fpr_points = [0.0001, 0.001, 0.01]
+catch_min_accounts = 2         # a ring is caught when this many distinct ring accounts have an action
+catch_min_action = "verify"    # ... of at least this tier
+
+[bench]
+engine_events = 200000
+load_requests = 20000
+load_concurrency = [1, 8, 32, 64]
+warmup_requests = 1000

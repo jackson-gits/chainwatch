@@ -1,0 +1,26 @@
+{
+ "E1": {
+  "status": "confirmed",
+  "detail": "deployed transaction recall B1 84% vs B0 32%"
+ },
+ "E2": {
+  "status": "refuted",
+  "detail": "ring recall G2+R 97% vs B1+R 97%, paired interval +0 pts to +0 pts; median time difference +0.0 min, interval +0.0 min to +0.0 min"
+ },
+ "E3": {
+  "status": "partly confirmed",
+  "detail": "hardest typology per variant: {'B0': 'round_trip', 'B1+R': 'slow_roll', 'G2+R': 'slow_roll'}"
+ },
+ "E4": {
+  "status": "partly confirmed",
+  "detail": "highest account-level false-alert shares (G2+R): salary_payer 93.3%, trader 73.0%"
+ },
+ "E5": {
+  "status": "not tested",
+  "detail": "PaySim data not available; see results/paysim_profile.json"
+ },
+ "E6": {
+  "status": "confirmed",
+  "detail": "ring recall B0+R 89% vs B0 89% (G2+R minus B0+R: +9 pts)"
+ }
+}

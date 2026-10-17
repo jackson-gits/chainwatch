@@ -1,0 +1,1124 @@
+{
+ "provenance": "ChainWorld",
+ "worlds": [
+  "world_small_seed0",
+  "world_small_seed1"
+ ],
+ "ablations": {
+  "A1": {
+   "change": "detector ladder without rings",
+   "results": {
+    "B0": {
+     "ring_recall": {
+      "mean": 0.8666666666666667,
+      "min": 0.7333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 26.759083333335,
+      "min": 21.83980000000447,
+      "max": 31.678366666665532,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.7083333333333333,
+      "min": 0.4666666666666667,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.3183013503909026,
+      "min": 0.29850746268656714,
+      "max": 0.3380952380952381,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.003840925004053272,
+      "min": 0.003652471246502953,
+      "max": 0.004029378761603591,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.28664583733306026,
+      "min": 0.25725087216017156,
+      "max": 0.31604080250594896,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     }
+    },
+    "B1": {
+     "ring_recall": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 12.931179166668638,
+      "min": 5.648933333336997,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8568111821843165,
+      "min": 0.8031746031746032,
+      "max": 0.9104477611940298,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.006004564001599303,
+      "min": 0.005595275101025801,
+      "max": 0.006413852902172805,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8439541163582658,
+      "min": 0.7972080055226318,
+      "max": 0.8907002271938997,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.5,
+      "min": 1.0,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    },
+    "G2": {
+     "ring_recall": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 17.679537500000635,
+      "min": 15.145650000000993,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.975,
+      "min": 0.95,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8487799099739398,
+      "min": 0.7841269841269841,
+      "max": 0.9134328358208955,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.0063566277530367615,
+      "min": 0.005776603460781266,
+      "max": 0.0069366520452922575,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.830910292098541,
+      "min": 0.7735024040859906,
+      "max": 0.8883181801110913,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.5,
+      "min": 1.0,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A10": {
+   "change": "P0 feature set (27) instead of P1 (59), retrained",
+   "results": {
+    "G2": {
+     "ring_recall": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 19.850479166665657,
+      "min": 19.487533333331037,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9333333333333333,
+      "min": 0.8666666666666667,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.7932480454868515,
+      "min": 0.7238095238095238,
+      "max": 0.8626865671641791,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.005273880419922669,
+      "min": 0.004628685096399062,
+      "max": 0.005919075743446275,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.7748135932003732,
+      "min": 0.7199077475351784,
+      "max": 0.829719438865568,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.5,
+      "min": 1.0,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    },
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 19.60797083333406,
+      "min": 19.002516666667844,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9333333333333333,
+      "min": 0.8666666666666667,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8292821606254441,
+      "min": 0.780952380952381,
+      "max": 0.8776119402985074,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.005014538665360065,
+      "min": 0.00466693869223707,
+      "max": 0.005362138638483059,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.7927590846799237,
+      "min": 0.7418189153737232,
+      "max": 0.8436992539861242,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.55,
+      "min": 0.5,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.5,
+      "min": 1.0,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A2": {
+   "change": "detector ladder with rings",
+   "results": {
+    "B0+R": {
+     "ring_recall": {
+      "mean": 0.8666666666666667,
+      "min": 0.7333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 26.759083333335,
+      "min": 21.83980000000447,
+      "max": 31.678366666665532,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.7083333333333333,
+      "min": 0.4666666666666667,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.5193200663349917,
+      "min": 0.5164179104477612,
+      "max": 0.5222222222222223,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.0037692872085524688,
+      "min": 0.003458190861050668,
+      "max": 0.004080383556054269,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.4420622050278038,
+      "min": 0.4288763616774551,
+      "max": 0.4552480483781525,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     }
+    },
+    "B1+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 13.03566249999955,
+      "min": 5.85789999999882,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8667495854063019,
+      "min": 0.8111111111111111,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.005386280828582531,
+      "min": 0.004792249507823023,
+      "max": 0.0059803121493420385,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8516895875912838,
+      "min": 0.8033311784308128,
+      "max": 0.9000479967517547,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.6,
+      "min": 0.6,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    },
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 15.409841666665548,
+      "min": 10.606258333330818,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8588130774697939,
+      "min": 0.7952380952380952,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.004953693343786066,
+      "min": 0.004092840120194798,
+      "max": 0.005814546567377334,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8423060848071451,
+      "min": 0.7842365017135025,
+      "max": 0.9003756679007878,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.4,
+      "min": 0.2,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A3": {
+   "change": "G2 without g_nbr_in_susp_cnt, g_nbr_out_susp_cnt, g_dst_nbr_in_susp_cnt, g_src_susp, g_dst_susp (retrained)",
+   "results": {
+    "G2": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 18.765008333333146,
+      "min": 17.316591666666014,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8471926083866382,
+      "min": 0.780952380952381,
+      "max": 0.9134328358208955,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.006596943123222437,
+      "min": 0.006346492591441302,
+      "max": 0.006847393655003571,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8325919862664499,
+      "min": 0.7727137527764939,
+      "max": 0.892470219756406,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    },
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 18.346212500002004,
+      "min": 17.316591666666014,
+      "max": 19.37583333333799,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.84620942904525,
+      "min": 0.773015873015873,
+      "max": 0.9194029850746268,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.007224665169194229,
+      "min": 0.006082321738243395,
+      "max": 0.008367008600145063,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8256291017805717,
+      "min": 0.7810435106913913,
+      "max": 0.8702146928697521,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.6499999999999999,
+      "min": 0.6,
+      "max": 0.7,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A4": {
+   "change": "G2 without g_trail_depth, g_funnel_in (retrained)",
+   "results": {
+    "G2": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 13.03566249999955,
+      "min": 5.85789999999882,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8497630893153281,
+      "min": 0.792063492063492,
+      "max": 0.9074626865671642,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.006101552913396924,
+      "min": 0.004947673816184851,
+      "max": 0.007255432010608997,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8315898153577428,
+      "min": 0.7801511645839143,
+      "max": 0.8830284661315714,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    },
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 13.03566249999955,
+      "min": 5.85789999999882,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8392561004501302,
+      "min": 0.765079365079365,
+      "max": 0.9134328358208955,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.0048558502562654005,
+      "min": 0.003807895554864781,
+      "max": 0.005903804957666021,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.837234570705242,
+      "min": 0.780043632720592,
+      "max": 0.8944255086898919,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.44999999999999996,
+      "min": 0.3,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A5": {
+   "change": "G2 without g_flow_comp_size, g_flow_comp_edges (retrained)",
+   "results": {
+    "G2": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 12.740000000001357,
+      "min": 5.266575000002437,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8457000710732054,
+      "min": 0.780952380952381,
+      "max": 0.9104477611940298,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.006233784336001131,
+      "min": 0.005556419023935343,
+      "max": 0.006911149648066918,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8333127861928831,
+      "min": 0.7754978683873864,
+      "max": 0.8911277039983798,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n_worlds": 0
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    },
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 12.740000000001357,
+      "min": 5.266575000002437,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8447168917318171,
+      "min": 0.773015873015873,
+      "max": 0.9164179104477612,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.005174179021258213,
+      "min": 0.004572065070977101,
+      "max": 0.005776292971539324,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8430743165324424,
+      "min": 0.7812277400342253,
+      "max": 0.9049208930306594,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.44999999999999996,
+      "min": 0.3,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A6": {
+   "change": "require_pass_node = false",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 17.679537500000635,
+      "min": 15.145650000000993,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8707178393745558,
+      "min": 0.819047619047619,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.020452425791934917,
+      "min": 0.006514868925499948,
+      "max": 0.034389982658369886,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.7603569114949462,
+      "min": 0.6519297071713935,
+      "max": 0.8687841158184988,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 1.6,
+      "min": 0.7,
+      "max": 2.5,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.25,
+      "min": 1.0,
+      "max": 1.5,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A7": {
+   "change": "escalation = false",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 17.679537500000635,
+      "min": 15.145650000000993,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.975,
+      "min": 0.95,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8487799099739398,
+      "min": 0.7841269841269841,
+      "max": 0.9134328358208955,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.0063566277530367615,
+      "min": 0.005776603460781266,
+      "max": 0.0069366520452922575,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.830910292098541,
+      "min": 0.7735024040859906,
+      "max": 0.8883181801110913,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 1.0499999999999998,
+      "min": 0.7,
+      "max": 1.4,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.5,
+      "min": 1.0,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A8_x0.5": {
+   "change": "link_window_s x 0.5",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 15.409841666665548,
+      "min": 10.606258333330818,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8548448235015399,
+      "min": 0.7873015873015873,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.005185825670908061,
+      "min": 0.004429592788312092,
+      "max": 0.005942058553504029,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8390569242082112,
+      "min": 0.7784727691882312,
+      "max": 0.8996410792281913,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.2,
+      "min": 0.0,
+      "max": 0.4,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A8_x2": {
+   "change": "link_window_s x 2",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 15.409841666665548,
+      "min": 10.606258333330818,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8746860933428098,
+      "min": 0.8269841269841269,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.0053610796719834155,
+      "min": 0.00483110558491348,
+      "max": 0.005891053759053351,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8480329715831698,
+      "min": 0.8025747141366193,
+      "max": 0.8934912290297204,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.44999999999999996,
+      "min": 0.2,
+      "max": 0.7,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A9_k1": {
+   "change": "top_k_noisy_or = 1",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 15.409841666665548,
+      "min": 10.606258333330818,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8588130774697939,
+      "min": 0.7952380952380952,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.004953693343786066,
+      "min": 0.004092840120194798,
+      "max": 0.005814546567377334,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8423060848071451,
+      "min": 0.7842365017135025,
+      "max": 0.9003756679007878,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.4,
+      "min": 0.2,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A9_k3": {
+   "change": "top_k_noisy_or = 3",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 15.409841666665548,
+      "min": 10.606258333330818,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8588130774697939,
+      "min": 0.7952380952380952,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.004953693343786066,
+      "min": 0.004092840120194798,
+      "max": 0.005814546567377334,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8423060848071451,
+      "min": 0.7842365017135025,
+      "max": 0.9003756679007878,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.4,
+      "min": 0.2,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  },
+  "A9_k5": {
+   "change": "top_k_noisy_or = 5",
+   "results": {
+    "G2+R": {
+     "ring_recall": {
+      "mean": 0.9666666666666667,
+      "min": 0.9333333333333333,
+      "max": 1.0,
+      "n_worlds": 2
+     },
+     "ttc_median_min": {
+      "mean": 15.409841666665548,
+      "min": 10.606258333330818,
+      "max": 20.213425000000278,
+      "n_worlds": 2
+     },
+     "caught_before_exit": {
+      "mean": 0.9416666666666667,
+      "min": 0.9333333333333333,
+      "max": 0.95,
+      "n_worlds": 2
+     },
+     "deployed_recall": {
+      "mean": 0.8588130774697939,
+      "min": 0.7952380952380952,
+      "max": 0.9223880597014925,
+      "n_worlds": 2
+     },
+     "test_fpr": {
+      "mean": 0.004953693343786066,
+      "min": 0.004092840120194798,
+      "max": 0.005814546567377334,
+      "n_worlds": 2
+     },
+     "pr_auc": {
+      "mean": 0.8423060848071451,
+      "min": 0.7842365017135025,
+      "max": 0.9003756679007878,
+      "n_worlds": 2
+     },
+     "false_rings_per_day": {
+      "mean": 0.4,
+      "min": 0.2,
+      "max": 0.6,
+      "n_worlds": 2
+     },
+     "hops_remaining_median": {
+      "mean": 1.75,
+      "min": 1.5,
+      "max": 2.0,
+      "n_worlds": 2
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "host_tag": "amd64",
+ "checks": [
+  {
+   "check": "machine",
+   "status": "OK",
+   "detail": "AMD64, little-endian, Windows 11"
+  },
+  {
+   "check": "python",
+   "status": "OK",
+   "detail": "3.12.2"
+  },
+  {
+   "check": "pip",
+   "status": "OK",
+   "detail": "pip 25.2 from C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-pa"
+  },
+  {
+   "check": "serve packages",
+   "status": "OK",
+   "detail": "fastapi 0.109.0, pydantic 2.13.4, pydantic_core 2.46.4, uvicorn 0.27.0, websockets 12.0"
+  },
+  {
+   "check": "docker",
+   "status": "OK",
+   "detail": "29.7.2 x86_64"
+  },
+  {
+   "check": "port 8000",
+   "status": "OK",
+   "detail": "free"
+  },
+  {
+   "check": "cpu/memory",
+   "status": "OK",
+   "detail": "12 CPUs, MemTotal n/a"
+  },
+  {
+   "check": "disk",
+   "status": "OK",
+   "detail": "111.3 GB free"
+  },
+  {
+   "check": "outbound https",
+   "status": "OK",
+   "detail": "{\"https://pypi.org\": 200, \"https://github.com\": 200}"
+  },
+  {
+   "check": "wheel availability (pydantic-core)",
+   "status": "OK",
+   "detail": "[notice] To update, run: python.exe -m pip install --upgrade pip"
+  },
+  {
+   "check": "clock",
+   "status": "WARN",
+   "detail": "2026-10-17T22:53:50+00:00"
+  }
+ ],
+ "next_step": "Docker works: run `make docker-build docker-run` (or `docker build -t chainwatch:latest .`).",
+ "utc": "2026-10-17T22:53:50+00:00"
+}

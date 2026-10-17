@@ -1,0 +1,124 @@
+# Reason codes (spec 12.2). Descriptions of observed values, never accusations.
+# Clauses: [feature, op, value]; ops: >=, <=, >, <, ==, rank>=, rank<= (benign-profile rank).
+# Text filters: int, pct, duration, days, inr, rank_pct, rank_inv_pct.
+# Derived values: g_nbr_total, near_cap, ring_id, ring_score, risk.
+# Thresholds are initial values; tune on validation only and record changes in docs/decisions.md.
+
+[[reason]]
+code = "RING_MEMBER_OUT"
+weight = 100
+forced_only = true
+text = "This account is part of a linked group of accounts ({ring_id}) showing a relay pattern; money leaving it is recommended for review."
+evidence = []
+
+[[reason]]
+code = "RING_MEMBER_IN"
+weight = 95
+forced_only = true
+text = "This payment goes to an account in a linked group ({ring_id}) showing a relay pattern."
+evidence = []
+
+[[reason]]
+code = "FAST_PASS_ON"
+weight = 90
+when = [["s_matched_share", ">=", 0.7], ["s_dwell_s", "<=", 900]]
+text = "Passed on {s_matched_share|pct} of the money it had just received, within {s_dwell_s|duration} (faster than about {s_dwell_s|rank_inv_pct}% of normal transactions)."
+evidence = ["s_matched_share", "s_dwell_s"]
+
+[[reason]]
+code = "NEW_SENDERS_BURST"
+weight = 85
+when = [["d_in_uniq_new_1h", ">=", 3]]
+text = "{d_in_uniq_new_1h|int} of the senders paying this account in the last hour were paying it for the first time."
+evidence = ["d_in_uniq_new_1h", "d_in_uniq_1h"]
+
+[[reason]]
+code = "MANY_SENDERS_IN"
+weight = 80
+when = [["d_in_uniq_1h", ">=", 4], ["d_in_uniq_1h", "rank>=", 0.995]]
+text = "The receiving account got money from {d_in_uniq_1h|int} different senders in the last hour."
+evidence = ["d_in_uniq_1h"]
+
+[[reason]]
+code = "FAN_OUT_FAST"
+weight = 80
+when = [["s_out_uniq_1h", ">=", 3], ["s_pass_ratio_1h", ">=", 0.6]]
+text = "Sent money on to {s_out_uniq_1h|int} different accounts within an hour."
+evidence = ["s_out_uniq_1h", "s_pass_ratio_1h"]
+
+[[reason]]
+code = "DEEP_TRAIL"
+weight = 75
+when = [["g_trail_depth", ">=", 2]]
+text = "Money has already moved through {g_trail_depth|int} accounts in a chain before this payment."
+evidence = ["g_trail_depth"]
+
+[[reason]]
+code = "NEIGHBOUR_PATTERN"
+weight = 72
+when_any = [["g_nbr_in_susp_cnt", ">=", 1], ["g_nbr_out_susp_cnt", ">=", 1], ["g_dst_nbr_in_susp_cnt", ">=", 1]]
+text = "{g_nbr_total|int} connected accounts already show a similar relay pattern."
+evidence = ["g_nbr_in_susp_cnt", "g_nbr_out_susp_cnt", "g_dst_nbr_in_susp_cnt"]
+
+[[reason]]
+code = "HIGH_PASS_THROUGH"
+weight = 70
+when = [["s_pass_ratio_1h", ">=", 0.8], ["s_in_amt_1h", ">", 0]]
+text = "Sent on {s_pass_ratio_1h|pct} of the money received in the last hour."
+evidence = ["s_pass_ratio_1h", "s_in_amt_1h"]
+
+[[reason]]
+code = "ROUND_TRIP"
+weight = 68
+when = [["e_reverse_recent", "==", 1], ["s_matched_share", ">=", 0.5]]
+text = "Money is going back towards an account it recently came from."
+evidence = ["e_reverse_recent", "s_matched_share"]
+
+[[reason]]
+code = "CONNECTED_GROUP"
+weight = 66
+when = [["g_flow_comp_size", ">=", 4]]
+text = "Part of a connected group of {g_flow_comp_size|int} accounts passing money on."
+evidence = ["g_flow_comp_size"]
+
+[[reason]]
+code = "NEW_RECEIVER_ACCOUNT"
+weight = 65
+when = [["d_age_s", "<=", 21600], ["d_in_uniq_1h", ">=", 2]]
+text = "The receiving account is new (first seen {d_age_s|duration} ago) and is collecting from several senders."
+evidence = ["d_age_s", "d_in_uniq_1h"]
+
+[[reason]]
+code = "DORMANT_RECEIVER"
+weight = 65
+when = [["d_idle_s", ">=", 1209600]]
+text = "The receiving account had been inactive for {d_idle_s|days} days."
+evidence = ["d_idle_s"]
+
+[[reason]]
+code = "DORMANT_SENDER"
+weight = 60
+when = [["s_idle_s", ">=", 1209600], ["s_matched_share", ">=", 0.5]]
+text = "This account had been inactive for {s_idle_s|days} days before this burst of activity."
+evidence = ["s_idle_s", "s_matched_share"]
+
+[[reason]]
+code = "DRAIN_BALANCE"
+weight = 60
+when = [["t_s_bal_known", "==", 1], ["t_s_drain", ">=", 0.95]]
+text = "Sends almost the whole balance ({t_s_drain|pct}) in one payment."
+evidence = ["t_s_drain"]
+
+[[reason]]
+code = "NEAR_LIMIT_AMOUNT"
+weight = 50
+when = [["t_near_cap", "==", 1]]
+text = "The amount is just under {near_cap|inr} (an illustrative limit used in this demo)."
+evidence = ["t_amount"]
+
+[[reason]]
+code = "MODEL_SCORE"
+weight = 10
+fallback = true
+text = "The overall pattern of recent activity scores high compared with normal activity (risk {risk|int})."
+evidence = []

@@ -1,0 +1,25 @@
+{
+ "format": "chainwatch-model-package-1",
+ "provenance": "ChainWorld",
+ "trained_on": "world_small_seed0",
+ "config_hash": "sha256:b98cdf0b73d2d82fa0fa573a3bd880a6089b6583715d42493e62eddaf0fdf925",
+ "registry_hash": {
+  "B0": "sha256:535b36dc488c77a14a86ab89f00be0ee1231a60561dfcfba7a9a2f49ab528f15",
+  "B1": "sha256:6b1f34437cda39ba66d0444fcf390aca7ab2d2a273b0de055ad887b611ac57fb",
+  "G2": "sha256:b791e30b45146add7bc39b6208381bb1407511e50e4d672fc5a7f11d6e76be36"
+ },
+ "world_events_sha256": "sha256:293677d3c341b386233d9a142f4d7aca4f0f8f830f125fb097a3ab9b92dfc1d8",
+ "lightgbm": "4.7.0",
+ "python": "3.12.2",
+ "created_at": "2026-10-16T13:25:02+00:00",
+ "files": {
+  "B0.json": "sha256:cc45c4a73a486a9f7099a8d8ca7fde3be017493d2825f0cbed604dd40da7ad05",
+  "B1.json": "sha256:704eebc4bab2d5d97b01d2df6b0efa55d955e6730d344b3a3796101531cc6f07",
+  "benign_profile.json": "sha256:cb54734b82efa6a111b8892352c956e93309df0f6d10baae6d82b159f73652aa",
+  "G2.json": "sha256:fae130e557bbb685f08611eae93254f77c904cbb9de26afab95a23b809d5163f",
+  "thresholds.json": "sha256:67ed3792834c02f9053fd86359520d695b906c0d06f0838c58a251a100b69ac9",
+  "train_report_B0.json": "sha256:89c31b0c634cd79ba2cce32df312dfa00bee278deb8202b94302066d1217ec22",
+  "train_report_B1.json": "sha256:bd42d17bc7808579cbd251f887fa2cdc3e5c474db3fe82771e21f5f135402453",
+  "train_report_G2.json": "sha256:d0b11d4c24cd93cada8420b774a7c296863df4ce92cf8f9e3f02bb81c67798e4"
+ }
+}

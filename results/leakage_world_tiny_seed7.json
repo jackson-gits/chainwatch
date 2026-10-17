@@ -1,0 +1,123 @@
+{
+ "world": "world_tiny_seed7",
+ "provenance": "ChainWorld",
+ "checks": {
+  "L1": {
+   "pass": true,
+   "max_train_ts": 345551.003,
+   "min_val_ts": 345768.147,
+   "max_val_ts": 517613.385,
+   "min_test_ts": 518647.667,
+   "causality": {
+    "pass": true,
+    "events": 3000,
+    "cuts": [
+     500,
+     1500,
+     2500
+    ]
+   }
+  },
+  "L2": {
+   "pass": true,
+   "skipped": "fast mode"
+  },
+  "L3": {
+   "pass": true,
+   "skipped": "fast mode"
+  },
+  "L4": {
+   "pass": true,
+   "top": [
+    {
+     "feature": "d_in_amt_1h",
+     "auc": 0.9698236184474716
+    },
+    {
+     "feature": "s_out_amt_1h",
+     "auc": 0.9121150341333828
+    },
+    {
+     "feature": "t_s_drain",
+     "auc": 0.9022858554968647
+    },
+    {
+     "feature": "t_amount",
+     "auc": 0.8839634880919285
+    },
+    {
+     "feature": "t_log_amount",
+     "auc": 0.8839634880919285
+    },
+    {
+     "feature": "t_hour",
+     "auc": 0.8625274148209928
+    },
+    {
+     "feature": "d_idle_s",
+     "auc": 0.7951471905600346
+    },
+    {
+     "feature": "d_age_s",
+     "auc": 0.7705618879930807
+    },
+    {
+     "feature": "g_flow_comp_edges",
+     "auc": 0.7590368516974022
+    },
+    {
+     "feature": "d_in_cnt_1h",
+     "auc": 0.7566089024804621
+    }
+   ],
+   "above_0.98": [],
+   "note": "report only; features above 0.98 need a manual note in docs/decisions.md"
+  },
+  "L5": {
+   "pass": true,
+   "skipped": "no train report"
+  },
+  "L6": {
+   "pass": true,
+   "test_mule_accounts": 0,
+   "seen_in_train_rings": 0,
+   "share_reused": null,
+   "test_rings": 0,
+   "test_rings_all_unseen": 0,
+   "recall_subset": {
+    "B1+R": {
+     "recall_all": null,
+     "recall_unseen_only": null,
+     "n_unseen": 0
+    },
+    "G2+R": {
+     "recall_all": null,
+     "recall_unseen_only": null,
+     "n_unseen": 0
+    }
+   }
+  },
+  "L7": {
+   "pass": false,
+   "reason": "no thresholds.json"
+  },
+  "L8": {
+   "pass": true,
+   "burn_end": 86400.0,
+   "min_ts": 87125.164
+  },
+  "L9": {
+   "pass": true,
+   "rejected_fields": [
+    "is_fraud",
+    "ring_id",
+    "hop",
+    "src_role",
+    "dst_role"
+   ],
+   "event_type_has_no_label_fields": true
+  }
+ },
+ "blocking_ok": false,
+ "bug_signal": false
+}

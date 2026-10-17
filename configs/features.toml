@@ -1,0 +1,7 @@
+# Feature registry flags (spec section 9.8).
+# This file may only lower priorities or disable features for an ablation.
+# Disabled features are removed from every detector vector and change the registry hash.
+disabled = []
+
+# Optional: move a P0 feature down to P1, for example lower_to_p1 = ["s_new_payee"]
+lower_to_p1 = []

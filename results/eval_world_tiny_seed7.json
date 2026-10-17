@@ -1,0 +1,1612 @@
+{
+ "transaction_level": {
+  "RULE": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.0019151846785225718,
+    "hold_fpr": 0.0,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 19.151846785225718,
+    "hold": 0.0
+   }
+  },
+  "B0": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.0038303693570451436,
+    "hold_fpr": 0.00027359781121751026,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 35.56771545827633,
+    "hold": 2.7359781121751023
+   }
+  },
+  "B0+R": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.0038303693570451436,
+    "hold_fpr": 0.00027359781121751026,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 35.56771545827633,
+    "hold": 2.7359781121751023
+   }
+  },
+  "B1": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.007113543091655267,
+    "hold_fpr": 0.0005471956224350205,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 65.66347469220246,
+    "hold": 5.471956224350205
+   }
+  },
+  "B1+R": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.0019151846785225718,
+    "hold_fpr": 0.0005471956224350205,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 13.679890560875513,
+    "hold": 5.471956224350205
+   }
+  },
+  "G2": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.004651162790697674,
+    "hold_fpr": 0.0005471956224350205,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 41.03967168262654,
+    "hold": 5.471956224350205
+   }
+  },
+  "G2+R": {
+   "n": 3655,
+   "n_pos": 0,
+   "n_neg": 3655,
+   "pr_auc": NaN,
+   "roc_auc": NaN,
+   "deployed": {
+    "recall": {
+     "k": 0,
+     "n": 0,
+     "p": null,
+     "ci95": [
+      null,
+      null
+     ]
+    },
+    "fpr": 0.0019151846785225718,
+    "hold_fpr": 0.00027359781121751026,
+    "precision": 0.0
+   },
+   "curve": {
+    "0.0001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.001": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    },
+    "0.01": {
+     "recall": null,
+     "fpr": null,
+     "threshold": null
+    }
+   },
+   "alerts_per_10k": {
+    "verify": 16.415868673050614,
+    "hold": 2.7359781121751023
+   }
+  }
+ },
+ "ring_level": {
+  "RULE": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {}
+  },
+  "B0": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {}
+  },
+  "B0+R": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {},
+   "false_rings": {
+    "alerts": 0,
+    "false": 0,
+    "false_per_day": 0.0,
+    "alerts_per_day": 0.0,
+    "legit_accounts_touched_per_day": 0.0
+   },
+   "escalated_test_txns": 0,
+   "ring_peaks": []
+  },
+  "B1": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {}
+  },
+  "B1+R": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {},
+   "false_rings": {
+    "alerts": 0,
+    "false": 0,
+    "false_per_day": 0.0,
+    "alerts_per_day": 0.0,
+    "legit_accounts_touched_per_day": 0.0
+   },
+   "escalated_test_txns": 0,
+   "ring_peaks": []
+  },
+  "G2": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {}
+  },
+  "G2+R": {
+   "n_rings": 0,
+   "recall": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "ttc_min": {
+    "median": null,
+    "q25": null,
+    "q75": null
+   },
+   "within_15min": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "within_1h": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "caught_before_exit": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "ci95": [
+     null,
+     null
+    ]
+   },
+   "rings_without_exit": 0,
+   "min_before_exit_median": null,
+   "hops_remaining": {
+    "median": null,
+    "mean": null,
+    "hist": {}
+   },
+   "prevented_upper_mean": null,
+   "prevented_lower_mean": null,
+   "by_typology": {},
+   "by_size": {},
+   "false_rings": {
+    "alerts": 0,
+    "false": 0,
+    "false_per_day": 0.0,
+    "alerts_per_day": 0.0,
+    "legit_accounts_touched_per_day": 0.0
+   },
+   "escalated_test_txns": 0,
+   "ring_peaks": []
+  }
+ },
+ "archetype_fpr": {
+  "RULE": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 1,
+    "share": 0.08333333333333333,
+    "per_account_day": 0.08333333333333333
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 7,
+    "share": 0.005972696245733789,
+    "per_account_day": 0.0029863481228668944
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 1,
+    "share": 0.016666666666666666,
+    "per_account_day": 0.008333333333333333
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   }
+  },
+  "B0": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 5,
+    "share": 0.4166666666666667,
+    "per_account_day": 0.20833333333333334
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 20,
+    "share": 0.017064846416382253,
+    "per_account_day": 0.008959044368600682
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 2,
+    "share": 0.03333333333333333,
+    "per_account_day": 0.016666666666666666
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   }
+  },
+  "B0+R": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 5,
+    "share": 0.4166666666666667,
+    "per_account_day": 0.20833333333333334
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 20,
+    "share": 0.017064846416382253,
+    "per_account_day": 0.008959044368600682
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 2,
+    "share": 0.03333333333333333,
+    "per_account_day": 0.016666666666666666
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   }
+  },
+  "B1": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 4,
+    "share": 0.3333333333333333,
+    "per_account_day": 0.25
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 25,
+    "share": 0.021331058020477817,
+    "per_account_day": 0.010665529010238909
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 3,
+    "share": 0.05,
+    "per_account_day": 0.025
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 3,
+    "share": 0.3333333333333333,
+    "per_account_day": 0.16666666666666666
+   }
+  },
+  "B1+R": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 3,
+    "share": 0.25,
+    "per_account_day": 0.16666666666666666
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 8,
+    "share": 0.006825938566552901,
+    "per_account_day": 0.0034129692832764505
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 2,
+    "share": 0.03333333333333333,
+    "per_account_day": 0.016666666666666666
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   }
+  },
+  "G2": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 3,
+    "share": 0.25,
+    "per_account_day": 0.25
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 15,
+    "share": 0.012798634812286689,
+    "per_account_day": 0.0063993174061433445
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 2,
+    "share": 0.03333333333333333,
+    "per_account_day": 0.016666666666666666
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 1,
+    "share": 0.015384615384615385,
+    "per_account_day": 0.007692307692307693
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 2,
+    "share": 0.2222222222222222,
+    "per_account_day": 0.1111111111111111
+   }
+  },
+  "G2+R": {
+   "agent": {
+    "accounts_active": 12,
+    "accounts_alerted": 3,
+    "share": 0.25,
+    "per_account_day": 0.20833333333333334
+   },
+   "customer": {
+    "accounts_active": 1172,
+    "accounts_alerted": 7,
+    "share": 0.005972696245733789,
+    "per_account_day": 0.0029863481228668944
+   },
+   "dormant_customer": {
+    "accounts_active": 38,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "family_hub": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "landlord": {
+    "accounts_active": 15,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "merchant": {
+    "accounts_active": 60,
+    "accounts_alerted": 1,
+    "share": 0.016666666666666666,
+    "per_account_day": 0.008333333333333333
+   },
+   "new_customer": {
+    "accounts_active": 65,
+    "accounts_alerted": 0,
+    "share": 0.0,
+    "per_account_day": 0.0
+   },
+   "trader": {
+    "accounts_active": 9,
+    "accounts_alerted": 1,
+    "share": 0.1111111111111111,
+    "per_account_day": 0.05555555555555555
+   }
+  }
+ },
+ "operating_points": {
+  "RULE": {
+   "thresholds": null,
+   "target_fpr": null,
+   "realised_test_fpr": 0.0019151846785225718,
+   "fpr_off_target": false
+  },
+  "B0": {
+   "thresholds": {
+    "verify": 0.49021448242270477,
+    "hold": 0.6263289693524559,
+    "edge": 0.49021448242270477,
+    "val": {
+     "n_neg": 3597,
+     "fpr_verify": 0.0050041701417848205,
+     "fpr_hold": 0.0005560189046427579,
+     "n_pos": 90
+    },
+    "ring_alert": null
+   },
+   "target_fpr": 0.005,
+   "realised_test_fpr": 0.0038303693570451436,
+   "fpr_off_target": true
+  },
+  "B0+R": {
+   "thresholds": {
+    "verify": 0.5100279752897297,
+    "hold": 0.6263289693524559,
+    "edge": 0.5100279752897297,
+    "ring_alert": 0.0,
+    "val": {
+     "n_neg": 3597,
+     "n_pos": 90,
+     "fpr_verify": 0.004726160689463442,
+     "fpr_hold": 0.0005560189046427579,
+     "false_rings_per_day": 0.0,
+     "rings_tracked": 21
+    },
+    "calibration": {
+     "mode": "matched_fpr",
+     "iterations": 12,
+     "fpr_verify_effective": 0.004171142578125,
+     "fpr_before_escalation": 0.004170141784820684,
+     "fpr_after_escalation": 0.004726160689463442
+    }
+   },
+   "target_fpr": 0.005,
+   "realised_test_fpr": 0.0038303693570451436,
+   "fpr_off_target": true
+  },
+  "B1": {
+   "thresholds": {
+    "verify": 0.13764300426712034,
+    "hold": 0.29035873656392513,
+    "edge": 0.13764300426712034,
+    "val": {
+     "n_neg": 3597,
+     "fpr_verify": 0.0050041701417848205,
+     "fpr_hold": 0.0005560189046427579,
+     "n_pos": 90
+    },
+    "ring_alert": null
+   },
+   "target_fpr": 0.005,
+   "realised_test_fpr": 0.007113543091655267,
+   "fpr_off_target": true
+  },
+  "B1+R": {
+   "thresholds": {
+    "verify": 0.20318412569442154,
+    "hold": 0.3053012687618038,
+    "edge": 0.20318412569442154,
+    "ring_alert": 0.0,
+    "val": {
+     "n_neg": 3597,
+     "n_pos": 90,
+     "fpr_verify": 0.004726160689463442,
+     "fpr_hold": 0.00027800945232137893,
+     "false_rings_per_day": 0.0,
+     "rings_tracked": 13
+    },
+    "calibration": {
+     "mode": "matched_fpr",
+     "iterations": 12,
+     "fpr_verify_effective": 0.0022241210937500003,
+     "fpr_before_escalation": 0.0022240756185710315,
+     "fpr_after_escalation": 0.004726160689463442
+    }
+   },
+   "target_fpr": 0.005,
+   "realised_test_fpr": 0.0019151846785225718,
+   "fpr_off_target": true
+  },
+  "G2": {
+   "thresholds": {
+    "verify": 0.19703366087544405,
+    "hold": 0.3750609721457885,
+    "edge": 0.19703366087544405,
+    "val": {
+     "n_neg": 3597,
+     "fpr_verify": 0.0050041701417848205,
+     "fpr_hold": 0.0005560189046427579,
+     "n_pos": 90
+    },
+    "ring_alert": null
+   },
+   "target_fpr": 0.005,
+   "realised_test_fpr": 0.004651162790697674,
+   "fpr_off_target": false
+  },
+  "G2+R": {
+   "thresholds": {
+    "verify": 0.29947239825118926,
+    "hold": 0.4608517952245924,
+    "edge": 0.29947239825118926,
+    "ring_alert": 0.0,
+    "val": {
+     "n_neg": 3597,
+     "n_pos": 90,
+     "fpr_verify": 0.004726160689463442,
+     "fpr_hold": 0.00027800945232137893,
+     "false_rings_per_day": 0.0,
+     "rings_tracked": 12
+    },
+    "calibration": {
+     "mode": "matched_fpr",
+     "iterations": 12,
+     "fpr_verify_effective": 0.0022241210937500003,
+     "fpr_before_escalation": 0.0022240756185710315,
+     "fpr_after_escalation": 0.004726160689463442
+    }
+   },
+   "target_fpr": 0.005,
+   "realised_test_fpr": 0.0019151846785225718,
+   "fpr_off_target": true
+  }
+ },
+ "units": {
+  "RULE": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     0,
+     1,
+     1,
+     0,
+     1,
+     1,
+     3,
+     0
+    ]
+   }
+  },
+  "B0": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     0,
+     0,
+     7,
+     0,
+     0,
+     0,
+     7,
+     0
+    ]
+   }
+  },
+  "B0+R": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     0,
+     0,
+     7,
+     0,
+     0,
+     0,
+     7,
+     0
+    ]
+   }
+  },
+  "B1": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     3,
+     2,
+     4,
+     0,
+     3,
+     1,
+     13,
+     0
+    ]
+   }
+  },
+  "B1+R": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     0,
+     4,
+     0
+    ]
+   }
+  },
+  "G2": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     0,
+     3,
+     3,
+     0,
+     2,
+     0,
+     9,
+     0
+    ]
+   }
+  },
+  "G2+R": {
+   "rings": [],
+   "blocks": {
+    "pos": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos_hit": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "neg": [
+     535,
+     663,
+     637,
+     116,
+     429,
+     557,
+     644,
+     74
+    ],
+    "neg_hit": [
+     0,
+     1,
+     1,
+     0,
+     1,
+     0,
+     4,
+     0
+    ]
+   }
+  }
+ },
+ "curves": {
+  "RULE": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  },
+  "B0": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  },
+  "B0+R": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  },
+  "B1": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  },
+  "B1+R": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  },
+  "G2": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  },
+  "G2+R": {
+   "recall": [],
+   "precision": [],
+   "fpr": []
+  }
+ },
+ "meta": {
+  "world": "world_tiny_seed7",
+  "provenance": "ChainWorld",
+  "world_events_sha256": "sha256:7babfe0f68f8f905878da7f8b1769763c6a6e8af1e0f4f9e65f9d3bff150b552",
+  "config_hash": "sha256:57bc2f1c698f6a3bc24a417d8e7ab28e7c3a163708eb966348616a81b2167b5e",
+  "model_hash": "sha256:e312e80cd08b3fe6a4609784e8b5699e528202bcdc6a62383fc1d837a6544231",
+  "models_dir": "C:/Users/admin/AppData/Local/Temp/pytest-of-admin/pytest-198/models0/tiny",
+  "test_days": 2.0,
+  "test_rows": 3655,
+  "test_positives": 0,
+  "test_rings": 0,
+  "fpr_target": 0.005,
+  "variants": [
+   "RULE",
+   "B0",
+   "B0+R",
+   "B1",
+   "B1+R",
+   "G2",
+   "G2+R"
+  ],
+  "rerun": true,
+  "code_commit": "21523149010c0c2e7387a49e87a1dae575e0b628",
+  "utc": "2026-10-17T22:58:33+00:00"
+ },
+ "headline": {
+  "B0": {
+   "ring_recall": null,
+   "ttc_median_min": null,
+   "deployed_recall": null,
+   "test_fpr": 0.0038303693570451436
+  },
+  "B1": {
+   "ring_recall": null,
+   "ttc_median_min": null,
+   "deployed_recall": null,
+   "test_fpr": 0.007113543091655267
+  },
+  "B1+R": {
+   "ring_recall": null,
+   "ttc_median_min": null,
+   "deployed_recall": null,
+   "test_fpr": 0.0019151846785225718
+  },
+  "G2": {
+   "ring_recall": null,
+   "ttc_median_min": null,
+   "deployed_recall": null,
+   "test_fpr": 0.004651162790697674
+  },
+  "G2+R": {
+   "ring_recall": null,
+   "ttc_median_min": null,
+   "deployed_recall": null,
+   "test_fpr": 0.0019151846785225718
+  }
+ }
+}

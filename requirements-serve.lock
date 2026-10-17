@@ -1,0 +1,20 @@
+# Locked serve environment, generated with `pip freeze` inside a venv that contains ONLY
+# requirements-serve.txt (spec 5.2). Generated on Windows with Python 3.12.2; Python 3.10 was not
+# available on the build machine, so the 3.10 CI job installs the unpinned requirements-serve.txt.
+# All packages below are pure Python (or ship an s390x wheel: pydantic_core, websockets), which is
+# why the LinuxONE runbook can install this file with --only-binary=:all:.
+annotated-doc==0.0.5
+annotated-types==0.8.0
+anyio==4.15.1
+click==8.5.0
+fastapi==0.143.3
+h11==0.16.0
+idna==3.20
+opentelemetry-api==1.45.1
+pydantic==2.14.1
+pydantic_core==2.50.1
+starlette==1.8.0
+typing-inspection==0.4.4
+typing_extensions==4.16.0
+uvicorn==0.54.0
+websockets==17.2

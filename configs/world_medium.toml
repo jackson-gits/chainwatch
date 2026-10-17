@@ -1,0 +1,12 @@
+# Medium preset: main experiments (about 1 to 2 million events expected).
+[world]
+preset = "medium"
+n_customers = 60000
+n_merchants = 3000
+n_traders = 400
+n_salary_payers = 150
+n_landlords = 1500
+n_agents = 500
+n_campaigns = 140
+noise_level = 2.0
+hard_negative_boost = 3.0

@@ -1,0 +1,34 @@
+{
+ "runs": [
+  {
+   "preset": "medium",
+   "seed": 1002,
+   "world_params": {
+    "noise_level": 2.0,
+    "hard_negative_boost": 8.0,
+    "mule_mix": {
+     "new": 0.0,
+     "dormant": 0.0,
+     "active": 1.0
+    }
+   },
+   "detectors": {
+    "B0": {
+     "pr_auc_val": 0.047535918473225226,
+     "recall_at_1pct_fpr_val": 0.2828282828282828,
+     "recall_at_0.5pct_fpr_val": 0.21885521885521886
+    },
+    "B1": {
+     "pr_auc_val": 0.8345232302208039,
+     "recall_at_1pct_fpr_val": 0.936026936026936,
+     "recall_at_0.5pct_fpr_val": 0.9158249158249159
+    }
+   },
+   "fraud_share": 0.0009904168222893903,
+   "fraud_share_in_band": true,
+   "n_events": 4190155,
+   "b1_in_target_band": false,
+   "utc": "2026-10-17T22:53:34+00:00"
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+# data (only data/replay and data/sample are tracked)
+data/raw/
+data/interim/
+data/processed/
+models/eval/
+logs/
+dist/
+wheelhouse-*/
+.venv/
+.venv-serve/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.env
+*.egg-info/
+build/
+data/bench/

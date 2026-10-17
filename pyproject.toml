@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chainwatch"
+version = "0.1.0"
+description = "Real-time mule-ring detection for UPI-style payment streams (synthetic data, research prototype)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Jackson Raj A" }]
+dependencies = [
+    "fastapi>=0.110,<1",
+    "pydantic>=2.6,<3",
+    "uvicorn>=0.27,<1",
+    "websockets>=12",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.scripts]
+chainwatch = "chainwatch.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["chainwatch*"]
+
+[tool.setuptools.package-data]
+chainwatch = ["serving/static/**/*"]
+
+[tool.pytest.ini_options]
+markers = ["slow: slower than about 20 seconds"]
+addopts = "-q -ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+extend-exclude = ["chainwatch/serving/static"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["UP007", "UP045", "B008", "B023", "E731"]

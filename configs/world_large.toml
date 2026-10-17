@@ -1,0 +1,10 @@
+# Large preset: PaySim-scale stress test (about 5 to 8 million events expected). Optional.
+[world]
+preset = "large"
+n_customers = 300000
+n_merchants = 12000
+n_traders = 1500
+n_salary_payers = 600
+n_landlords = 7000
+n_agents = 2000
+n_campaigns = 600

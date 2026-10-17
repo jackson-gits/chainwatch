@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChainWatch · UPI Mule Ring Detection</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ======================================================== HEADER -->
+<header class="top" role="banner">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">&#x2B21;</span>
+    <div class="brand-text">
+      <span class="name">ChainWatch</span>
+      <span class="tagline">UPI Mule Ring Detection</span>
+    </div>
+    <span class="badge prov" id="prov-badge">Synthetic data (ChainWorld)</span>
+    <span class="badge plat" id="plat-badge" title="Platform the API is running on">platform ?</span>
+    <span class="model-line" id="model-line">model: loading…</span>
+  </div>
+
+  <div class="controls" role="toolbar" aria-label="Simulation controls">
+    <div class="clock-wrap" title="Simulated replay time">
+      <span class="replay-status-dot" id="replay-dot" aria-hidden="true"></span>
+      <span class="clock tabular-nums" id="sim-clock">day - --:--</span>
+    </div>
+
+    <button id="btn-play" class="btn primary" title="Play or pause replay (Space)">
+      <span class="btn-icon" aria-hidden="true">&#9654;</span>
+      <span class="btn-text">Play</span>
+      <kbd>Space</kbd>
+    </button>
+
+    <div class="seg" role="group" aria-label="Replay speed">
+      <button class="btn seg-btn" data-speed="60"   title="60× real time">60×</button>
+      <button class="btn seg-btn active" data-speed="300"  title="300× real time">300×</button>
+      <button class="btn seg-btn" data-speed="1200" title="1200× real time">1200×</button>
+    </div>
+
+    <button id="btn-next"  class="btn" title="Jump to next planted campaign (N)">Next &#9193; <kbd>N</kbd></button>
+    <button id="btn-reset" class="btn" title="Reset engine to start">Reset</button>
+
+    <label class="toggle" title="Score with baseline models for comparison (C)">
+      <input type="checkbox" id="chk-compare">
+      <span>Compare</span>
+      <kbd>C</kbd>
+    </label>
+
+    <div class="inject" role="group" aria-label="Synthetic fraud injector">
+      <div class="select-wrap">
+        <select id="sel-typology" aria-label="Typology to inject" title="Choose a synthetic fraud typology pattern">
+          <option value="funnel">Funnel (Fan-Out)</option>
+          <option value="layered_chain">Layered Chain</option>
+          <option value="split_merge">Split / Merge</option>
+          <option value="round_trip">Round Trip (Wash)</option>
+          <option value="structuring">Structuring (Smurfing)</option>
+          <option value="slow_roll">Slow Roll (Drip)</option>
+        </select>
+        <span class="select-arrow" aria-hidden="true">&#9662;</span>
+      </div>
+      <button id="btn-inject" class="btn warn" title="Inject synthetic campaign into stream (I)">
+        <span class="btn-icon" aria-hidden="true">&#9889;</span>
+        <span class="btn-text">Inject</span>
+        <kbd>I</kbd>
+      </button>
+    </div>
+
+    <button id="btn-sound-toggle" class="btn" title="Toggle audio chime on hold alerts" aria-label="Toggle alert chime">
+      <span class="btn-icon" aria-hidden="true">&#128263;</span>
+    </button>
+    <button id="btn-help" class="btn" title="Keyboard shortcuts (?)" aria-label="Open shortcuts help">?</button>
+  </div>
+</header>
+
+<!-- ======================================================== MAIN GRID -->
+<main class="grid" role="main">
+
+  <!-- ── LEFT PANEL: KPI tiles + live feed ── -->
+  <section class="panel feed panel-left" aria-label="Live decisions and KPI metrics">
+
+    <!-- KPI strip -->
+    <div class="kpi-grid" aria-label="Key performance indicators">
+      <div class="kpi-tile blue interactive" id="kpi-tile-eps" role="button" tabindex="0" title="Events / s — Click to reset filter to All">
+        <span class="kpi-label">Events / s</span>
+        <span class="kpi-value tabular-nums" id="kpi-eps">—</span>
+      </div>
+      <div class="kpi-tile red interactive" id="kpi-tile-holds" role="button" tabindex="0" title="Holds — Click to filter live feed to Holds">
+        <span class="kpi-label">Holds</span>
+        <span class="kpi-value tabular-nums" id="kpi-holds">0</span>
+      </div>
+      <div class="kpi-tile amber interactive" id="kpi-tile-rings" role="button" tabindex="0" title="Active Rings — Click to view Rings tab">
+        <span class="kpi-label">Active Rings</span>
+        <span class="kpi-value tabular-nums" id="kpi-rings">0</span>
+      </div>
+      <div class="kpi-tile green interactive" id="kpi-tile-p95" role="button" tabindex="0" title="p95 Latency — Click to inspect latency timing">
+        <span class="kpi-label">p95 Latency</span>
+        <span class="kpi-value tabular-nums" id="kpi-p95">—</span>
+      </div>
+    </div>
+
+    <!-- Feed header -->
+    <div class="panel-head">
+      <h2 id="heading-feed">Live Decisions</h2>
+      <span class="allow-count" title="Payments cleared with no action required">
+        <span aria-hidden="true" style="color:var(--allow)">●</span>
+        <b id="allow-count" class="tabular-nums">0</b> allowed
+      </span>
+    </div>
+
+    <!-- Search + filter pills -->
+    <div class="feed-toolbar">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">&#9906;</span>
+        <input type="text" id="feed-filter" class="feed-filter-input"
+               placeholder="Search account, ID, ring… (/)"
+               aria-label="Filter transactions">
+        <button id="btn-clear-feed-filter" class="search-clear hidden" aria-label="Clear filter" title="Clear search">&times;</button>
+      </div>
+      <div class="filter-pills" role="radiogroup" aria-label="Filter by decision">
+        <button class="pill-btn active"   data-tier="all">All</button>
+        <button class="pill-btn pill-hold"   data-tier="hold">Hold</button>
+        <button class="pill-btn pill-verify" data-tier="verify">Verify</button>
+      </div>
+    </div>
+
+    <!-- Scroll pause pill -->
+    <div id="feed-scroll-pill" class="feed-scroll-pill hidden" role="status">
+      <span class="pill-dot"></span>
+      <span>Feed paused on scroll</span>
+      <button id="btn-resume-feed">Resume &uarr;</button>
+    </div>
+
+    <!-- Transaction stream -->
+    <div class="feed-list" id="feed" aria-live="polite" aria-label="Transaction feed"></div>
+  </section>
+
+  <!-- ── CENTER PANEL: Topology graph ── -->
+  <section class="panel graph-panel" id="graph-panel" aria-labelledby="heading-graph">
+    <div class="panel-head graph-head">
+      <h2 id="heading-graph">Ring Topology</h2>
+      <div class="legend" aria-label="Node roles">
+        <span class="legend-item"><i class="shape circle" aria-hidden="true"></i>Entry</span>
+        <span class="legend-item"><i class="shape diamond" aria-hidden="true"></i>Relay</span>
+        <span class="legend-item"><i class="shape square" aria-hidden="true"></i>Exit</span>
+        <label class="toggle small" title="Show planted ground-truth highlights (G)">
+          <input type="checkbox" id="chk-truth"> Truth <kbd>G</kbd>
+        </label>
+      </div>
+    </div>
+
+    <!-- Floating toolbar -->
+    <div class="graph-toolbar" role="toolbar" aria-label="Graph navigation">
+      <button class="graph-btn" id="btn-zoom-in"         title="Zoom in (+)">+</button>
+      <button class="graph-btn" id="btn-zoom-out"        title="Zoom out (−)">&minus;</button>
+      <button class="graph-btn" id="btn-fit"             title="Fit to view">&#9633;</button>
+      <button class="graph-btn" id="btn-relayout"        title="Re-layout graph">&#8635;</button>
+      <button class="graph-btn" id="btn-fullscreen"      title="Toggle Fullscreen (F)">&#x26F6;</button>
+      <button class="graph-btn" id="btn-clear-selection" title="Clear selection (Esc)">&#10005;</button>
+      <div class="graph-btn-divider" aria-hidden="true"></div>
+      <button class="graph-btn" id="btn-export-png"      title="Export PNG">&#128247;</button>
+    </div>
+
+    <!-- Floating node hover tooltip -->
+    <div id="graph-tooltip" class="graph-tooltip hidden" aria-hidden="true"></div>
+
+    <!-- Cytoscape mount -->
+    <div id="cy" class="cy" role="region" aria-label="Mule ring network graph"></div>
+
+    <!-- Empty state -->
+    <div class="graph-empty" id="graph-empty">
+      <div class="empty-icon" aria-hidden="true">&#x2B21;</div>
+      <strong>No active mule rings yet</strong>
+      <p>Press <b>Play</b> to stream transactions, or <b>Inject</b> to simulate a campaign instantly.</p>
+    </div>
+  </section>
+
+  <!-- ── RIGHT PANEL: Inspector ── -->
+  <section class="panel side panel-side" role="complementary" aria-label="Inspector and ring list">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="rings" role="tab"
+              id="tab-btn-rings" aria-selected="true" aria-controls="tab-rings">
+        Rings <b id="ring-count" class="tab-badge tabular-nums">0</b>
+      </button>
+      <button class="tab" data-tab="compare" role="tab"
+              id="tab-btn-compare" aria-selected="false" aria-controls="tab-compare">
+        Comparison
+      </button>
+      <button class="tab" data-tab="detail" role="tab"
+              id="tab-btn-detail" aria-selected="false" aria-controls="tab-detail">
+        Selection
+      </button>
+    </div>
+
+    <div class="tab-body" id="tab-rings"
+         role="tabpanel" aria-labelledby="tab-btn-rings"></div>
+
+    <div class="tab-body hidden" id="tab-compare"
+         role="tabpanel" aria-labelledby="tab-btn-compare"></div>
+
+    <div class="tab-body hidden" id="tab-detail"
+         role="tabpanel" aria-labelledby="tab-btn-detail">
+      <div class="empty-state">
+        <div class="empty-icon" aria-hidden="true">&#128065;</div>
+        <p class="muted">Click a transaction row or a graph node to inspect its full risk dossier here.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================================================== METRICS DOCK -->
+<section class="metrics" id="metrics" role="region" aria-label="Engine telemetry">
+  <div class="m" title="Median inference latency">
+    <span class="k">p50</span>
+    <span class="v tabular-nums" id="m-p50">—</span>
+  </div>
+  <div class="m" id="m-p95-box" title="95th-percentile inference latency">
+    <span class="k">p95</span>
+    <span class="v tabular-nums" id="m-p95">—</span>
+  </div>
+  <div class="m" title="10-second rolling throughput">
+    <span class="k">events/s</span>
+    <span class="v tabular-nums" id="m-eps">—</span>
+  </div>
+  <div class="m" title="Total verify recommendations">
+    <span class="k">verify</span>
+    <span class="v tabular-nums" id="m-verify">0</span>
+  </div>
+  <div class="m" title="Total hold recommendations">
+    <span class="k">hold</span>
+    <span class="v tabular-nums" id="m-hold">0</span>
+  </div>
+  <div class="m" title="Active rings (watching / alert)">
+    <span class="k">rings</span>
+    <span class="v tabular-nums" id="m-rings">0 / 0</span>
+  </div>
+  <div class="m" title="Resident set size">
+    <span class="k">memory</span>
+    <span class="v tabular-nums" id="m-mem">—</span>
+  </div>
+  <div class="m spark" title="p95 latency history">
+    <span class="k">p95 trend</span>
+    <canvas id="spark" width="200" height="32"></canvas>
+  </div>
+  <div class="m conn" title="WebSocket connection state">
+    <span class="dot" id="conn-dot" aria-hidden="true"></span>
+    <span id="conn-text" class="conn-label">connecting</span>
+  </div>
+</section>
+
+<!-- ======================================================== FOOTER -->
+<footer class="foot" role="contentinfo">
+  Synthetic data only · Recommendations require human review before action · Entry account holders may be innocent victims
+</footer>
+
+<!-- ======================================================== HELP MODAL -->
+<div class="modal-overlay hidden" id="help-modal"
+     role="dialog" aria-modal="true" aria-labelledby="help-title">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="help-title">Keyboard Shortcuts</h3>
+      <button class="modal-close-btn" id="btn-close-help-x" aria-label="Close">&times;</button>
+    </div>
+    <div class="shortcut-list">
+      <kbd>Space</kbd><span>Play / Pause live replay stream</span>
+      <kbd>N</kbd><span>Jump to next planted campaign</span>
+      <kbd>I</kbd><span>Inject selected typology campaign</span>
+      <kbd>C</kbd><span>Toggle baseline comparison mode (B0 vs G2+R)</span>
+      <kbd>G</kbd><span>Toggle ground-truth account highlights</span>
+      <kbd>F</kbd><span>Toggle Fullscreen topology graph</span>
+      <kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd><span>Switch Tabs: Rings / Compare / Selection</span>
+      <kbd>/</kbd><span>Focus search filter bar</span>
+      <kbd>J</kbd> / <kbd>K</kbd><span>Navigate transactions in feed (Down / Up)</span>
+      <kbd>H</kbd><span>Quick filter: Hold recommendations only</span>
+      <kbd>A</kbd><span>Quick filter: Show All recommendations</span>
+      <kbd>Esc</kbd><span>Clear selection / Exit fullscreen / Close dialog</span>
+      <kbd>?</kbd><span>Open / close this shortcuts dialog</span>
+    </div>
+    <div class="modal-footer">
+      <button class="btn primary" id="btn-close-help">Got it</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================== TOAST -->
+<div class="toast hidden" id="toast" role="status" aria-live="assertive"></div>
+
+<!-- ======================================================== SCRIPTS -->
+<script src="/static/vendor/cytoscape.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

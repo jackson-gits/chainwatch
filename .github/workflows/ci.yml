@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  serve-py310:
+    # The serving path must be pure Python (rule E2): only requirements-serve.txt plus pytest and httpx.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install serve dependencies
+        run: pip install -r requirements-serve.txt pytest httpx
+      - name: Lint (serve files)
+        run: python -m ruff check chainwatch tests
+      - name: Serving tests (fast)
+        run: python -m pytest tests/serving -m "not slow"
+
+  full-py312:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-*.txt') }}
+      - name: Install train dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: python -m ruff check .
+      - name: Tests (fast)
+        run: python -m pytest -m "not slow"

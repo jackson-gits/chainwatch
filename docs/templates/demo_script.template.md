@@ -1,0 +1,50 @@
+# ChainWatch live demo — 3-minute script
+
+Total runtime: 3:00. Everything measured is printed on screen from files in `results/`;
+this script never narrates a number that is not visible in the terminal. Timings below are
+the demo plan, not measurements.
+
+## Before you start
+
+- Machine: LinuxONE or any Linux box with the repo checked out; `make setup-train`,
+  `make models PRESET=medium` and `make world-demo` already run (add `make eval-all` if
+  `results/summary.json` or `results/expectations.json` is missing).
+- Terminal layout: left pane = `make demo` (API + dashboard, compare mode on), right pane =
+  `reports/REPORT.md` in a browser or editor.
+- Reset between takes: `make world-demo` regenerates the same deterministic demo world
+  (seeds in `configs/default.toml`), so the demo is repeatable.
+
+## The 3 minutes
+
+| Clock | Action | Say |
+| --- | --- | --- |
+| 0:00 | Show the README problem statement on screen. | ChainWatch scores UPI payment events for mule-network evidence and alerts on whole layering rings, not single accounts. It is an offline evaluation harness, not a deployment. |
+| 0:30 | Run `make demo`, open `http://localhost:8000/`, start the replay. | The dashboard replays a synthetic demo world in time order and scores each payment as it arrives; nothing here touches a real payment system. |
+| 1:20 | Point at the live ring graph, score and reason codes; use `i` to inject a campaign. | Rings are built as the money hops: the alert lands while the funds are still moving, which is the only window in which an intervention is possible. |
+| 2:10 | Show the rendered claim line in the report. | The headline result for this run: {{ summary.claim.headline | raw }} |
+| 2:25 | Toggle to the typology table (per-typology ring recall in the report). | Recall is not uniform across typologies: read the weakest row of this table — that is the honest answer, and we report it rather than average it away. |
+| 2:40 | Show the leakage table in the report. | When the suspicious columns are removed or shuffled, these numbers hold — that is what the leakage table above shows, and it is why we trust the headline at all. |
+| 2:55 | Close on the reproduce block in the README. | Every number in this demo came out of `make eval-all` on a laptop-scale world; the same commands reproduce it, and `make check-claims` re-verifies the report against the result files. |
+
+## Speed and latency claims (read from the screen, not from memory)
+
+- Engine throughput and latency: `make bench-engine HOST_TAG=<tag>` writes
+  `results/bench_engine_<tag>.json` (events/second, p50/p95/p99 microseconds per stage);
+  narrate only the ratio shown on screen and say which host tag it came from.
+- End-to-end HTTP latency needs the server up: `make bench-load HOST_TAG=<tag>` writes
+  `results/bench_load_<tag>.json` with latency at each concurrency level; read the
+  latency figure you quote from that file during the demo. If the benchmark targets have not
+  been run, say so and skip the comparison — an honest "not measured in this run" beats a
+  stale number. Hardware differs between host tags; no platform is called faster.
+
+## Failure modes to pre-empt live
+
+- If asked about accuracy on real bank data: this is a simulator evaluation plus an
+  unlabelled PaySim sanity profile; there is no real-bank ground truth in the repo, and no
+  claim here transfers to production ledgers.
+- If asked how it compares to published systems: we do not claim parity with MuleHunter or
+  any other system; we have not compared implementations or datasets, and the baseline in
+  the tables is our own rule set.
+- If a rendering problem appears in the report: `make report` lists every unresolved
+  placeholder; fix the missing result file and re-render rather than editing rendered
+  output by hand.

@@ -1,0 +1,39 @@
+{
+ "world": "tiny_world",
+ "world_dir": "tests/fixtures/tiny_world",
+ "provenance": "ChainWorld",
+ "config_hash": "sha256:36f2ba463a2a344ecc6488983d123de58f48d2266e1bf472287dc6c54cc57bb2",
+ "registry_hash": "sha256:b791e30b45146add7bc39b6208381bb1407511e50e4d672fc5a7f11d6e76be36",
+ "priority": "P1",
+ "world_events_sha256": "sha256:ac2bd422aae0adeb140c7d02b7613c91bcde35ddf472c82cb32e3559b6ffc897",
+ "split_ts": {
+  "burn_end": 259200.0,
+  "train_end": 1296000.0,
+  "val_end": 1728000.0,
+  "test_end": 2592000.0
+ },
+ "rows": {
+  "train": 81732,
+  "val": 33683,
+  "test": 76461
+ },
+ "positives": {
+  "train": 487,
+  "val": 150,
+  "test": 380
+ },
+ "burn_in_rows": 27961,
+ "events_replayed": 219837,
+ "replay_seconds": 45.2,
+ "us_per_event": 205.5,
+ "engine_stats": {
+  "events": 219837,
+  "accounts": 6660,
+  "active_states": 6138,
+  "evicted_states": 18608,
+  "flow_edges": 32,
+  "approx_bytes": 52959600,
+  "clock": 2591994.162
+ },
+ "limit": null
+}

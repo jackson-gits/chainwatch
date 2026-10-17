@@ -1,0 +1,26 @@
+# docs/allowed_numbers.txt — hand-typed numbers allowed to appear in rendered docs (token | source | note)
+
+# Problem statement background (from RBI/scoping; not results of this run)
+2026 | spec/refs | target year in narrative
+2024 | RBI/refs | FY references
+2025 | RBI Annual Report reference | report year
+2016 | MuleHunter scoping | original work year
+24.07 | MuleHunter arXiv | version string (2407.11640)
+Rs 29.37 | Moneycontrol/ACFE context | median per mule account (text)
+802 | scoping fact | stated in text
+23% | RBI breakdown | digital share in some narrative (text)
+12.71 | charging context | percentage figure (text)
+Rs 10,178.97 | ET/RBI context | median loss (text)
+Rs 2,968.85 | ET/RBI context | unit context (text)
+29% | ET context | share of reported loss held or frozen (text)
+12.7 | Anantamias headline context | lakh complaints in source title (text)
+Rs 10,000 | Anantamias headline context | crore lost in source title (text)
+59 | feature count text in some places | non-placeholder narrative if any
+50 | feature count text | narrative
+13 | feature count text | narrative
+3.10 | spec section reference | section number
+3.11 | spec section reference | section number
+3.12 | spec section reference | section number
+3.13 | spec section reference | section number
+
+# No ChainWorld/PaySim/eval benchmark numbers go here — those must come from placeholders.
