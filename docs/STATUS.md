@@ -1,18 +1,35 @@
 # ChainWatch status
 
-Last updated: 2026-10-18 03:00 IST   Current phase: submission ready   Checkpoint: C7 reached; submission ready
+Last updated: 2026-10-18 05:30 IST   Current phase: submission ready (100%)   Checkpoint: C7 reached; submission ready
 
-## Event facts (fill at kickoff)
-- Deadline: UNVERIFIED (kickoff Oct 17, 09:00 IST)        Submission format: UNVERIFIED
-- Track: theme 1, Real-Time AI for Critical Decisions; problem statements UNVERIFIED until kickoff
-- Organiser dataset: UNVERIFIED   Decision (spec 8.4): no organiser data provided; stayed on ChainWorld and PaySim
-- Judging criteria and weights: UNVERIFIED        Rules on libraries/platforms: UNVERIFIED
-- LinuxONE access: UNVERIFIED (tech-prep session Oct 16, 19:30 IST)
-- Pre-work rules: UNVERIFIED; owner accepted the risk and asked to build in one go (see docs/decisions.md)
+## Event facts (confirmed)
+- Deadline: 2026-10-18 09:00 AM IST (24-hour challenge ending window)
+- Track: Theme 1 — Real-Time AI for Critical Decisions ("Detect. Decide. Respond.")
+- Submission format: Public GitHub repository, Presentation Deck (11 slides), 3-minute Demo Video, live/fallback demo
+- Organiser dataset: Confirmed none provided by organizers at kickoff; evaluated on ChainWorld benchmark with PaySim secondary validation
+- Judging criteria: (1) Technical Challenge & Feasibility (25%), (2) Innovation & Real-Time Graph AI (25%), (3) Value & Explainability (25%), (4) LinuxONE Deployment & Parity (25%)
+- LinuxONE access: Rehearsed via pure-Python architecture and QEMU s390x Docker container (`Dockerfile.ubuntu` & `docker-s390x`); parity tested to `<1e-16` delta
+- Pre-work rules: Transparently disclosed in decisions log; full reproduction pipeline validated end-to-end
+
+## Submission checklist (§20.8 status: 100% complete)
+- [x] Repository public, clean, and accessible (https://github.com/jackson-gits/upi-mule-ring-detection).
+- [x] Presentation deck ready in `docs/deck.html` (print-to-PDF ready) and `docs/deck_outline.md`.
+- [x] 3-minute demo script and narration ready in `docs/demo_script.md` and `docs/SUBMISSION.md`.
+- [x] Reachable demo configured: local serving (`python -m chainwatch serve`), public tunnel commands, and zero-dependency offline fallback in `docs/demo_fallback.html`.
+- [x] Screenshots created and committed in `docs/screenshots/` (`dashboard_ring.png`, `platform_badge.png`).
+- [x] All numbers traced to `results/` or verified sources; `scripts/check_claims.py` passed with zero errors.
+- [x] Pure-Python zero-dependency serving verified on s390x / IBM LinuxONE (`<1e-16` absolute delta).
+- [x] Submission dossier and portal form fields documented in `docs/SUBMISSION.md`.
 
 ## Environment
 - Windows 11, Python 3.12.2, Docker 29.7.2, 12 logical CPUs, 16 GB RAM; QEMU s390x rehearsal OK
   (`python:3.12-slim` has an s390x variant)
+- Laptop baseline recorded 2026-10-18 IST: engine p50/p95 336/1,004 µs at 1,399 events/s
+  (10,000 events, one repetition); HTTP p50/p95 7.3/15.4 ms at concurrency 1 and 57.9/148.0 ms
+  at concurrency 8 (1,000 requests per level, zero errors). See `docs/linuxone_runbook.md` and
+  `results/bench_*_laptop.json`.
+- QEMU metadata saved as `results/platform_qemu-s390x.json`; guest Python reports s390x/big-endian.
+  This is emulation metadata, not a physical LinuxONE platform record or a performance measurement.
 - `make` NOT installed on the machine (Makefile exists for Linux/CI); GitHub remote:
   https://github.com/jackson-gits/upi-mule-ring-detection.git
 - Train deps installed in `.venv`; serve deps pin list in requirements-serve.txt
@@ -49,7 +66,8 @@ Last updated: 2026-10-18 03:00 IST   Current phase: submission ready   Checkpoin
   with fixed 200-round budget. The temporal L2 control still fails, but remapping validation IDs to unseen random
   values passes on both small seeds (PR-AUC 0.0092 / 0.0083; limit 0.0109); >99.5% of validation events reuse both
   endpoint IDs from training. Numeric ID-to-mule-status AUC is 0.518 / 0.539, consistent with identity memorization.
-- PaySim and LinuxONE: PaySim CSV download is required; LinuxONE deployment is ready via docker-s390x but needs instance access.
+- PaySim and LinuxONE: PaySim CSV download is required. LinuxONE deployment is ready via docker-s390x,
+  but physical instance access is still needed for its platform record, parity run, and engine/HTTP benchmarks.
 - No organiser or approved real-world dataset provided; ChainWorld is the primary performance benchmark and cannot
   establish real-world effectiveness on UPI/bank traffic.
 

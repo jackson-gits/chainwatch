@@ -1,0 +1,198 @@
+{
+  "project": {
+    "name": "chainwatch",
+    "seed": 2026,
+    "tz_offset_s": 19800,
+    "currency": "INR"
+  },
+  "world": {
+    "preset": "medium",
+    "days": 30,
+    "t0_weekday": 0,
+    "n_customers": 60000,
+    "n_merchants": 3000,
+    "n_traders": 400,
+    "n_salary_payers": 150,
+    "n_landlords": 1500,
+    "n_agents": 500,
+    "n_campaigns": 300,
+    "fraud_target_share": [
+      0.0008,
+      0.004
+    ],
+    "upi_txn_cap_inr": 100000,
+    "structuring_cap_inr": 49999,
+    "hard_negative_boost": 20.0,
+    "noise_level": 2.0,
+    "campaign_start_min_day": 3.0,
+    "campaign_end_margin_days": 1.0,
+    "delay_scale": 1.0,
+    "family_hub_share": 0.01,
+    "new_customer_share": 0.05,
+    "dormant_customer_share": 0.03,
+    "split_bill_rate": 0.003,
+    "n_charity": 10,
+    "force_typologies": [],
+    "mix": {
+      "funnel": 0.35,
+      "layered_chain": 0.25,
+      "split_merge": 0.15,
+      "round_trip": 0.05,
+      "structuring": 0.12,
+      "slow_roll": 0.08
+    },
+    "mule_mix": {
+      "new": 0.0,
+      "dormant": 0.0,
+      "active": 1.0
+    }
+  },
+  "features": {
+    "windows_s": [
+      600,
+      3600,
+      86400
+    ],
+    "fifo_lookback_s": 86400,
+    "state_ttl_s": 172800,
+    "max_lateness_s": 5,
+    "amount_history_n": 20,
+    "dwell_ewma_alpha": 0.3,
+    "dwell_default_s": 86400,
+    "trail_depth_cap": 8,
+    "trail_min_share": 0.1,
+    "funnel_cap": 50,
+    "susp_matched_share_min": 0.7,
+    "susp_dwell_max_s": 900,
+    "susp_min_in_uniq_1h": 2,
+    "susp_ttl_s": 3600,
+    "flow_edge_min_matched": 0.5,
+    "flow_rebuild_every_s": 300,
+    "flow_comp_cap": 200,
+    "hub_degree_cap": 30,
+    "nbr_scan_cap": 50,
+    "round_min_amount": 1000,
+    "near_cap_inr": 49999,
+    "near_cap_lo_frac": 0.85,
+    "deque_cap": 500,
+    "payee_memory_n": 200,
+    "flow_window_s": 3600,
+    "priority": "P1"
+  },
+  "model": {
+    "objective": "binary",
+    "n_estimators": 600,
+    "learning_rate": 0.05,
+    "num_leaves": 31,
+    "max_depth": 8,
+    "ship_max_trees": 300,
+    "min_child_samples": 50,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0,
+    "early_stopping_rounds": 50,
+    "neg_downsample": 0.2,
+    "use_missing": false,
+    "zero_as_missing": false,
+    "deterministic": true,
+    "n_jobs": 4,
+    "detectors": [
+      "B0",
+      "B1",
+      "G2"
+    ],
+    "min_train_positives": 200
+  },
+  "thresholds": {
+    "fpr_verify": 0.005,
+    "fpr_hold": 0.0005,
+    "fpr_edge": 0.005,
+    "max_false_rings_per_day": 5,
+    "false_ring_purity": 0.5,
+    "calibrate_with_rings": true,
+    "bisect_iters": 12
+  },
+  "rings": {
+    "min_accounts": 3,
+    "min_flagged_edges": 2,
+    "link_window_s": 3600,
+    "ttl_s": 21600,
+    "rebuild_every_s": 300,
+    "top_k_noisy_or": 5,
+    "require_pass_node": true,
+    "hub_degree_cap": 30,
+    "terminal_types": [
+      "CASH_OUT",
+      "PAYMENT",
+      "DEBIT"
+    ],
+    "escalation": true,
+    "escalate_out_to": "hold",
+    "escalate_in_to": "verify",
+    "escalate_linking_only": true,
+    "max_edges_in_alert": 200,
+    "update_delta": 0.1
+  },
+  "serving": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "workers": 1,
+    "compare_mode": false,
+    "ws_batch_ms": 250,
+    "max_batch": 500,
+    "request_id_lru": 100000,
+    "api_key_env": "CHAINWATCH_API_KEY",
+    "cors_origins": [],
+    "rate_limit_rps": 0,
+    "latency_hist_max_ms": 2000
+  },
+  "replay": {
+    "dataset": "data/replay/demo.csv.gz",
+    "accounts": "data/replay/demo_accounts.csv.gz",
+    "rings": "data/replay/demo_rings.json",
+    "warmup_until_ts": 259200,
+    "default_speed": 300.0,
+    "inject_max_per_minute": 6,
+    "inject_time_scale": 0.5
+  },
+  "eval": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "split_days": [
+      15,
+      20,
+      30
+    ],
+    "burn_in_days": 3,
+    "bootstrap": 2000,
+    "bootstrap_seed": 2026,
+    "fpr_points": [
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "catch_min_accounts": 2,
+    "catch_min_action": "verify"
+  },
+  "bench": {
+    "engine_events": 200000,
+    "load_requests": 20000,
+    "load_concurrency": [
+      1,
+      8,
+      32,
+      64
+    ],
+    "warmup_requests": 1000
+  },
+  "feature_flags": {
+    "disabled": [],
+    "lower_to_p1": []
+  }
+}

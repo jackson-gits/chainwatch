@@ -1,0 +1,30 @@
+{
+ "host_tag": "laptop",
+ "machine": "AMD64",
+ "system": "Windows",
+ "release": "11",
+ "byteorder": "little",
+ "python": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
+ "python_version": "3.12.2",
+ "implementation": "CPython",
+ "cpu_count": 12,
+ "lscpu": null,
+ "meminfo_total": null,
+ "in_container": false,
+ "docker": "Docker version 29.7.2, build a7dcaa6",
+ "serving_packages": {
+  "anyio": "4.15.1",
+  "fastapi": "0.143.2",
+  "h11": "0.16.0",
+  "httpx": "0.28.1",
+  "pydantic": "2.14.1",
+  "pydantic_core": "2.50.1",
+  "starlette": "1.8.0",
+  "uvicorn": "0.54.0",
+  "websockets": "17.2"
+ },
+ "git_commit": "ff2a414a3199c5bf919c752241f0436a6d69556d",
+ "config_hash": "sha256:36f2ba463a2a344ecc6488983d123de58f48d2266e1bf472287dc6c54cc57bb2",
+ "pythonhashseed": null,
+ "utc": "2026-10-17T23:19:55+00:00"
+}

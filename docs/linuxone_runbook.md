@@ -148,4 +148,29 @@ cannot be used for performance.
 
 ## QEMU parity run (laptop, emulated s390x — proof of byte order, NOT performance)
 
-(pending image build; will be pasted here)
+The local image is `chainwatch:s390x` (built for `linux/s390x`). It starts under Docker Desktop/QEMU
+and Python reports `s390x`, big-endian. Structured host metadata is in
+`results/platform_qemu-s390x.json` (captured 2026-10-18 IST). This is an emulation record; it does
+not establish the CPU, byte order reported by host utilities, or performance of a physical LinuxONE.
+In this Docker Desktop environment `lscpu` exposes host CPU details, so use Python's `platform.machine()`
+and `sys.byteorder` only as the guest-runtime check.
+
+## Laptop benchmark baseline (Windows 11 x86_64, 2026-10-18 IST)
+
+Recorded using the medium ChainWorld seed-0 slice, with 98,466 warm events. Full JSON artifacts are
+`results/platform_laptop.json`, `results/bench_engine_laptop.json`, and `results/bench_load_laptop.json`.
+
+- Engine (`G2+R`): 10,000 measured events, one repetition, 1,000 in-sample warmup requests;
+  total scorer latency p50 336 µs, p95 1,004 µs, p99 2,016 µs; throughput about 1,399 events/s.
+- HTTP (`uvicorn`, one worker, localhost, same machine for client and server): 1,000 requests at
+  each concurrency level. At concurrency 1, p50/p95 were 7.3/15.4 ms and throughput was 119 req/s.
+  At concurrency 8, p50/p95 were 57.9/148.0 ms and throughput was 99 req/s. Both levels had zero
+  errors. These are small-sample laptop baselines, not LinuxONE or production capacity claims.
+
+The HTTP benchmark used `--spawn`, which starts the service with `max_lateness_s=3600` to tolerate
+concurrent out-of-order arrivals. Its 6,000 requests include warmup and batch requests; see the JSON
+for the exact load shape. The engine run used one repetition because a three-repetition 80,000-event
+run was stopped before completion on this host.
+
+Physical LinuxONE deployment, its platform record, and engine/HTTP measurements remain pending
+instance access. Use the commands in "On the instance" above once access is available.

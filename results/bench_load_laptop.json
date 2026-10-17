@@ -1,0 +1,127 @@
+{
+ "levels": [
+  {
+   "concurrency": 1,
+   "requests": 1000,
+   "errors": 0,
+   "requests_per_s": 118.64628809107002,
+   "latency_us": {
+    "p50": 7315.099996048957,
+    "p95": 15423.100005136803,
+    "p99": 21162.099990760908,
+    "max": 27486.300008604303
+   }
+  },
+  {
+   "concurrency": 8,
+   "requests": 1000,
+   "errors": 0,
+   "requests_per_s": 98.90942761851485,
+   "latency_us": {
+    "p50": 57853.90001256019,
+    "p95": 148002.0000017248,
+    "p99": 362159.20001268387,
+    "max": 1925692.8999966476
+   }
+  }
+ ],
+ "batch": [
+  {
+   "batch_size": 1,
+   "events": 1000,
+   "events_per_s": 110.2297544126813,
+   "batch_latency_us": {
+    "p50": 8070.200012298301,
+    "p95": 16168.200003448874
+   }
+  },
+  {
+   "batch_size": 10,
+   "events": 1000,
+   "events_per_s": 600.7715228118979,
+   "batch_latency_us": {
+    "p50": 14373.999991221353,
+    "p95": 25025.99998842925
+   }
+  },
+  {
+   "batch_size": 100,
+   "events": 1000,
+   "events_per_s": 1442.3373018002446,
+   "batch_latency_us": {
+    "p50": 68700.60000801459,
+    "p95": 96787.79999376275
+   }
+  }
+ ],
+ "server_metrics_before": {
+  "features": {
+   "p50": null,
+   "p95": null,
+   "p99": null,
+   "max": null,
+   "n": 0
+  },
+  "model": {
+   "p50": null,
+   "p95": null,
+   "p99": null,
+   "max": null,
+   "n": 0
+  },
+  "decision": {
+   "p50": null,
+   "p95": null,
+   "p99": null,
+   "max": null,
+   "n": 0
+  },
+  "total": {
+   "p50": null,
+   "p95": null,
+   "p99": null,
+   "max": null,
+   "n": 0
+  }
+ },
+ "server_metrics_after": {
+  "features": {
+   "p50": 91.6,
+   "p95": 285.4,
+   "p99": 479.9,
+   "max": 1643.0,
+   "n": 6000
+  },
+  "model": {
+   "p50": 239.4,
+   "p95": 559.7,
+   "p99": 765.2,
+   "max": 8059.1,
+   "n": 6000
+  },
+  "decision": {
+   "p50": 154.3,
+   "p95": 416.0,
+   "p99": 706.9,
+   "max": 89791.4,
+   "n": 6000
+  },
+  "total": {
+   "p50": 512.9,
+   "p95": 1215.2,
+   "p99": 1575.9,
+   "max": 90035.8,
+   "n": 6000
+  }
+ },
+ "host_tag": "laptop",
+ "kind": "http_load",
+ "provenance": "ChainWorld",
+ "machine": "AMD64",
+ "python": "3.12.2",
+ "slice": "data/bench/slice_medium_seed0.csv.gz",
+ "server": "uvicorn, 1 worker, h11, asyncio loop, --no-replay",
+ "max_lateness_s": 3600,
+ "terminology": "end-to-end latency = client-side, HTTP over localhost (includes JSON, uvicorn and the network stack); not the same as engine latency",
+ "same_machine": true
+}

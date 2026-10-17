@@ -1,0 +1,264 @@
+{
+ "host_tag": "laptop",
+ "kind": "engine",
+ "provenance": "ChainWorld",
+ "mode": "G2+R",
+ "priority": "P1",
+ "machine": "AMD64",
+ "byteorder": "little",
+ "python": "3.12.2",
+ "pythonhashseed": null,
+ "gc": "defaults",
+ "slice": "data/bench/slice_medium_seed0.csv.gz",
+ "warm_events": 98466,
+ "warmup_requests": 1000,
+ "measured_events": 10000,
+ "reps": 1,
+ "latency_us": {
+  "features": {
+   "p50": {
+    "median": 80,
+    "min": 80,
+    "max": 80
+   },
+   "p95": {
+    "median": 436,
+    "min": 436,
+    "max": 436
+   },
+   "p99": {
+    "median": 971,
+    "min": 971,
+    "max": 971
+   },
+   "max": {
+    "median": 8681,
+    "min": 8681,
+    "max": 8681
+   }
+  },
+  "model": {
+   "p50": {
+    "median": 198,
+    "min": 198,
+    "max": 198
+   },
+   "p95": {
+    "median": 508,
+    "min": 508,
+    "max": 508
+   },
+   "p99": {
+    "median": 778,
+    "min": 778,
+    "max": 778
+   },
+   "max": {
+    "median": 7138,
+    "min": 7138,
+    "max": 7138
+   }
+  },
+  "decision": {
+   "p50": {
+    "median": 10,
+    "min": 10,
+    "max": 10
+   },
+   "p95": {
+    "median": 227,
+    "min": 227,
+    "max": 227
+   },
+   "p99": {
+    "median": 538,
+    "min": 538,
+    "max": 538
+   },
+   "max": {
+    "median": 771518,
+    "min": 771518,
+    "max": 771518
+   }
+  },
+  "total": {
+   "p50": {
+    "median": 336,
+    "min": 336,
+    "max": 336
+   },
+   "p95": {
+    "median": 1004,
+    "min": 1004,
+    "max": 1004
+   },
+   "p99": {
+    "median": 2016,
+    "min": 2016,
+    "max": 2016
+   },
+   "max": {
+    "median": 775125,
+    "min": 775125,
+    "max": 775125
+   }
+  },
+  "process_call": {
+   "p50": {
+    "median": 365.8,
+    "min": 365.8,
+    "max": 365.8
+   },
+   "p95": {
+    "median": 1082.6,
+    "min": 1082.6,
+    "max": 1082.6
+   },
+   "p99": {
+    "median": 2167.7,
+    "min": 2167.7,
+    "max": 2167.7
+   },
+   "max": {
+    "median": 775178.4,
+    "min": 775178.4,
+    "max": 775178.4
+   }
+  }
+ },
+ "events_per_s": {
+  "median": 1398.9464394503373,
+  "min": 1398.9464394503373,
+  "max": 1398.9464394503373
+ },
+ "rss_mb_end": 552.5,
+ "engine": {
+  "clock": 1741538.866,
+  "events": 109466,
+  "accounts": 49643,
+  "active_states": 49643,
+  "approx_state_mb": 83.8
+ },
+ "hist_total_us": {
+  "edges": [
+   10.0,
+   14.1,
+   20.0,
+   28.3,
+   40.0,
+   56.6,
+   80.0,
+   113.1,
+   160.0,
+   226.3,
+   320.0,
+   452.5,
+   640.0,
+   905.1,
+   1280.0,
+   1810.2,
+   2560.0,
+   3620.4,
+   5120.0,
+   7240.8,
+   10240.0,
+   14481.5,
+   20480.0,
+   28963.1,
+   40960.0,
+   57926.2,
+   81920.0,
+   115852.4
+  ],
+  "counts": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   1502,
+   3196,
+   2235,
+   1508,
+   910,
+   370,
+   139,
+   72,
+   9,
+   11,
+   3,
+   3,
+   0,
+   4,
+   8,
+   7,
+   11,
+   3,
+   2,
+   2
+  ]
+ },
+ "per_rep": [
+  {
+   "n": 10000,
+   "events_per_s": 1398.9464394503373,
+   "wall_s": 7.148236499982886,
+   "rss_mb": 552.5,
+   "engine": {
+    "clock": 1741538.866,
+    "events": 109466,
+    "accounts": 49643,
+    "active_states": 49643,
+    "approx_state_mb": 83.8
+   },
+   "rings": {
+    "open": 0,
+    "alert": 54,
+    "closed": 200,
+    "edges_live": 2067,
+    "edges_total": 50156,
+    "alerts_total": 2504
+   },
+   "features": {
+    "p50": 80,
+    "p95": 436,
+    "p99": 971,
+    "max": 8681,
+    "mean": 147.7593
+   },
+   "model": {
+    "p50": 198,
+    "p95": 508,
+    "p99": 778,
+    "max": 7138,
+    "mean": 250.6762
+   },
+   "decision": {
+    "p50": 10,
+    "p95": 227,
+    "p99": 538,
+    "max": 771518,
+    "mean": 272.3152
+   },
+   "total": {
+    "p50": 336,
+    "p95": 1004,
+    "p99": 2016,
+    "max": 775125,
+    "mean": 671.6424
+   },
+   "process_call": {
+    "p50": 365.8,
+    "p95": 1082.6,
+    "p99": 2167.7,
+    "max": 775178.4,
+    "mean": 712.27365
+   }
+  }
+ ],
+ "terminology": "engine latency = time inside ScoringEngine.process (not end-to-end HTTP)"
+}

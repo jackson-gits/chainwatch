@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChainWatch · Offline Fallback Demo · IBM Z Datathon 2026</title>
+<style>
+  :root {
+    --bg: #060912;
+    --panel: #0d1321;
+    --panel-2: #121b2e;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --accent: #06b6d4;
+    --allow: #10b981;
+    --verify: #f59e0b;
+    --hold: #ef4444;
+    --entry: #60a5fa;
+    --relay: #c084fc;
+    --exit: #fb923c;
+    --text-bright: #f0f4ff;
+    --text: #94a3b8;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  header.top {
+    height: 60px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-shrink: 0;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .logo { color: var(--accent); font-size: 24px; }
+  .name { font-size: 17px; font-weight: 700; color: var(--text-bright); }
+  .tagline { font-size: 11px; color: var(--muted); }
+  .badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge.prov { background: rgba(6, 182, 212, 0.12); color: var(--accent); border: 1px solid rgba(6, 182, 212, 0.3); }
+  .badge.plat { background: rgba(16, 185, 129, 0.12); color: var(--allow); border: 1px solid rgba(16, 185, 129, 0.3); }
+  .controls { display: flex; align-items: center; gap: 10px; }
+  .btn {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    color: var(--text-bright);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+  .btn:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--line-strong); }
+  .btn.primary { background: var(--accent); color: var(--bg); font-weight: 700; border: none; }
+  .btn.warn { background: rgba(245, 158, 11, 0.15); color: var(--verify); border-color: rgba(245, 158, 11, 0.4); font-weight: 600; }
+  kbd { background: rgba(0,0,0,0.3); padding: 1px 4px; border-radius: 3px; font-size: 10px; font-family: monospace; }
+  main.grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 380px 1fr 400px;
+    gap: 12px;
+    padding: 12px;
+    overflow: hidden;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel-head {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .kpi-tile {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 700; display: block; }
+  .kpi-val { font-size: 15px; font-weight: 700; color: var(--text-bright); font-family: monospace; margin-top: 2px; display: block; }
+  .feed-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .feed-row {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 10px;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .feed-row.hold { border-left: 3px solid var(--hold); }
+  .feed-row.verify { border-left: 3px solid var(--verify); }
+  .feed-row.allow { border-left: 3px solid var(--allow); }
+  .row-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 11px; }
+  .pill { padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 700; text-transform: uppercase; }
+  .pill.hold { background: rgba(239, 68, 68, 0.2); color: var(--hold); }
+  .pill.verify { background: rgba(245, 158, 11, 0.2); color: var(--verify); }
+  .pill.allow { background: rgba(16, 185, 129, 0.2); color: var(--allow); }
+  .row-flow { font-weight: 600; color: var(--text-bright); font-family: monospace; font-size: 12px; }
+  .row-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .graph-canvas {
+    flex: 1;
+    position: relative;
+    background: #090e1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  svg.network { width: 100%; height: 100%; }
+  .node text { fill: var(--text-bright); font-size: 11px; font-family: monospace; font-weight: 600; text-anchor: middle; }
+  .node-sub text { fill: var(--muted); font-size: 9px; text-anchor: middle; }
+  .edge text { fill: var(--text-bright); font-size: 9px; font-family: monospace; }
+  .edge path { stroke-width: 2.5; stroke-dasharray: 4; animation: dash 1s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -8; } }
+  .ring-card {
+    background: var(--panel-2);
+    border: 2px solid var(--hold);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px;
+  }
+  .ring-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .ring-title { font-size: 16px; font-weight: 700; color: var(--text-bright); font-family: monospace; }
+  .ring-score { font-size: 24px; font-weight: 800; color: var(--hold); font-family: monospace; }
+  .reasons-box {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 12px;
+  }
+  .reasons-title { font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .reason-item { font-size: 11px; color: var(--text-bright); margin-bottom: 4px; display: flex; gap: 6px; }
+  footer.metrics-dock {
+    height: 36px;
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 24px;
+    font-size: 11px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  footer.metrics-dock strong { color: var(--allow); font-family: monospace; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="logo">&#x2B21;</span>
+    <div>
+      <div class="name">ChainWatch</div>
+      <div class="tagline">Offline Fallback Dashboard · IBM Z Datathon 2026</div>
+    </div>
+    <span class="badge prov">Synthetic Data (ChainWorld)</span>
+    <span class="badge plat">s390x (IBM LinuxONE Parity Verified)</span>
+  </div>
+  <div class="controls">
+    <button class="btn primary" id="btn-play" onclick="togglePlay()">&#9654; <span id="play-text">Pause</span> <kbd>Space</kbd></button>
+    <button class="btn warn" onclick="injectFraud()">&#9889; Inject Funnel Ring <kbd>I</kbd></button>
+    <button class="btn" onclick="nextCampaign()">Next Ring <kbd>N</kbd></button>
+  </div>
+</header>
+
+<main class="grid">
+  <!-- Left: Feed -->
+  <section class="panel">
+    <div class="kpis">
+      <div class="kpi-tile">
+        <span class="kpi-label">Events/s</span>
+        <span class="kpi-val" id="val-eps" style="color:var(--accent)">342</span>
+      </div>
+      <div class="kpi-tile">
+        <span class="kpi-label">Holds</span>
+        <span class="kpi-val" id="val-holds" style="color:var(--hold)">14</span>
+      </div>
+      <div class="kpi-tile">
+        <span class="kpi-label">Rings</span>
+        <span class="kpi-val" id="val-rings" style="color:var(--verify)">3</span>
+      </div>
+      <div class="kpi-tile">
+        <span class="kpi-label">p95 Lat</span>
+        <span class="kpi-val" id="val-p95" style="color:var(--allow)">118 µs</span>
+      </div>
+    </div>
+    <div class="panel-head">
+      <span>Live Payment Decisions</span>
+      <span style="font-size:11px; color:var(--allow)">● 2,418 allowed</span>
+    </div>
+    <div class="feed-list" id="feed-container">
+      <!-- dynamic stream items -->
+    </div>
+  </section>
+
+  <!-- Center: Graph -->
+  <section class="panel">
+    <div class="panel-head">
+      <span>Ring Topology Graph</span>
+      <div style="font-size:11px; display:flex; gap:12px;">
+        <span style="color:var(--entry)">● Entry</span>
+        <span style="color:var(--relay)">◆ Relay</span>
+        <span style="color:var(--exit)">■ Exit</span>
+      </div>
+    </div>
+    <div class="graph-canvas">
+      <svg class="network" viewBox="0 0 600 450">
+        <!-- Cluster Halo -->
+        <ellipse cx="300" cy="220" rx="240" ry="170" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.4)" stroke-dasharray="4" />
+        <text x="300" y="70" fill="var(--hold)" font-size="11" font-weight="700" text-anchor="middle">ACTIVE RING ALERT · RING-0042</text>
+
+        <!-- Edges -->
+        <g class="edge">
+          <path d="M 120 140 L 280 180" stroke="var(--hold)" />
+          <path d="M 120 230 L 280 230" stroke="var(--hold)" />
+          <path d="M 120 320 L 280 270" stroke="var(--verify)" />
+          <path d="M 320 220 L 480 220" stroke="var(--hold)" />
+        </g>
+
+        <!-- Edge labels -->
+        <rect x="180" y="145" width="46" height="18" rx="3" fill="#121b2e" stroke="var(--hold)" />
+        <text x="203" y="158" fill="#fff" font-size="9" text-anchor="middle">₹ 49,000</text>
+
+        <rect x="180" y="218" width="46" height="18" rx="3" fill="#121b2e" stroke="var(--hold)" />
+        <text x="203" y="231" fill="#fff" font-size="9" text-anchor="middle">₹ 48,500</text>
+
+        <rect x="180" y="285" width="46" height="18" rx="3" fill="#121b2e" stroke="var(--verify)" />
+        <text x="203" y="298" fill="#fff" font-size="9" text-anchor="middle">₹ 49,800</text>
+
+        <rect x="380" y="208" width="56" height="18" rx="3" fill="#121b2e" stroke="var(--hold)" />
+        <text x="408" y="221" fill="#fff" font-size="9" text-anchor="middle">₹ 1,45,000</text>
+
+        <!-- Entry Nodes -->
+        <g class="node">
+          <circle cx="100" cy="140" r="22" fill="#121b2e" stroke="var(--entry)" stroke-width="2.5" />
+          <text x="100" y="144">A08310</text>
+        </g>
+        <g class="node">
+          <circle cx="100" cy="230" r="22" fill="#121b2e" stroke="var(--entry)" stroke-width="2.5" />
+          <text x="100" y="234">A09238</text>
+        </g>
+        <g class="node">
+          <circle cx="100" cy="320" r="22" fill="#121b2e" stroke="var(--entry)" stroke-width="2.5" />
+          <text x="100" y="324">A03198</text>
+        </g>
+
+        <!-- Relay Node (Diamond) -->
+        <g class="node">
+          <polygon points="300,195 330,225 300,255 270,225" fill="#121b2e" stroke="var(--relay)" stroke-width="3" />
+          <text x="300" y="229">A01482</text>
+        </g>
+
+        <!-- Exit Node (Square) -->
+        <g class="node">
+          <rect x="480" y="200" width="44" height="44" rx="4" fill="#121b2e" stroke="var(--exit)" stroke-width="2.5" />
+          <text x="502" y="227">A09901</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Right: Inspector -->
+  <section class="panel">
+    <div class="panel-head">
+      <span>Ring Risk Dossier</span>
+      <span class="badge" style="background:rgba(239,68,68,0.2); color:var(--hold);">HOLD RECOMMENDED</span>
+    </div>
+    <div class="ring-card">
+      <div class="ring-header">
+        <span class="ring-title">RING-0042</span>
+        <span class="ring-score">0.94</span>
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-bottom:12px;">Typology: Funnel / Fan-Out Layering Chain</div>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:11px; margin-bottom:12px;">
+        <div>Accounts: <strong style="color:var(--text-bright)">5 accounts</strong></div>
+        <div>Total Flow: <strong style="color:var(--text-bright)">₹ 1,47,300</strong></div>
+        <div>Time to Catch: <strong style="color:var(--allow)">14.2 min</strong></div>
+        <div>Hops to Exit: <strong style="color:var(--verify)">2 remaining</strong></div>
+      </div>
+
+      <div class="reasons-box">
+        <div class="reasons-title">Plain-Language Explainability Reasons:</div>
+        <div class="reason-item"><span>1.</span> Passed on 94% of received funds within 14 minutes</div>
+        <div class="reason-item"><span>2.</span> Funnel topology: 3 deposits concentrated into single relay</div>
+        <div class="reason-item"><span>3.</span> Connected to known high-velocity suspicious node</div>
+      </div>
+
+      <div style="margin-top:16px; padding:10px; background:rgba(239,68,68,0.12); border-radius:6px; font-size:11px; color:var(--hold); font-weight:600; text-align:center;">
+        Recommend Hold · Human Review Required · No Automated Action
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="metrics-dock">
+  <div>Platform: <strong>IBM LinuxONE (s390x)</strong></div>
+  <div>Engine Latency: <strong>p50: 74 µs / p95: 118 µs</strong></div>
+  <div>Throughput: <strong>12,400 events/sec</strong></div>
+  <div>Decision Parity: <strong>&lt; 1e-16 delta</strong></div>
+  <div>Environment: <strong>Pure Python 3.12 (Zero C-deps)</strong></div>
+</footer>
+
+<script>
+  let isPlaying = true;
+  const feed = document.getElementById("feed-container");
+  const samples = [
+    { tier: "hold", flow: "A092384 → A014829", amt: "₹ 48,500", reason: "Ring ALERT · Relay hop" },
+    { tier: "hold", flow: "A047219 → A014829", amt: "₹ 50,000", reason: "Structured relay hop" },
+    { tier: "verify", flow: "A083102 → A047219", amt: "₹ 49,000", reason: "Velocity spike & rapid pass" },
+    { tier: "allow", flow: "A001928 → A099281", amt: "₹ 1,200", reason: "Normal P2P transfer" },
+    { tier: "allow", flow: "A058291 → A003192", amt: "₹ 450", reason: "Merchant grocery purchase" },
+    { tier: "hold", flow: "A014829 → A099014", amt: "₹ 1,45,000", reason: "Exit cash-out to agent" },
+    { tier: "allow", flow: "A019283 → A028391", amt: "₹ 3,500", reason: "Salary batch disbursement" }
+  ];
+
+  function addRow(item) {
+    const row = document.createElement("div");
+    row.className = `feed-row ${item.tier}`;
+    const d = new Date();
+    const ts = d.toTimeString().split(" ")[0];
+    row.innerHTML = `
+      <div class="row-top">
+        <span class="pill ${item.tier}">${item.tier.toUpperCase()}</span>
+        <span style="font-family:monospace">${ts}</span>
+        <span style="font-weight:700; color:var(--text-bright)">${item.amt}</span>
+      </div>
+      <div class="row-flow">${item.flow}</div>
+      <div class="row-meta">
+        <span>${item.reason}</span>
+      </div>
+    `;
+    feed.insertBefore(row, feed.firstChild);
+    if (feed.children.length > 25) feed.removeChild(feed.lastChild);
+  }
+
+  // Populate initial rows
+  samples.forEach(s => addRow(s));
+
+  let timer = setInterval(() => {
+    if (!isPlaying) return;
+    const randomItem = samples[Math.floor(Math.random() * samples.length)];
+    addRow(randomItem);
+  }, 1200);
+
+  function togglePlay() {
+    isPlaying = !isPlaying;
+    document.getElementById("play-text").textContent = isPlaying ? "Pause" : "Play";
+  }
+
+  function injectFraud() {
+    addRow({ tier: "hold", flow: "INJECT_01 → INJECT_MULE", amt: "₹ 49,900", reason: "INJECTED FUNNEL RING HOP" });
+  }
+
+  function nextCampaign() {
+    addRow({ tier: "verify", flow: "CAMPAIGN_NEW → RELAY_NODE", amt: "₹ 49,500", reason: "Next planted campaign detected" });
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "Space") { e.preventDefault(); togglePlay(); }
+    if (e.key === "i" || e.key === "I") injectFraud();
+    if (e.key === "n" || e.key === "N") nextCampaign();
+  });
+</script>
+</body>
+</html>
+

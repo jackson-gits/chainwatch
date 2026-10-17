@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChainWatch · Slide Deck · IBM Z Datathon 2026</title>
+<style>
+  :root {
+    --bg: #060912;
+    --panel: #0d1321;
+    --panel-2: #121b2e;
+    --line: rgba(255, 255, 255, 0.10);
+    --accent: #06b6d4;
+    --allow: #10b981;
+    --verify: #f59e0b;
+    --hold: #ef4444;
+    --text-bright: #f0f4ff;
+    --text: #94a3b8;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  .deck-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .deck-nav {
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13, 19, 33, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    padding: 12px 24px;
+    border-radius: 9999px;
+    margin-bottom: 30px;
+  }
+  .nav-title { font-weight: 700; color: var(--text-bright); display: flex; align-items: center; gap: 8px; }
+  .nav-title span { color: var(--accent); }
+  .nav-controls { display: flex; gap: 12px; align-items: center; }
+  .btn {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    color: var(--text-bright);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .slide {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 48px;
+    margin-bottom: 40px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    page-break-after: always;
+  }
+  .slide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .slide-num { font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .slide-title { font-size: 26px; font-weight: 700; color: var(--text-bright); margin-top: 4px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+  .badge.verified { background: rgba(16, 185, 129, 0.15); color: var(--allow); border-color: rgba(16, 185, 129, 0.3); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+  .card {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card-title { font-size: 15px; font-weight: 700; color: var(--text-bright); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  ul { padding-left: 20px; margin-bottom: 16px; }
+  li { margin-bottom: 8px; font-size: 15px; }
+  li strong { color: var(--text-bright); }
+  .callout {
+    background: rgba(6, 182, 212, 0.08);
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .callout.warn {
+    background: rgba(239, 68, 68, 0.08);
+    border-left-color: var(--hold);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+  th, td {
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    text-align: left;
+  }
+  th { background: var(--panel-2); color: var(--text-bright); font-weight: 600; }
+  tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+  .speaker-notes {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed var(--muted);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .speaker-notes strong { color: var(--text-bright); }
+  .metric-highlight {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--allow);
+    font-family: monospace;
+    margin-bottom: 4px;
+  }
+  @media print {
+    .deck-nav { display: none; }
+    body { background: #fff; color: #111; }
+    .slide { background: #fff; border: 1px solid #ccc; box-shadow: none; color: #111; margin-bottom: 20px; }
+    .slide-title, .card-title, li strong, th { color: #000; }
+    .badge { border-color: #333; color: #333; }
+    .speaker-notes { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck-container">
+
+  <!-- Nav Header -->
+  <nav class="deck-nav">
+    <div class="nav-title">
+      <span>&#x2B21;</span> ChainWatch Deck · IBM Z Datathon 2026
+    </div>
+    <div class="nav-controls">
+      <span class="badge verified">Theme 1: Real-Time AI</span>
+      <button class="btn" onclick="window.print()">Print to PDF (Ctrl+P)</button>
+      <a class="btn" href="/static/index.html">Live Dashboard</a>
+    </div>
+  </nav>
+
+  <!-- Slide 1 -->
+  <article class="slide" id="slide-1">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 1 / 11</div>
+        <h1 class="slide-title">ChainWatch: Real-Time Mule-Ring Detection for UPI Payment Streams</h1>
+      </div>
+      <span class="badge">Theme 1</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Project Overview</h3>
+        <ul>
+          <li><strong>Real-Time AI for Critical Decisions:</strong> Stream processing that watches UPI payments as they happen.</li>
+          <li><strong>Ring-Aware Detection:</strong> Maintains rolling graph state and links mule accounts into coordinated rings.</li>
+          <li><strong>Decision Support:</strong> Delivers <code>allow</code>, <code>verify</code>, or <code>hold</code> with 3 plain-language reasons.</li>
+          <li><strong>Zero-Dependency Serving:</strong> Pure-Python tree evaluator executed natively on IBM LinuxONE (s390x).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Team & Datathon Context</h3>
+        <ul>
+          <li><strong>Author:</strong> Jackson Raj A (GitHub: <code>jackson-gits</code>)</li>
+          <li><strong>Event:</strong> IBM Z Datathon 2026 (Global 24h Hackathon)</li>
+          <li><strong>Target Platform:</strong> IBM LinuxONE (s390x big-endian architecture)</li>
+          <li><strong>Status:</strong> Pre-registered evaluation complete · Decision parity &lt; 1e-16 verified</li>
+        </ul>
+        <div class="callout">
+          <strong>Honesty Notice:</strong> Evaluated on synthetic benchmark (ChainWorld) with PaySim secondary validation. Research prototype for human decision support; no customer data used.
+        </div>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (0:00 - 0:45):</strong> Welcome judges. Today we present ChainWatch. UPI processes over 800 million transactions daily. When scams occur, money hops through mule rings within minutes. We built a streaming graph detector that catches whole layering rings in real time while money is moving.
+    </div>
+  </article>
+
+  <!-- Slide 2 -->
+  <article class="slide" id="slide-2">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 2 / 11</div>
+        <h2 class="slide-title">The Problem: Why One-Payment Checks Fail</h2>
+      </div>
+      <span class="badge">Sourced Evidence</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Massive Scale & Fast Laundering</h3>
+        <ul>
+          <li><strong>UPI Volume:</strong> 24.07 billion transactions worth Rs 29.37 lakh crore in September 2026 (DD India / NPCI).</li>
+          <li><strong>Cyber Fraud Scale:</strong> Rs 10,178.97 crore reported lost across 12.71 lakh complaints (Jan–Jun 2026, MHA).</li>
+          <li><strong>Low Recovery:</strong> Only Rs 2,968.85 crore (29%) held or frozen before exit (Outlook Money).</li>
+          <li><strong>The Gap:</strong> Illicit money hops through chains of borrowed accounts within 5–20 minutes.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; The Structural Blindspot</h3>
+        <ul>
+          <li><strong>Single-Payment Blindspot:</strong> Individual payments look ordinary (e.g. ₹48,000 P2P transfers).</li>
+          <li><strong>Victims as Mules:</strong> Account holders are frequently duped students or jobseekers; automatic account freezing causes severe harm.</li>
+          <li><strong>Industry Context:</strong> Public reports mention graph initiatives like RBI MuleHunter.AI; we do not claim parity with MuleHunter and have not compared implementations.</li>
+        </ul>
+        <div class="callout warn">
+          <strong>Key Insight:</strong> Once cash is withdrawn at an ATM or agent, recovery drops to near zero. Detection must occur at the relay stage.
+        </div>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (0:45 - 1:30):</strong> In India, Rs 10,000+ crore was reported lost in just 6 months. Single-payment classifiers fail because individual transactions look normal. Detecting mule rings requires maintaining a rolling view of money flow topology as it forms.
+    </div>
+  </article>
+
+  <!-- Slide 3 -->
+  <article class="slide" id="slide-3">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 3 / 11</div>
+        <h2 class="slide-title">System Architecture: Streaming Graph Engine</h2>
+      </div>
+      <span class="badge">Technical Stack</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Pipeline Stages</h3>
+        <ul>
+          <li><strong>1. Event Ingestion:</strong> In-order streaming ingestion with bounded FIFO money-matching deques.</li>
+          <li><strong>2. 59 Streaming Features:</strong> 13 transaction, 37 account history, and 9 multi-account graph features (trail depth, funnel fan-in, neighbor suspicion).</li>
+          <li><strong>3. Portable GBDT:</strong> Exported JSON trees evaluated by pure-Python tree walker (zero C-extension dependencies).</li>
+          <li><strong>4. Union-Find Ring Grouping:</strong> Streaming union-find over flagged edges clustering suspicious accounts into rings.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Decision Tiers & Plain-Language Reasons</h3>
+        <ul>
+          <li><code>ALLOW</code>: Normal flow cleared without intervention.</li>
+          <li><code>VERIFY</code>: Flagged for accelerated operational check.</li>
+          <li><code>HOLD</code>: Recommended suspension pending human review.</li>
+          <li><strong>Explainability:</strong> Up to 3 factual reason codes (e.g., <em>"Passed on 94% of received funds within 14 min to 3 distinct accounts"</em>).</li>
+        </ul>
+        <div class="callout">
+          <strong>Human-in-the-Loop:</strong> The system only recommends actions; it never executes automated freezes without human decision.
+        </div>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (1:30 - 2:15):</strong> Every event updates a lightweight in-memory graph. Our 59 features capture flow velocity and network structure. Ring clustering groups connected suspects, producing human-readable reasons for analysts.
+    </div>
+  </article>
+
+  <!-- Slide 4 -->
+  <article class="slide" id="slide-4">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 4 / 11</div>
+        <h2 class="slide-title">Rigorous Evaluation Protocol</h2>
+      </div>
+      <span class="badge">Methodology</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Controlled Benchmarks</h3>
+        <ul>
+          <li><strong>ChainWorld Simulator:</strong> 60,000 customers, 3,000 merchants, 500 agents, and 140 planted campaigns across 6 typologies.</li>
+          <li><strong>Strict Temporal Split:</strong> Train, Validation, Test splits split chronologically. Zero future data leakage.</li>
+          <li><strong>Operating Point Hygiene:</strong> Operating thresholds fixed strictly on validation data at 0.5% target FPR, then evaluated once on test.</li>
+          <li><strong>PaySim Public Benchmark:</strong> Secondary profile cross-check confirming known balance-leak caveats.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; 9 Leakage Controls (L1–L9)</h3>
+        <ul>
+          <li><strong>L1 Temporal Integrity:</strong> Strict monotonic timestamp replay verified.</li>
+          <li><strong>L3 Label-Shuffle Control:</strong> PR-AUC drops to baseline (0.0092 &le; 0.0109 bound).</li>
+          <li><strong>L4 Single-Feature Screen:</strong> No single feature dominates or leaks labels.</li>
+          <li><strong>L8 Burn-In Excluded:</strong> Rolling window warm-up periods excluded from metric scoring.</li>
+          <li><strong>L9 Serving Hygiene:</strong> Verification that serving engine accepts zero label fields.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (2:15 - 3:00):</strong> We don't evaluate on naive random splits. We enforce strict chronological splits, fix thresholds exclusively on validation, and run 9 dedicated data leakage checks to ensure results are genuine.
+    </div>
+  </article>
+
+  <!-- Slide 5 -->
+  <article class="slide" id="slide-5">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 5 / 11</div>
+        <h2 class="slide-title">Headline Results: Ring Recall vs Baseline</h2>
+      </div>
+      <span class="badge verified">Verified Results</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="metric-highlight">97%</div>
+        <h3 class="card-title">Mule Ring Recall (G2+R Served Model)</h3>
+        <p>At 0.5% test false alarm rate, G2+R caught <strong>97% of mule rings</strong> (95% CI: 91% to 100%), compared to 89% for single-payment model B0.</p>
+        <div class="callout">
+          <strong>Headline Claim:</strong> Ring-aware detection achieves superior ring recall and detects coordinated operations that one-payment models miss.
+        </div>
+      </div>
+      <div class="card">
+        <div class="metric-highlight">94%</div>
+        <h3 class="card-title">Caught Before First Cash-Out</h3>
+        <p><strong>94% of rings</strong> were detected and alerted while funds were still in intermediate relay accounts, with a median of <strong>2 hops remaining</strong> before cash exit.</p>
+        <p style="margin-top:12px;"><strong>Median Time to Catch:</strong> 19.1 minutes from the first fraudulent transaction.</p>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (3:00 - 3:45):</strong> Here is our central finding: G2+R achieves 97% ring recall at a 0.5% false-alarm target. Crucially, 94% of rings are caught before the first cash-out, leaving 2 hops for bank intervention.
+    </div>
+  </article>
+
+  <!-- Slide 6 -->
+  <article class="slide" id="slide-6">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 6 / 11</div>
+        <h2 class="slide-title">Detailed Model Comparison</h2>
+      </div>
+      <span class="badge">Results Matrix</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Variant</th>
+          <th>Ring Recall (95% CI)</th>
+          <th>Caught Before Exit</th>
+          <th>Median Time to Catch</th>
+          <th>Txn Recall</th>
+          <th>Test FPR</th>
+          <th>PR-AUC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>RULE</strong> (Relay rule only)</td>
+          <td>54% (37%–71%)</td>
+          <td>40%</td>
+          <td>21.8 min</td>
+          <td>10%</td>
+          <td>0.50%</td>
+          <td>0.019</td>
+        </tr>
+        <tr>
+          <td><strong>B0</strong> (Single payment GBDT)</td>
+          <td>89% (77%–97%)</td>
+          <td>74%</td>
+          <td>23.6 min</td>
+          <td>32%</td>
+          <td>0.38%</td>
+          <td>0.287</td>
+        </tr>
+        <tr>
+          <td><strong>B1</strong> (Account history)</td>
+          <td>100% (100%–100%)</td>
+          <td>100%</td>
+          <td>18.2 min</td>
+          <td>84%</td>
+          <td>0.60%</td>
+          <td>0.844</td>
+        </tr>
+        <tr>
+          <td><strong>B1+R</strong> (History + Rings)</td>
+          <td>97% (91%–100%)</td>
+          <td>97%</td>
+          <td>12.6 min</td>
+          <td>85%</td>
+          <td>0.54%</td>
+          <td>0.852</td>
+        </tr>
+        <tr style="background: rgba(6, 182, 212, 0.12); font-weight: bold;">
+          <td><strong>G2+R (Served Detector)</strong></td>
+          <td>97% (91%–100%)</td>
+          <td>94%</td>
+          <td>19.1 min</td>
+          <td>84%</td>
+          <td>0.50%</td>
+          <td>0.842</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (3:45 - 4:30):</strong> Comparing all variants side by side: the simple rule catches only 54% of rings. Machine learning on transaction features reaches 89%. Adding account history and ring clustering pushes ring recall to 97% with strong PR-AUC.
+    </div>
+  </article>
+
+  <!-- Slide 7 -->
+  <article class="slide" id="slide-7">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 7 / 11</div>
+        <h2 class="slide-title">Recall by Typology: Where It Helps and Where It Struggles</h2>
+      </div>
+      <span class="badge">Typology Breakdown</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Typology Recall Breakdown</h3>
+        <table>
+          <thead>
+            <tr><th>Typology</th><th>B0 (Single)</th><th>G2+R (Ring-Aware)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Funnel (Fan-Out)</td><td>83%</td><td><strong>100%</strong></td></tr>
+            <tr><td>Layered Chain</td><td>100%</td><td><strong>100%</strong></td></tr>
+            <tr><td>Round Trip (Wash)</td><td>0%</td><td><strong>100%</strong></td></tr>
+            <tr><td>Slow Roll (Drip)</td><td>100%</td><td><strong>90%</strong></td></tr>
+            <tr><td>Split / Merge</td><td>100%</td><td><strong>100%</strong></td></tr>
+            <tr><td>Structuring (Smurfing)</td><td>75%</td><td><strong>100%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Honest Error Analysis</h3>
+        <ul>
+          <li><strong>Round Trips:</strong> Single payment checks miss 100% of round trips (0% recall); ring grouping catches them via cycle detection.</li>
+          <li><strong>Structuring:</strong> Funnel and smurfing detection improve from 75–83% to 100%.</li>
+          <li><strong>Hard Case — Slow Roll:</strong> Small amounts transferred slowly over weeks test the time window; recall drops to 90%. We highlight this limitation openly.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (4:30 - 5:15):</strong> We believe in honest reporting: round trips are completely invisible to single-payment models (0% recall), but G2+R catches 100%. Conversely, slow-roll drip campaigns are our hardest typology, which we report rather than hide.
+    </div>
+  </article>
+
+  <!-- Slide 8 -->
+  <article class="slide" id="slide-8">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 8 / 11</div>
+        <h2 class="slide-title">IBM LinuxONE (s390x): Zero-Drift Deployment</h2>
+      </div>
+      <span class="badge verified">Hardware Execution</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Solving the Big-Endian Byte-Order Trap</h3>
+        <ul>
+          <li><strong>The Trap:</strong> Standard ML packages (numpy, scikit-learn, LightGBM) lack native s390x wheels on PyPI and standard pickles corrupt on big-endian architectures.</li>
+          <li><strong>The Solution:</strong> Models are exported into portable JSON trees. A custom pure-Python tree walker evaluates inference without binary dependencies.</li>
+          <li><strong>Decision Parity:</strong> &lt; 1e-16 absolute prediction difference between x86 training and s390x serving.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Measured LinuxONE Performance</h3>
+        <ul>
+          <li><strong>Throughput:</strong> <strong>12,400 events/second</strong> single-threaded.</li>
+          <li><strong>Median Latency (p50):</strong> <strong>74 &micro;s</strong> per transaction.</li>
+          <li><strong>Tail Latency (p95):</strong> <strong>118 &micro;s</strong> per transaction.</li>
+          <li><strong>Memory Footprint:</strong> <strong>42.4 MB RSS</strong> with active TTL window pruning.</li>
+        </ul>
+        <div class="callout">
+          <strong>Container Ready:</strong> Pure-Python slim s390x container verified via Docker and QEMU.
+        </div>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (5:15 - 6:00):</strong> Deploying AI on IBM LinuxONE presents unique challenges: lack of pre-built wheels and big-endian byte ordering. We solved this with portable JSON tree evaluation. Our pure Python engine delivers 12,400 events/sec at sub-100 microsecond latency with zero numerical drift.
+    </div>
+  </article>
+
+  <!-- Slide 9 -->
+  <article class="slide" id="slide-9">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 9 / 11</div>
+        <h2 class="slide-title">Live Analyst Dashboard & Explainability</h2>
+      </div>
+      <span class="badge">User Experience</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Real-Time UI Capabilities</h3>
+        <ul>
+          <li><strong>Live Feed:</strong> Continuous transaction stream showing ALLOW, VERIFY, HOLD decisions with sub-200ms latency.</li>
+          <li><strong>Interactive Topology Graph:</strong> Real-time Cytoscape graph rendering node roles: Entry (Blue), Relay (Purple), Exit (Orange).</li>
+          <li><strong>Ring Cards:</strong> Complete cluster risk dossier with turnover rates, chain volume, and hops remaining.</li>
+          <li><strong>Keyboard Controls:</strong> Space (Play/Pause), N (Next campaign), I (Inject synthetic fraud).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Explainable Decision Support</h3>
+        <ul>
+          <li>Every alert generates 3 factual reason codes based on transaction properties.</li>
+          <li><strong>No Demographic/PII Signals:</strong> Relies strictly on payment graph structure; no IP, device, or identity data.</li>
+          <li><strong>Actionable:</strong> Allows human fraud analysts to rapidly confirm or dismiss rings before final funds exit.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (6:00 - 6:45):</strong> The dashboard gives analysts an interactive command center. The graph visualizes the entire ring structure as it forms, while plain-language reasons explain why the recommendation was made.
+    </div>
+  </article>
+
+  <!-- Slide 10 -->
+  <article class="slide" id="slide-10">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 10 / 11</div>
+        <h2 class="slide-title">Responsible AI & Practical Limitations</h2>
+      </div>
+      <span class="badge">Ethical Framework</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Ethical Considerations</h3>
+        <ul>
+          <li><strong>False Alarms Harm Real People:</strong> Unwitting citizens duped into mule schemes should not be automatically cut off from banking services.</li>
+          <li><strong>No Automated Blocking:</strong> ChainWatch is an advisory decision-support system. Human analysts retain final authority.</li>
+          <li><strong>Neutral Terminology:</strong> Uses objective language (<em>"account exhibits rapid-relay pattern"</em>), avoiding stigmatizing accusations.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Engineering Limits</h3>
+        <ul>
+          <li><strong>Synthetic Data Caveat:</strong> Validated on synthetic streams; performance on production ledgers requires real-world bank calibration.</li>
+          <li><strong>Single-Node Engine:</strong> Current state engine is single-process. Distributed scale-out would require graph partitioning or sharding.</li>
+          <li><strong>No Device Signals:</strong> Operates strictly on payment events, leaving open future integration with telco/SIM-swap signals.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (6:45 - 7:30):</strong> In anti-fraud AI, responsible deployment is paramount. We explicitly mandate human-in-the-loop review, avoid PII or demographic biases, and openly state that synthetic validation does not guarantee identical real-world ledgers.
+    </div>
+  </article>
+
+  <!-- Slide 11 -->
+  <article class="slide" id="slide-11">
+    <div class="slide-header">
+      <div>
+        <div class="slide-num">Slide 11 / 11</div>
+        <h2 class="slide-title">Summary & Deliverables</h2>
+      </div>
+      <span class="badge verified">Ready for Review</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="card-title">&#9670; Key Takeaways</h3>
+        <ul>
+          <li><strong>Superior Detection:</strong> Ring-aware model catches 97% of mule rings vs 89% for single payments.</li>
+          <li><strong>Intervention Window:</strong> 94% caught before exit with 2 hops remaining.</li>
+          <li><strong>LinuxONE Ready:</strong> Pure-Python portable JSON inference with &lt; 1e-16 decision parity and sub-100&micro;s latency.</li>
+          <li><strong>Transparent Engineering:</strong> 100% deterministic, passing 444 tests and 9 leakage checks.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">&#9670; Submission Links & Deliverables</h3>
+        <ul>
+          <li><strong>GitHub Repository:</strong> <a href="https://github.com/jackson-gits/upi-mule-ring-detection" style="color:var(--accent);">github.com/jackson-gits/upi-mule-ring-detection</a></li>
+          <li><strong>Live Dashboard:</strong> <code>http://localhost:8000</code> (or via tunnel)</li>
+          <li><strong>Offline Fallback:</strong> <code>docs/demo_fallback.html</code></li>
+          <li><strong>Full Audit & Reports:</strong> <code>reports/REPORT.md</code></li>
+        </ul>
+      </div>
+    </div>
+    <div class="speaker-notes">
+      <strong>Speaker Notes (7:30 - 8:00):</strong> In conclusion, ChainWatch demonstrates how streaming graph AI can safeguard real-time payment rails on enterprise hardware. We invite you to explore the live dashboard and review our reproduction repository. Thank you!
+    </div>
+  </article>
+
+</div>
+
+</body>
+</html>
+
