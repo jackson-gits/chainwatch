@@ -17,6 +17,7 @@
 | 6 | **Event Requirements Confirmed** | **DONE** | 24-hour hackathon window, Theme 1 Real-Time AI, pure-Python LinuxONE (s390x) inference, human-in-the-loop decision tiering. |
 | 7 | **Audit & Claims Integrity** | **DONE** | All numbers traced to `results/summary.json`; `scripts/check_claims.py` passed with zero errors. |
 | 8 | **Cross-Platform Decision Parity** | **DONE** | Pure-Python GBDT evaluated on big-endian s390x with `< 1e-16` absolute delta against x86 LightGBM. |
+| 9 | **IBM LinuxONE Platform Evidence** | **DONE** | Full evidence dossier in [`docs/platform_evidence.md`](platform_evidence.md) (QEMU s390x execution, byte-order safety, wheelhouse, and `< 1e-16` parity). |
 
 ---
 
@@ -27,7 +28,7 @@
 - **Deadline:** Sunday, October 18, 2026, 09:00 IST.
 - **Problem Statement:** Detect illicit mule account networks in real-time high-throughput UPI payment streams before funds can be withdrawn at cash-out points.
 - **Dataset Policy:** Confirmed no organizer dataset provided at kickoff. Evaluated on the calibrated synthetic benchmark **ChainWorld** (2 worlds, 60,000 customers, 140 campaigns) with secondary public validation on **PaySim**.
-- **Platform Execution:** Tested and certified for **IBM LinuxONE (s390x, big-endian)**. Uses portable JSON decision trees evaluated in pure Python to eliminate the big-endian pickle/binary wheel trap.
+- **Platform Execution & Evidence:** Certified for **IBM LinuxONE (s390x, big-endian)**. Comprehensive evidence dossier compiled in [`docs/platform_evidence.md`](platform_evidence.md) detailing cross-platform parity (`results/parity_report_s390x.json`), byte-order safety, and the zero-compilation s390x wheelhouse.
 
 ---
 
@@ -88,9 +89,8 @@ ChainWatch monitors streaming payment events in strict chronological order, main
 
 ### Measured Results & Evidence
 - **Ring Recall:** Found **97% of mule rings** (95% CI: 91% to 100%) at a 0.5% false-alarm rate target on synthetic test streams, compared to 89% for single-payment models (B0).
-- **Time to Intervene:** Caught **94% of rings before the first cash-out**, with a median of **2 hops remaining** before funds left the banking perimeter (median time to catch: 19.1 minutes).
-- **Hardware Performance:** Reaches **12,400 events/second** throughput on IBM LinuxONE with **p50 latency of 74 µs** and **p95 latency of 118 µs** (<45 MB memory footprint).
-- **Decision Parity:** Verified bit-for-bit decision parity (`< 1e-16` absolute delta) between x86 training and s390x execution.
+- **Measured Baseline Performance:** Single-worker engine processes **1,399 events/second** on the measured baseline with **p50 latency of 336 µs** and **p95 latency of 1,004 µs** (`results/bench_engine_laptop.json`); end-to-end HTTP p50/p95 latency is **7.3 ms / 15.4 ms** at concurrency 1 (`results/bench_load_laptop.json`).
+- **LinuxONE Deployment & Parity:** Verified bit-for-bit decision equivalence (`< 1e-16` absolute score delta, 0 decision mismatches across 20,000 events) between x86 and big-endian s390x (`results/parity_qemu-s390x.jsonl`). Per Rule H1 and spec §16.6, native throughput on physical LinuxONE hardware is reported as pending live instance access, avoiding unverified performance extrapolation from QEMU emulation.
 
 ### Limitations & Ethical Safeguards
 - **Decision Support Only:** System recommendations require human review; no accounts are blocked automatically.

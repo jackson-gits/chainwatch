@@ -1,0 +1,47 @@
+﻿{
+ "a": {
+  "file": "results\\parity_laptop.jsonl",
+  "machine": "AMD64",
+  "byteorder": "little",
+  "python": "3.12.2",
+  "model_version": "053a9647",
+  "dataset": "data/replay/demo.csv.gz",
+  "n_events": 20000,
+  "warmup_until_ts": 259200.0
+ },
+ "b": {
+  "file": "results\\parity_qemu-s390x.jsonl",
+  "machine": "s390x",
+  "byteorder": "big",
+  "python": "3.12.15",
+  "model_version": "053a9647",
+  "dataset": "data/replay/demo.csv.gz",
+  "n_events": 20000,
+  "warmup_until_ts": 259200.0
+ },
+ "lines_compared": 20000,
+ "decision_mismatches": 0,
+ "ring_id_mismatches": 0,
+ "max_abs_score_diff": 6.938893903907228e-18,
+ "identical_scores": false,
+ "first_difference": {
+  "line": 525,
+  "reason": "score differs",
+  "a": {
+   "event_id": 27183,
+   "decision": "allow",
+   "score": "7.014785735734204e-06",
+   "base_score": "7.014785735734204e-06",
+   "ring_id": null
+  },
+  "b": {
+   "event_id": 27183,
+   "decision": "allow",
+   "score": "7.014785735734203e-06",
+   "base_score": "7.014785735734203e-06",
+   "ring_id": null
+  }
+ },
+ "length_a": 20000,
+ "length_b": 20000
+}

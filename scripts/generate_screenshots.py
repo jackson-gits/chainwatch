@@ -311,12 +311,12 @@ def generate_dashboard_screenshot():
     draw.rectangle([0, 1025, w, h], fill=PANEL, outline=(255, 255, 255, 18), width=1)
 
     t_metrics = [
-        ("IBM LinuxONE (s390x)", "ACTIVE"),
-        ("Engine p50", "74 \u00B5s"),
-        ("Engine p95", "118 \u00B5s"),
-        ("Engine p99", "210 \u00B5s"),
-        ("Throughput", "12,400 evt/s"),
-        ("Memory RSS", "42.4 MB"),
+        ("IBM LinuxONE (s390x)", "PARITY VERIFIED"),
+        ("Engine p50", "336 \u00B5s"),
+        ("Engine p95", "1,004 \u00B5s"),
+        ("Engine p99", "2,016 \u00B5s"),
+        ("Throughput", "1,399 evt/s"),
+        ("State Memory", "83.8 MB"),
         ("Portable Parity", "< 1e-16 delta"),
         ("Zero-Dependency", "Pure Python Serve"),
         ("Ethical Safeguard", "Human-in-the-Loop Only")
@@ -324,7 +324,7 @@ def generate_dashboard_screenshot():
     mx = 35
     for label, val in t_metrics:
         draw.text((mx, 1038), label, fill=TEXT_DIM, font=get_font(10))
-        draw.text((mx, 1054), val, fill=ALLOW_COLOR if val in ("ACTIVE", "< 1e-16 delta") else TEXT_BRIGHT, font=get_font(11, bold=True, mono=True))
+        draw.text((mx, 1054), val, fill=ALLOW_COLOR if val in ("PARITY VERIFIED", "< 1e-16 delta") else TEXT_BRIGHT, font=get_font(11, bold=True, mono=True))
         mx += 205
 
     img.save(SCREENSHOTS_DIR / "dashboard_ring.png", "PNG")
@@ -354,12 +354,12 @@ def generate_platform_badge_screenshot():
     draw.text((65, 138), "System & Byte-Order Architecture", fill=TEXT_BRIGHT, font=get_font(14, bold=True))
 
     arch_rows = [
-        ("Architecture", "s390x (IBM z16 / LinuxONE)", TEXT_BRIGHT),
+        ("Architecture Target", "s390x (IBM z16 / LinuxONE)", TEXT_BRIGHT),
         ("Byte Ordering", "Big-Endian (Verified No-Pickle)", ALLOW_COLOR),
         ("Model Storage", "Portable JSON Trees (portable_gbdt)", ACCENT),
         ("Serve Environment", "Pure Python 3.12 (No numpy / LightGBM)", ALLOW_COLOR),
-        ("Drift & Parity", "< 1e-16 absolute diff vs x86 LightGBM", ALLOW_COLOR),
-        ("Container Image", "Ubuntu / slim s390x (< 180MB footprint)", TEXT_MUTED),
+        ("QEMU Parity Delta", "< 1e-16 absolute diff vs x86 LightGBM", ALLOW_COLOR),
+        ("Container Image", "python:3.12-slim s390x (< 60MB footprint)", TEXT_MUTED),
     ]
     ay = 175
     for k, v, col in arch_rows:
@@ -372,12 +372,12 @@ def generate_platform_badge_screenshot():
     draw.text((535, 138), "Measured Benchmarks (results/)", fill=TEXT_BRIGHT, font=get_font(14, bold=True))
 
     bench_rows = [
-        ("Peak Stream Throughput", "12,400 events / sec", TEXT_BRIGHT),
-        ("Median Latency (p50)", "74 \u00B5s per transaction", ALLOW_COLOR),
-        ("95th Percentile (p95)", "118 \u00B5s per transaction", ALLOW_COLOR),
-        ("99th Percentile (p99)", "210 \u00B5s per transaction", TEXT_BRIGHT),
-        ("Memory Footprint (RSS)", "42.4 MB (Bounded deques)", ALLOW_COLOR),
-        ("TTL Ring Eviction", "Hourly sweep, zero memory leak", TEXT_MUTED),
+        ("Single-Worker Throughput", "1,399 events / sec (laptop)", TEXT_BRIGHT),
+        ("Median Latency (p50)", "336 \u00B5s per transaction", ALLOW_COLOR),
+        ("95th Percentile (p95)", "1,004 \u00B5s per transaction", ALLOW_COLOR),
+        ("99th Percentile (p99)", "2,016 \u00B5s per transaction", TEXT_BRIGHT),
+        ("Engine State Memory", "83.8 MB approx state (bounded)", ALLOW_COLOR),
+        ("Physical LinuxONE Bench", "Pending instance access (\u00A716.6)", TEXT_MUTED),
     ]
     by = 175
     for k, v, col in bench_rows:

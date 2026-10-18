@@ -119,6 +119,14 @@ is measured per machine and stored as files rather than typed into this page:
   (`make bench-load HOST_TAG=<tag>`);
 - cross-platform decision parity: `results/parity_<host_tag>.jsonl` (`make parity HOST_TAG=<tag>`).
 
+<!--r:table.bench-->
+Table: measured latency and throughput (ChainWorld slice). Engine = inside ScoringEngine.process; end-to-end = HTTP client on the same machine. Hardware differs between rows; no platform is called faster.
+
+| Host | Engine p50 | Engine p95 | Engine p99 | Events/s (engine) | HTTP p50 / p95 at concurrency 1 | HTTP p50 / p95 at concurrency 32 | Memory (MB) |
+|---|---|---|---|---|---|---|---|
+| laptop | 336 µs | 1004 µs | 2016 µs | 1399 | 7.32 / 15.42 ms | not run | 552.5 |
+<!--/r-->
+
 ![IBM LinuxONE platform badge from the demo](docs/screenshots/platform_badge.png)
 
 **Exactly what was and was not run on IBM LinuxONE:** this README reports only measurements that exist as

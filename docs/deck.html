@@ -478,20 +478,20 @@
         </ul>
       </div>
       <div class="card">
-        <h3 class="card-title">&#9670; Measured LinuxONE Performance</h3>
+        <h3 class="card-title">&#9670; Measured Baseline Performance</h3>
         <ul>
-          <li><strong>Throughput:</strong> <strong>12,400 events/second</strong> single-threaded.</li>
-          <li><strong>Median Latency (p50):</strong> <strong>74 &micro;s</strong> per transaction.</li>
-          <li><strong>Tail Latency (p95):</strong> <strong>118 &micro;s</strong> per transaction.</li>
-          <li><strong>Memory Footprint:</strong> <strong>42.4 MB RSS</strong> with active TTL window pruning.</li>
+          <li><strong>Single-Worker Throughput:</strong> <strong>1,399 events/second</strong> (benchmarked in <code>results/bench_engine_laptop.json</code>).</li>
+          <li><strong>Median Latency (p50):</strong> <strong>336 &micro;s</strong> per transaction across all 59 streaming features.</li>
+          <li><strong>Tail Latency (p95):</strong> <strong>1,004 &micro;s</strong> (p99: 2,016 &micro;s).</li>
+          <li><strong>End-to-End HTTP Latency:</strong> <strong>7.3 ms p50 / 15.4 ms p95</strong> at concurrency 1 (<code>results/bench_load_laptop.json</code>).</li>
         </ul>
         <div class="callout">
-          <strong>Container Ready:</strong> Pure-Python slim s390x container verified via Docker and QEMU.
+          <strong>Honesty Rule (Spec &sect;16.6):</strong> Decision parity (&lt; 1e-16 delta) is verified via s390x QEMU; native LinuxONE hardware throughput is reported as pending physical instance access.
         </div>
       </div>
     </div>
     <div class="speaker-notes">
-      <strong>Speaker Notes (5:15 - 6:00):</strong> Deploying AI on IBM LinuxONE presents unique challenges: lack of pre-built wheels and big-endian byte ordering. We solved this with portable JSON tree evaluation. Our pure Python engine delivers 12,400 events/sec at sub-100 microsecond latency with zero numerical drift.
+      <strong>Speaker Notes (5:15 - 6:00):</strong> Deploying AI on IBM LinuxONE presents unique challenges: lack of pre-built wheels and big-endian byte ordering. We solved this with portable JSON tree evaluation. Our pure-Python engine runs at 1,399 events/second on the measured baseline with sub-millisecond median latency and zero numerical drift across architectures.
     </div>
   </article>
 

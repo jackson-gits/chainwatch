@@ -19,6 +19,7 @@ Last updated: 2026-10-18 05:30 IST   Current phase: submission ready (100%)   Ch
 - [x] Screenshots created and committed in `docs/screenshots/` (`dashboard_ring.png`, `platform_badge.png`).
 - [x] All numbers traced to `results/` or verified sources; `scripts/check_claims.py` passed with zero errors.
 - [x] Pure-Python zero-dependency serving verified on s390x / IBM LinuxONE (`<1e-16` absolute delta).
+- [x] IBM LinuxONE platform evidence dossier compiled in `docs/platform_evidence.md` (100% platform readiness).
 - [x] Submission dossier and portal form fields documented in `docs/SUBMISSION.md`.
 
 ## Environment

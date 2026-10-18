@@ -81,6 +81,8 @@ is measured per machine and stored as files rather than typed into this page:
   (`make bench-load HOST_TAG=<tag>`);
 - cross-platform decision parity: `results/parity_<host_tag>.jsonl` (`make parity HOST_TAG=<tag>`).
 
+{{ table.bench }}
+
 ![IBM LinuxONE platform badge from the demo](docs/screenshots/platform_badge.png)
 
 **Exactly what was and was not run on IBM LinuxONE:** this README reports only measurements that exist as
