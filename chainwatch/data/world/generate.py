@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import sys
 import time
 from collections import Counter, defaultdict, deque
 from pathlib import Path
@@ -74,9 +75,21 @@ def generate_world(
     wname = name or out_dir.name
     ss = np.random.SeedSequence([int(seed), 20261017])
     s_pop, s_camp, s_bg, s_bal = ss.spawn(4)
+    print(f"[DEBUG] Building population")
+    sys.stdout.flush()
     pop = build_population(cfg, np.random.default_rng(s_pop))
+    print(f"[DEBUG] Population built")
+    sys.stdout.flush()
+    print(f"[DEBUG] Planning campaigns")
+    sys.stdout.flush()
     camp_intents, plans, extra_bg = plan_campaigns(cfg, pop, np.random.default_rng(s_camp))
+    print(f"[DEBUG] Campaigns planned: {len(camp_intents)} intents, {len(plans)} plans")
+    sys.stdout.flush()
+    print(f"[DEBUG] Generating background")
+    sys.stdout.flush()
     plain, specials = generate_background(cfg, pop, np.random.default_rng(s_bg), extra_bg)
+    print(f"[DEBUG] Background generated: plain={plain.arrays()[0].size}, specials={len(specials)}")
+    sys.stdout.flush()
     specials.extend(camp_intents)
     end_ts = float(cfg.world.days) * DAY_S
     bal_seed = int(s_bal.generate_state(1)[0])

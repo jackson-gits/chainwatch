@@ -98,7 +98,7 @@ Format: date (IST), decision, reason. Newest entries at the bottom of each secti
 
 ## Pre-registered expectations (spec 14.10), written before the first test-split run on an evaluation world
 
-Recorded 2026-10-16 ~19:00 IST. To be resolved as confirmed / partly confirmed / refuted with the numbers.
+Recorded 2026-10-16 ~19:00 IST. Resolved against the five-seed medium summary after held-out scoring; the machine-readable outcomes are in `results/expectations.json`.
 
 1. `B1` is much better than `B0` on transaction-level recall at matched FPR (account history matters).
 2. `G2+R` catches more rings than `B1+R` at matched FPR, and catches them earlier (hops remaining and minutes before
@@ -108,3 +108,53 @@ Recorded 2026-10-16 ~19:00 IST. To be resolved as confirmed / partly confirmed /
 5. On PaySim, per-transaction models score very high mostly through sender balance fields, and graph features add
    little because accounts rarely repeat.
 6. The ring layer alone (`B0+R`) cannot rescue a weak scorer.
+
+**Resolution:** E1 confirmed (B1 deployed transaction recall 96% vs B0 33%); E2 refuted (G2+R tied B1+R on ring recall and catch time); E3 refuted (slow_roll was not the weakest typology for each variant); E4 partly confirmed (traders and salary payers had the largest G2+R account-level false-alert shares; agents were not in the top two); E5 not tested (PaySim data is absent); E6 confirmed (B0+R had the same ring recall as B0).
+
+## Medium evaluation calibration and freeze
+
+- **2026-10-18. Reserved-seed calibration completed before medium test evaluation.** Using the unchanged
+  `medium` preset (noise 2.0, hard-negative boost 3.0, default mule mix) on calibration seed 1003,
+  fraud share was 0.001268 (inside the 0.0008–0.004 band), while B1 validation recall at 1% FPR was
+  0.9545 (above the 0.4–0.9 target). Across the 20 recorded calibration runs, none met both target
+  conditions. We retain the already-declared medium preset and proceed to measure seeds 0–4, recording
+  the difficulty-calibration miss as a limitation. No test result informed this decision. Calibration
+  output: `results/calibration_medium_final_seed1003.json`.
+- **Before scoring any medium test split:** generate seeds 1–4 with the unchanged preset, retain the
+  existing seed-0 world whose config hash matches that preset, and freeze event-file hashes for all five
+  worlds in `results/world_manifest.json`. Do not regenerate or retune these worlds after test scoring.
+
+## Medium evaluation results
+
+- **2026-10-18. Five-seed held-out evaluation completed.** Seeds 0–4 were scored with the unchanged,
+  hash-frozen `medium` preset. Across 250 test rings, G2+R caught 250 (100%; bootstrap 95% CI 100–100%),
+  matching B1+R at 250/250 and exceeding B0 at 224/250 (89.7%). G2+R caught 249/250 rings before cash-out
+  (99.6%; 95% CI 98.8–100%), with pooled median catch time 5.25 minutes and median two hops remaining.
+  The central expectation that G2+R would beat B1+R was refuted: paired ring-recall and catch-time
+  differences were both zero. Results are synthetic and do not establish performance on bank traffic.
+- **Operating-point caveat:** thresholds were fixed from validation at 0.5% FPR. G2+R's realised test FPR
+  ranged from 0.483% to 1.619% across seeds (mean 0.904%); the generated claim marks the off-target
+  variants/worlds explicitly. Do not describe the test results as consistently meeting the target.
+- **Leakage controls:** L1 and release-blocking L7–L9 passed on all five worlds; L3 also passed all five.
+  L2 (ID-only model) failed on seeds 1, 3, and 4, which remains a non-blocking bug signal. The unseen-ID
+  remapping control passed on all seeds, and numeric account-ID assignment was near chance. The L2 failures
+  are reported rather than relabelled as passes.
+- **Calibration limitation retained:** reserved seed 1003 had B1 validation recall 0.9545 at 1% FPR,
+  above the preregistered 0.4–0.9 band. The preset was not retuned after test scoring.
+- **Ablation follow-up:** A1–A5 completed on the same five frozen worlds. The retrained G2 feature-drop variants
+  retained 100% ring recall in this sample, but some ring-aware variants had higher test FPR than the 0.5%
+  validation target. These are ceiling-limited synthetic results; see `results/ablation_summary.json` for
+  each ablation's transaction, ring, and operating-point metrics.
+
+## Robustness grid
+
+- **2026-10-18. R1–R6 completed.** The 28 cell/variant summaries use small synthetic worlds with seeds 100 and 101,
+  scored by the medium seed-0 package at its validation-fixed thresholds. R6 retrained on a medium world with
+  `round_trip` removed from training, then tested on two small worlds containing that typology. All groups had
+  100% ring recall; G2+R cell-mean deployed transaction recall ranged from 93.2% to 98.7%, lowest with 30%
+  `slow_roll`. Across individual seed rows, deployed recall ranged from 92.2% to 99.1% and FPR from 0.395% to
+  0.717% across both variants. R6 `round_trip` recall was 100% for both B1+R and G2+R, matching the reference
+  package. The two-seed, synthetic grid is a sensitivity check, not evidence of real-world robustness. Results:
+  `results/robustness.json`; generated table: `reports/REPORT.md`.
+- **Scope note:** Medium A6–A10 were not repeated. Existing small-world A1–A10 per-world files remain, while
+  `results/ablation_summary.json` is the five-seed medium A1–A5 aggregate.

@@ -76,7 +76,7 @@ ablate: ## ablations A1 to A10
 	$(PY) -m chainwatch ablate --seeds $(SEEDS)
 
 robustness: ## robustness grid R1 to R6
-	$(PY) -m chainwatch robustness --seeds $(SEEDS)
+	$(PY) -m chainwatch robustness --models models/eval/medium_seed0
 
 leakage: ## leakage checks L1 to L9
 	$(PY) -m chainwatch leakage --seeds $(SEEDS)

@@ -45,31 +45,31 @@ misses the pattern — banks need to see the whole chain as it forms.
 All numbers below are generated from `results/` on ChainWorld (synthetic) with a time-based split;
 thresholds were fixed on validation only, never on test.
 
-<!--r:summary.claim.headline-->On our synthetic benchmark (2 worlds, time-based split), at the same false-alarm rate (0.5% of legitimate transactions, thresholds fixed on validation), the ring-aware detector (G2+R) found 97% of mule rings, versus 89% for the one-payment-at-a-time model (B0) and 97% for the account-history baseline with ring grouping (B1+R); it found a similar share of rings as the one-payment-at-a-time model (paired 95% interval of the difference -3 points to +20 points, includes zero). Realised test false-alarm rates differed from the target by more than 10% for B0, B1+R, G2+R in at least one world (see the operating-point table).<!--/r-->
+<!--r:summary.claim.headline-->On our synthetic benchmark (5 worlds, time-based split), at the same false-alarm rate (0.5% of legitimate transactions, thresholds fixed on validation), the ring-aware detector (G2+R) found 100% of mule rings, versus 90% for the one-payment-at-a-time model (B0) and 100% for the account-history baseline with ring grouping (B1+R); it found more rings than the one-payment-at-a-time model (paired 95% interval of the difference +7 points to +14 points, excludes zero). Realised test false-alarm rates differed from the target by more than 10% for B0, B1+R, G2+R in at least one world (see the operating-point table).<!--/r-->
 
-<!--r:summary.claim.vs_strong_baseline-->Against the strong account-history baseline with the same ring layer (B1+R), G2+R found a similar share of rings as it (97% versus 97%; paired 95% interval of the difference +0 points to +0 points, includes zero; 0 rings caught only by G2+R and 0 only by B1+R).<!--/r-->
+<!--r:summary.claim.vs_strong_baseline-->Against the strong account-history baseline with the same ring layer (B1+R), G2+R found a similar share of rings as it (100% versus 100%; paired 95% interval of the difference +0 points to +0 points, includes zero; 0 rings caught only by G2+R and 0 only by B1+R).<!--/r-->
 
 Main table (ChainWorld (synthetic), generated from `results/summary.json`):
 
 <!--r:table.main-->
-Table: main results, ChainWorld (synthetic), 2 worlds, test split, thresholds fixed on validation, target false-alarm rate 0.5%.
+Table: main results, ChainWorld (synthetic), 5 worlds, test split, thresholds fixed on validation, target false-alarm rate 0.5%.
 
 | Variant | Ring recall (pooled, 95% CI) | Caught before first cash-out | Median time to catch | Transaction recall (deployed) | Realised test FPR (mean, min to max) | PR-AUC (mean) |
 |---|---|---|---|---|---|---|
-| RULE (relay rule only) | 54% (37% to 71%), n=35 | 40% | 21.8 min | 10% | 0.50% (0.49% to 0.51%) | 0.019 |
-| B0 one payment at a time | 89% (77% to 97%), n=35 | 74% | 23.6 min | 32% | 0.38% (0.37% to 0.40%) (off target) | 0.287 |
-| B0+R | 89% (77% to 97%), n=35 | 74% | 23.6 min | 52% | 0.38% (0.35% to 0.41%) (off target) | 0.442 |
-| B1 account history | 100% (100% to 100%), n=35 | 100% | 18.2 min | 84% | 0.60% (0.56% to 0.64%) (off target) | 0.844 |
-| B1+R account history + rings | 97% (91% to 100%), n=35 | 97% | 12.6 min | 85% | 0.54% (0.48% to 0.60%) (off target) | 0.852 |
-| G2 graph features | 100% (100% to 100%), n=35 | 97% | 19.4 min | 83% | 0.64% (0.58% to 0.69%) (off target) | 0.831 |
-| G2+R ring-aware (served) | 97% (91% to 100%), n=35 | 94% | 19.1 min | 84% | 0.50% (0.41% to 0.58%) (off target) | 0.842 |
+| RULE (relay rule only) | 74% (68% to 79%), n=250 | 68% | 10.1 min | 18% | 1.16% (1.15% to 1.18%) | 0.005 |
+| B0 one payment at a time | 90% (86% to 93%), n=250 | 80% | 14.7 min | 33% | 0.46% (0.45% to 0.48%) (off target) | 0.117 |
+| B0+R | 90% (86% to 93%), n=250 | 79% | 16.2 min | 57% | 0.45% (0.44% to 0.47%) (off target) | 0.240 |
+| B1 account history | 100% (100% to 100%), n=250 | 100% | 4.4 min | 96% | 0.53% (0.49% to 0.58%) (off target) | 0.924 |
+| B1+R account history + rings | 100% (100% to 100%), n=250 | 100% | 4.7 min | 96% | 0.63% (0.35% to 0.91%) (off target) | 0.915 |
+| G2 graph features | 100% (100% to 100%), n=250 | 100% | 4.8 min | 96% | 0.55% (0.50% to 0.63%) (off target) | 0.921 |
+| G2+R ring-aware (served) | 100% (100% to 100%), n=250 | 100% | 5.2 min | 96% | 0.90% (0.48% to 1.62%) (off target) | 0.912 |
 <!--/r-->
 
 - **Time to catch:** for the served variant G2+R the median time from a ring's first payment to catch was
-  <!--r:summary.variants.G2+R.pooled.ttc_median_min-->19.1 min<!--/r--> <!--r:summary.variants.G2+R.pooled.ttc_median_ci-->(95% interval 7.1 to 23.1 min)<!--/r-->.
+  <!--r:summary.variants.G2+R.pooled.ttc_median_min-->5.2 min<!--/r--> <!--r:summary.variants.G2+R.pooled.ttc_median_ci-->(95% interval 4.2 to 7.3 min)<!--/r-->.
 - **Hops before exit:** at the moment of catch a median of
   <!--r:summary.variants.G2+R.pooled.hops_remaining_median-->2<!--/r--> hop(s) still remained before the ring's
-  first cash-out, and <!--r:summary.variants.G2+R.pooled.before_exit-->94%<!--/r--> of rings that had a cash-out were
+  first cash-out, and <!--r:summary.variants.G2+R.pooled.before_exit-->100%<!--/r--> of rings that had a cash-out were
   caught before it happened.
 
 Where it does not help — ring recall by typology (ChainWorld (synthetic); the weakest row is the honest
@@ -80,12 +80,12 @@ Table: ring recall by typology (pooled over worlds), ChainWorld (synthetic).
 
 | Typology | B0 one payment at a time | B1+R account history + rings | G2+R ring-aware (served) |
 |---|---|---|---|
-| funnel | 83% (n=12) | 100% (n=12) | 100% (n=12) |
-| layered chain | 100% (n=6) | 100% (n=6) | 100% (n=6) |
-| round trip | 0% (n=1) | 100% (n=1) | 100% (n=1) |
-| slow roll | 100% (n=10) | 90% (n=10) | 90% (n=10) |
-| split merge | 100% (n=2) | 100% (n=2) | 100% (n=2) |
-| structuring | 75% (n=4) | 100% (n=4) | 100% (n=4) |
+| funnel | 86% (n=92) | 100% (n=92) | 100% (n=92) |
+| layered chain | 98% (n=62) | 100% (n=62) | 100% (n=62) |
+| round trip | 91% (n=11) | 100% (n=11) | 100% (n=11) |
+| slow roll | 95% (n=21) | 100% (n=21) | 100% (n=21) |
+| split merge | 86% (n=37) | 100% (n=37) | 100% (n=37) |
+| structuring | 81% (n=27) | 100% (n=27) | 100% (n=27) |
 <!--/r-->
 
 Leakage checks L1 to L9 (ChainWorld (synthetic); each row and what a failure means are explained in
@@ -94,17 +94,17 @@ Leakage checks L1 to L9 (ChainWorld (synthetic); each row and what a failure mea
 <!--r:table.leakage-->
 Table: leakage checks, ChainWorld (synthetic) unless the world name says otherwise.
 
-| Check | world_small_seed0 | world_small_seed1 | world_tiny_seed7 |
-|---|---|---|---|
-| L1 temporal integrity and causality | pass | pass | pass |
-| L2 ID-only model | FAIL (PR-AUC 0.1755, bound 0.0109) | FAIL (PR-AUC 0.0301, bound 0.0109) | pass |
-| L3 label-shuffle control | pass (PR-AUC 0.0092, bound 0.0109) | pass (PR-AUC 0.0058, bound 0.0109) | pass |
-| L4 single-feature screen | pass (top: s_out_amt_1h AUC 0.912) | pass (top: d_in_amt_1h AUC 0.917) | pass (top: d_in_amt_1h AUC 0.970) |
-| L5 importance concentration | pass | pass | pass |
-| L6 account reuse | pass (19% of test mule accounts seen in train rings) | pass (15% of test mule accounts seen in train rings) | pass |
-| L7 threshold hygiene | pass | pass | FAIL |
-| L8 burn-in excluded | pass | pass | pass |
-| L9 no label fields when serving | pass | pass | pass |
+| Check | world_medium_seed0 | world_medium_seed1 | world_medium_seed2 | world_medium_seed3 | world_medium_seed4 | world_small_seed0 | world_small_seed1 | world_tiny_seed7 |
+|---|---|---|---|---|---|---|---|---|
+| L1 temporal integrity and causality | pass | pass | pass | pass | pass | pass | pass | pass |
+| L2 ID-only model | pass (PR-AUC 0.0018, bound 0.0024) | FAIL (PR-AUC 0.0044, bound 0.0028) | pass (PR-AUC 0.0027, bound 0.0028) | FAIL (PR-AUC 0.0068, bound 0.0032) | FAIL (PR-AUC 0.0033, bound 0.0026) | FAIL (PR-AUC 0.1755, bound 0.0109) | FAIL (PR-AUC 0.0301, bound 0.0109) | pass |
+| L3 label-shuffle control | pass (PR-AUC 0.0021, bound 0.0024) | pass (PR-AUC 0.0015, bound 0.0028) | pass (PR-AUC 0.0022, bound 0.0028) | pass (PR-AUC 0.0014, bound 0.0032) | pass (PR-AUC 0.0024, bound 0.0026) | pass (PR-AUC 0.0092, bound 0.0109) | pass (PR-AUC 0.0058, bound 0.0109) | pass |
+| L4 single-feature screen | pass (top: s_out_amt_1h AUC 0.841) | pass (top: s_out_amt_1h AUC 0.860) | pass (top: s_out_amt_1h AUC 0.829) | pass (top: s_out_amt_1h AUC 0.855) | pass (top: s_out_amt_1h AUC 0.858) | pass (top: s_out_amt_1h AUC 0.912) | pass (top: d_in_amt_1h AUC 0.917) | pass (top: d_in_amt_1h AUC 0.970) |
+| L5 importance concentration | pass | pass | pass | pass | pass | pass | pass | pass |
+| L6 account reuse | pass (12% of test mule accounts seen in train rings) | pass (12% of test mule accounts seen in train rings) | pass (10% of test mule accounts seen in train rings) | pass (15% of test mule accounts seen in train rings) | pass (14% of test mule accounts seen in train rings) | pass (19% of test mule accounts seen in train rings) | pass (15% of test mule accounts seen in train rings) | pass |
+| L7 threshold hygiene | pass | pass | pass | pass | pass | pass | pass | FAIL |
+| L8 burn-in excluded | pass | pass | pass | pass | pass | pass | pass | pass |
+| L9 no label fields when serving | pass | pass | pass | pass | pass | pass | pass | pass |
 <!--/r-->
 
 ## 4. On IBM LinuxONE and on a laptop
@@ -222,7 +222,7 @@ make models PRESET=medium                       # features, train, thresholds, v
 make evaluate PRESET=medium SEEDS="0 1 2 3 4"   # per-seed evaluation, then results/summary.json
 make ablate SEEDS="0 1 2 3 4"                   # ablations
 make leakage SEEDS="0 1 2 3 4"                  # leakage checks
-make robustness SEEDS="0 1 2 3 4"               # robustness grid
+make robustness                                # R1-R6; seeds from configs/robustness.toml
 make bench-engine HOST_TAG=laptop               # engine latency and throughput
 make bench-load HOST_TAG=laptop                 # HTTP latency and throughput
 make report                                     # render this file, the report, cards, demo script, deck

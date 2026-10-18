@@ -178,7 +178,7 @@ make models PRESET=medium                       # features, train, thresholds, v
 make evaluate PRESET=medium SEEDS="0 1 2 3 4"   # per-seed evaluation, then results/summary.json
 make ablate SEEDS="0 1 2 3 4"                   # ablations
 make leakage SEEDS="0 1 2 3 4"                  # leakage checks
-make robustness SEEDS="0 1 2 3 4"               # robustness grid
+make robustness                                # R1-R6; seeds from configs/robustness.toml
 make bench-engine HOST_TAG=laptop               # engine latency and throughput
 make bench-load HOST_TAG=laptop                 # HTTP latency and throughput
 make report                                     # render this file, the report, cards, demo script, deck

@@ -1,19 +1,19 @@
 {
  "E1": {
   "status": "confirmed",
-  "detail": "deployed transaction recall B1 84% vs B0 32%"
+  "detail": "deployed transaction recall B1 96% vs B0 33%"
  },
  "E2": {
   "status": "refuted",
-  "detail": "ring recall G2+R 97% vs B1+R 97%, paired interval +0 pts to +0 pts; median time difference +0.0 min, interval +0.0 min to +0.0 min"
+  "detail": "ring recall G2+R 100% vs B1+R 100%, paired interval +0 pts to +0 pts; median time difference +0.0 min, interval +0.0 min to +0.0 min"
  },
  "E3": {
-  "status": "partly confirmed",
-  "detail": "hardest typology per variant: {'B0': 'round_trip', 'B1+R': 'slow_roll', 'G2+R': 'slow_roll'}"
+  "status": "refuted",
+  "detail": "hardest typology per variant: {'B0': 'structuring', 'B1+R': 'funnel', 'G2+R': 'funnel'}"
  },
  "E4": {
   "status": "partly confirmed",
-  "detail": "highest account-level false-alert shares (G2+R): salary_payer 93.3%, trader 73.0%"
+  "detail": "highest account-level false-alert shares (G2+R): salary_payer 75.9%, trader 75.5%"
  },
  "E5": {
   "status": "not tested",
@@ -21,6 +21,6 @@
  },
  "E6": {
   "status": "confirmed",
-  "detail": "ring recall B0+R 89% vs B0 89% (G2+R minus B0+R: +9 pts)"
+  "detail": "ring recall B0+R 90% vs B0 90% (G2+R minus B0+R: +10 pts)"
  }
 }

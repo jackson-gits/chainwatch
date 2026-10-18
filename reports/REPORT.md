@@ -24,7 +24,7 @@
   the verify tier (<!--r:cfg.thresholds.fpr_hold-->0.1%<!--/r--> at hold), at most
   <!--r:cfg.thresholds.max_false_rings_per_day-->5<!--/r--> false rings per day on validation,
   suspicious-edge threshold <!--r:cfg.thresholds.fpr_edge-->0.5%<!--/r-->.
-- Evaluation worlds: <!--r:summary.n_worlds-->2<!--/r--> ChainWorld worlds of
+- Evaluation worlds: <!--r:summary.n_worlds-->5<!--/r--> ChainWorld worlds of
   <!--r:cfg.world.days-->30<!--/r--> simulated days each — <!--r:cfg.world.n_customers-->60,000<!--/r--> customers,
   <!--r:cfg.world.n_merchants-->3,000<!--/r--> merchants, <!--r:cfg.world.n_agents-->500<!--/r--> cash-out agents,
   <!--r:cfg.world.n_campaigns-->140<!--/r--> mule campaigns; bootstrap <!--r:cfg.eval.bootstrap-->2,000<!--/r-->
@@ -45,17 +45,17 @@ the same rings and time blocks, so the tables below never cherry-pick a favourab
 The main results table, with its ChainWorld caption and provenance comments, is:
 
 <!--r:table.main-->
-Table: main results, ChainWorld (synthetic), 2 worlds, test split, thresholds fixed on validation, target false-alarm rate 0.5%.
+Table: main results, ChainWorld (synthetic), 5 worlds, test split, thresholds fixed on validation, target false-alarm rate 0.5%.
 
 | Variant | Ring recall (pooled, 95% CI) | Caught before first cash-out | Median time to catch | Transaction recall (deployed) | Realised test FPR (mean, min to max) | PR-AUC (mean) |
 |---|---|---|---|---|---|---|
-| RULE (relay rule only) | 54% (37% to 71%), n=35 | 40% | 21.8 min | 10% | 0.50% (0.49% to 0.51%) | 0.019 |
-| B0 one payment at a time | 89% (77% to 97%), n=35 | 74% | 23.6 min | 32% | 0.38% (0.37% to 0.40%) (off target) | 0.287 |
-| B0+R | 89% (77% to 97%), n=35 | 74% | 23.6 min | 52% | 0.38% (0.35% to 0.41%) (off target) | 0.442 |
-| B1 account history | 100% (100% to 100%), n=35 | 100% | 18.2 min | 84% | 0.60% (0.56% to 0.64%) (off target) | 0.844 |
-| B1+R account history + rings | 97% (91% to 100%), n=35 | 97% | 12.6 min | 85% | 0.54% (0.48% to 0.60%) (off target) | 0.852 |
-| G2 graph features | 100% (100% to 100%), n=35 | 97% | 19.4 min | 83% | 0.64% (0.58% to 0.69%) (off target) | 0.831 |
-| G2+R ring-aware (served) | 97% (91% to 100%), n=35 | 94% | 19.1 min | 84% | 0.50% (0.41% to 0.58%) (off target) | 0.842 |
+| RULE (relay rule only) | 74% (68% to 79%), n=250 | 68% | 10.1 min | 18% | 1.16% (1.15% to 1.18%) | 0.005 |
+| B0 one payment at a time | 90% (86% to 93%), n=250 | 80% | 14.7 min | 33% | 0.46% (0.45% to 0.48%) (off target) | 0.117 |
+| B0+R | 90% (86% to 93%), n=250 | 79% | 16.2 min | 57% | 0.45% (0.44% to 0.47%) (off target) | 0.240 |
+| B1 account history | 100% (100% to 100%), n=250 | 100% | 4.4 min | 96% | 0.53% (0.49% to 0.58%) (off target) | 0.924 |
+| B1+R account history + rings | 100% (100% to 100%), n=250 | 100% | 4.7 min | 96% | 0.63% (0.35% to 0.91%) (off target) | 0.915 |
+| G2 graph features | 100% (100% to 100%), n=250 | 100% | 4.8 min | 96% | 0.55% (0.50% to 0.63%) (off target) | 0.921 |
+| G2+R ring-aware (served) | 100% (100% to 100%), n=250 | 100% | 5.2 min | 96% | 0.90% (0.48% to 1.62%) (off target) | 0.912 |
 <!--/r-->
 
 Paired per-world recall at the chosen threshold (same worlds, detector on vs off) with its
@@ -66,34 +66,34 @@ Table: paired differences, G2+R minus each variant, same rings and time blocks, 
 
 | Compared with | Ring recall difference (95% CI) | Rings only G2+R / only other | Median time difference, rings caught by both (95% CI) | Transaction recall difference (95% CI) |
 |---|---|---|---|---|
-| RULE (relay rule only) | +43 pts (+26 pts to +60 pts) | 15 / 0 | -16.8 min (-23.5 min to -2.5 min), n=19 | +74 pts (+68 pts to +81 pts) |
-| B0 one payment at a time | +9 pts (-3 pts to +20 pts) | 4 / 1 | -4.6 min (-20.0 min to +0.0 min), n=30 | +52 pts (+45 pts to +59 pts) |
-| B0+R | +9 pts (-3 pts to +20 pts) | 4 / 1 | -4.6 min (-20.0 min to +0.0 min), n=30 | +32 pts (+23 pts to +41 pts) |
-| B1 account history | -3 pts (-9 pts to +0 pts) | 0 / 1 | +0.0 min (+0.0 min to +0.0 min), n=34 | -0 pts (-2 pts to +2 pts) |
-| B1+R account history + rings | +0 pts (+0 pts to +0 pts) | 0 / 0 | +0.0 min (+0.0 min to +0.0 min), n=34 | -1 pts (-2 pts to -0 pts) |
-| G2 graph features | -3 pts (-9 pts to +0 pts) | 0 / 1 | +0.0 min (+0.0 min to +0.0 min), n=34 | +1 pts (-1 pts to +3 pts) |
+| RULE (relay rule only) | +26 pts (+21 pts to +32 pts) | 66 / 0 | -4.1 min (-6.1 min to -1.7 min), n=184 | +78 pts (+76 pts to +80 pts) |
+| B0 one payment at a time | +10 pts (+7 pts to +14 pts) | 26 / 0 | -5.1 min (-7.0 min to -3.4 min), n=224 | +63 pts (+60 pts to +66 pts) |
+| B0+R | +10 pts (+7 pts to +14 pts) | 26 / 0 | -5.7 min (-8.5 min to -3.8 min), n=224 | +39 pts (+35 pts to +44 pts) |
+| B1 account history | +0 pts (+0 pts to +0 pts) | 0 / 0 | +0.0 min (+0.0 min to +0.0 min), n=250 | +0 pts (-0 pts to +0 pts) |
+| B1+R account history + rings | +0 pts (+0 pts to +0 pts) | 0 / 0 | +0.0 min (+0.0 min to +0.0 min), n=250 | -0 pts (-0 pts to +0 pts) |
+| G2 graph features | +0 pts (+0 pts to +0 pts) | 0 / 0 | +0.0 min (+0.0 min to +0.0 min), n=250 | +0 pts (+0 pts to +1 pts) |
 <!--/r-->
 
 ## 3. Results
 
 Headline claim, rendered from the result files:
 
-<!--r:summary.claim.headline-->On our synthetic benchmark (2 worlds, time-based split), at the same false-alarm rate (0.5% of legitimate transactions, thresholds fixed on validation), the ring-aware detector (G2+R) found 97% of mule rings, versus 89% for the one-payment-at-a-time model (B0) and 97% for the account-history baseline with ring grouping (B1+R); it found a similar share of rings as the one-payment-at-a-time model (paired 95% interval of the difference -3 points to +20 points, includes zero). Realised test false-alarm rates differed from the target by more than 10% for B0, B1+R, G2+R in at least one world (see the operating-point table).<!--/r-->
+<!--r:summary.claim.headline-->On our synthetic benchmark (5 worlds, time-based split), at the same false-alarm rate (0.5% of legitimate transactions, thresholds fixed on validation), the ring-aware detector (G2+R) found 100% of mule rings, versus 90% for the one-payment-at-a-time model (B0) and 100% for the account-history baseline with ring grouping (B1+R); it found more rings than the one-payment-at-a-time model (paired 95% interval of the difference +7 points to +14 points, excludes zero). Realised test false-alarm rates differed from the target by more than 10% for B0, B1+R, G2+R in at least one world (see the operating-point table).<!--/r-->
 
 Claim against the strongest single-rule baseline:
 
-<!--r:summary.claim.vs_strong_baseline-->Against the strong account-history baseline with the same ring layer (B1+R), G2+R found a similar share of rings as it (97% versus 97%; paired 95% interval of the difference +0 points to +0 points, includes zero; 0 rings caught only by G2+R and 0 only by B1+R).<!--/r-->
+<!--r:summary.claim.vs_strong_baseline-->Against the strong account-history baseline with the same ring layer (B1+R), G2+R found a similar share of rings as it (100% versus 100%; paired 95% interval of the difference +0 points to +0 points, includes zero; 0 rings caught only by G2+R and 0 only by B1+R).<!--/r-->
 
 Time to catch, pooled over ChainWorld worlds (a ring is caught when it crosses the alert
 threshold before its cash-out hop):
 
 - Median minutes from the first illicit deposit to the alert:
-  <!--r:summary.variants.G2+R.pooled.ttc_median_min-->19.1 min<!--/r--> min
-  <!--r:summary.variants.G2+R.pooled.ttc_median_ci-->(95% interval 7.1 to 23.1 min)<!--/r-->.
+  <!--r:summary.variants.G2+R.pooled.ttc_median_min-->5.2 min<!--/r--> min
+  <!--r:summary.variants.G2+R.pooled.ttc_median_ci-->(95% interval 4.2 to 7.3 min)<!--/r-->.
 - Median hops remaining before cash-out at the alert:
   <!--r:summary.variants.G2+R.pooled.hops_remaining_median-->2<!--/r--> hops.
 - Share of rings alerted before any exit hop:
-  <!--r:summary.variants.G2+R.pooled.before_exit-->94%<!--/r-->.
+  <!--r:summary.variants.G2+R.pooled.before_exit-->100%<!--/r-->.
 
 Per-typology ring recall (ChainWorld caption inside the generated table):
 
@@ -102,31 +102,31 @@ Table: ring recall by typology (pooled over worlds), ChainWorld (synthetic).
 
 | Typology | B0 one payment at a time | B1+R account history + rings | G2+R ring-aware (served) |
 |---|---|---|---|
-| funnel | 83% (n=12) | 100% (n=12) | 100% (n=12) |
-| layered chain | 100% (n=6) | 100% (n=6) | 100% (n=6) |
-| round trip | 0% (n=1) | 100% (n=1) | 100% (n=1) |
-| slow roll | 100% (n=10) | 90% (n=10) | 90% (n=10) |
-| split merge | 100% (n=2) | 100% (n=2) | 100% (n=2) |
-| structuring | 75% (n=4) | 100% (n=4) | 100% (n=4) |
+| funnel | 86% (n=92) | 100% (n=92) | 100% (n=92) |
+| layered chain | 98% (n=62) | 100% (n=62) | 100% (n=62) |
+| round trip | 91% (n=11) | 100% (n=11) | 100% (n=11) |
+| slow roll | 95% (n=21) | 100% (n=21) | 100% (n=21) |
+| split merge | 86% (n=37) | 100% (n=37) | 100% (n=37) |
+| structuring | 81% (n=27) | 100% (n=27) | 100% (n=27) |
 <!--/r-->
 
 Per-archetype false-alert share at the chosen threshold (ChainWorld caption inside the
 generated table):
 
 <!--r:table.archetype-->
-Table: share of legitimate accounts with at least one verify or hold recommendation in the test period, by archetype (pooled over 3 worlds), ChainWorld (synthetic).
+Table: share of legitimate accounts with at least one verify or hold recommendation in the test period, by archetype (pooled over 8 worlds), ChainWorld (synthetic).
 
 | Archetype | B1+R | G2+R |
 |---|---|---|
-| agent | 29.5% (33 of 112) | 26.8% (30 of 112) |
-| customer | 6.7% (808 of 11987) | 6.4% (765 of 11987) |
-| dormant customer | 6.8% (27 of 395) | 5.3% (21 of 395) |
-| family hub | 11.9% (16 of 135) | 9.6% (13 of 135) |
-| landlord | 1.3% (4 of 311) | 1.6% (5 of 311) |
-| merchant | 5.5% (36 of 660) | 4.7% (31 of 660) |
-| new customer | 4.5% (30 of 664) | 4.1% (27 of 664) |
-| salary payer | 96.7% (29 of 30) | 93.3% (28 of 30) |
-| trader | 74.2% (66 of 89) | 73.0% (65 of 89) |
+| agent | 33.0% (861 of 2612) | 33.0% (862 of 2612) |
+| customer | 13.1% (36337 of 278093) | 16.9% (47080 of 278093) |
+| dormant customer | 13.2% (1237 of 9374) | 17.2% (1617 of 9374) |
+| family hub | 17.5% (1598 of 9135) | 21.4% (1952 of 9135) |
+| landlord | 6.6% (508 of 7697) | 6.8% (523 of 7697) |
+| merchant | 5.7% (885 of 15660) | 6.4% (996 of 15660) |
+| new customer | 12.5% (1950 of 15642) | 16.7% (2605 of 15642) |
+| salary payer | 77.1% (601 of 780) | 75.9% (592 of 780) |
+| trader | 71.3% (1490 of 2089) | 75.5% (1578 of 2089) |
 <!--/r-->
 
 Figures (rendered by `make report` into `reports/figures/`; shown here if present):
@@ -146,31 +146,22 @@ Which components earn their keep (`make ablate` writes `results/ablation_summary
 the caption inside the generated table names the ChainWorld variants and conditions):
 
 <!--r:table.ablation-->
-Table: ablations (mean over 2 worlds), ChainWorld (synthetic). Rows A3 to A10 are recalibrated on validation (matched FPR).
+Table: ablations (mean over 5 worlds), ChainWorld (synthetic). Rows A3 to A10 are recalibrated on validation (matched FPR).
 
 | Id | Change | Variant | Ring recall | Before cash-out | Median time to catch | Transaction recall | Test FPR |
 |---|---|---|---|---|---|---|---|
-| A1 | detector ladder without rings | B0 | 87% | 71% | 26.8 min | 32% | 0.38% |
-| A1 | detector ladder without rings | B1 | 100% | 100% | 12.9 min | 86% | 0.60% |
-| A1 | detector ladder without rings | G2 | 100% | 98% | 17.7 min | 85% | 0.64% |
-| A2 | detector ladder with rings | B0+R | 87% | 71% | 26.8 min | 52% | 0.38% |
-| A2 | detector ladder with rings | B1+R | 97% | 97% | 13.0 min | 87% | 0.54% |
-| A2 | detector ladder with rings | G2+R | 97% | 94% | 15.4 min | 86% | 0.50% |
-| A3 | G2 without g_nbr_in_susp_cnt, g_nbr_out_susp_cnt, g_dst_nbr_in_susp_cnt, g_src_susp, g_dst_susp (retrained) | G2 | 97% | 97% | 18.8 min | 85% | 0.66% |
-| A3 | G2 without g_nbr_in_susp_cnt, g_nbr_out_susp_cnt, g_dst_nbr_in_susp_cnt, g_src_susp, g_dst_susp (retrained) | G2+R | 94% | 94% | 18.3 min | 85% | 0.72% |
-| A4 | G2 without g_trail_depth, g_funnel_in (retrained) | G2 | 97% | 97% | 13.0 min | 85% | 0.61% |
-| A4 | G2 without g_trail_depth, g_funnel_in (retrained) | G2+R | 97% | 94% | 13.0 min | 84% | 0.49% |
-| A5 | G2 without g_flow_comp_size, g_flow_comp_edges (retrained) | G2 | 97% | 97% | 12.7 min | 85% | 0.62% |
-| A5 | G2 without g_flow_comp_size, g_flow_comp_edges (retrained) | G2+R | 97% | 94% | 12.7 min | 84% | 0.52% |
-| A6 | require_pass_node = false | G2+R | 100% | 100% | 17.7 min | 87% | 2.05% |
-| A7 | escalation = false | G2+R | 100% | 98% | 17.7 min | 85% | 0.64% |
-| A8_x0.5 | link_window_s x 0.5 | G2+R | 97% | 94% | 15.4 min | 85% | 0.52% |
-| A8_x2 | link_window_s x 2 | G2+R | 97% | 94% | 15.4 min | 87% | 0.54% |
-| A9_k1 | top_k_noisy_or = 1 | G2+R | 97% | 94% | 15.4 min | 86% | 0.50% |
-| A9_k3 | top_k_noisy_or = 3 | G2+R | 97% | 94% | 15.4 min | 86% | 0.50% |
-| A9_k5 | top_k_noisy_or = 5 | G2+R | 97% | 94% | 15.4 min | 86% | 0.50% |
-| A10 | P0 feature set (27) instead of P1 (59), retrained | G2 | 100% | 93% | 19.9 min | 79% | 0.53% |
-| A10 | P0 feature set (27) instead of P1 (59), retrained | G2+R | 97% | 93% | 19.6 min | 83% | 0.50% |
+| A1 | detector ladder without rings | B0 | 90% | 80% | 16.5 min | 34% | 0.46% |
+| A1 | detector ladder without rings | B1 | 100% | 99% | 4.9 min | 96% | 0.53% |
+| A1 | detector ladder without rings | G2 | 100% | 100% | 4.9 min | 96% | 0.55% |
+| A2 | detector ladder with rings | B0+R | 90% | 79% | 17.6 min | 57% | 0.45% |
+| A2 | detector ladder with rings | B1+R | 100% | 99% | 5.0 min | 96% | 0.63% |
+| A2 | detector ladder with rings | G2+R | 100% | 99% | 5.5 min | 96% | 0.90% |
+| A3 | G2 without g_nbr_in_susp_cnt, g_nbr_out_susp_cnt, g_dst_nbr_in_susp_cnt, g_src_susp, g_dst_susp (retrained) | G2 | 100% | 100% | 5.3 min | 96% | 0.56% |
+| A3 | G2 without g_nbr_in_susp_cnt, g_nbr_out_susp_cnt, g_dst_nbr_in_susp_cnt, g_src_susp, g_dst_susp (retrained) | G2+R | 100% | 100% | 5.4 min | 97% | 1.05% |
+| A4 | G2 without g_trail_depth, g_funnel_in (retrained) | G2 | 100% | 99% | 5.3 min | 96% | 0.54% |
+| A4 | G2 without g_trail_depth, g_funnel_in (retrained) | G2+R | 100% | 99% | 5.3 min | 97% | 0.81% |
+| A5 | G2 without g_flow_comp_size, g_flow_comp_edges (retrained) | G2 | 100% | 100% | 5.2 min | 96% | 0.54% |
+| A5 | G2 without g_flow_comp_size, g_flow_comp_edges (retrained) | G2+R | 100% | 99% | 5.5 min | 97% | 0.83% |
 <!--/r-->
 
 Rule-only and model-only variants keep the same matcher and threshold machinery, so the
@@ -182,10 +173,38 @@ World-level stress conditions (`make robustness` writes `results/robustness.json
 generated caption names the ChainWorld robustness condition and grid):
 
 <!--r:table.robustness-->
-Table: robustness grid, small ChainWorld (synthetic) worlds, seeds [0], models not retrained (except R6), validation thresholds of the model package.
+Table: robustness grid, small ChainWorld (synthetic) worlds, seeds [100, 101], models not retrained (except R6), validation thresholds of the model package.
 
 | Cell | Value | Variant | Ring recall | Transaction recall | Realised FPR | Median time to catch |
 |---|---|---|---|---|---|---|
+| R1 | 0.5 | B1+R | 100% | 98% | 0.51% | 4.6 min |
+| R1 | 0.5 | G2+R | 100% | 98% | 0.50% | 4.6 min |
+| R1 | 1.0 | B1+R | 100% | 98% | 0.58% | 3.9 min |
+| R1 | 1.0 | G2+R | 100% | 98% | 0.48% | 3.9 min |
+| R1 | 1.5 | B1+R | 100% | 97% | 0.46% | 4.6 min |
+| R1 | 1.5 | G2+R | 100% | 98% | 0.49% | 3.9 min |
+| R1 | 2.0 | B1+R | 100% | 98% | 0.53% | 4.3 min |
+| R1 | 2.0 | G2+R | 100% | 98% | 0.57% | 4.6 min |
+| R2 | 1.0 | B1+R | 100% | 98% | 0.58% | 3.9 min |
+| R2 | 1.0 | G2+R | 100% | 98% | 0.48% | 3.9 min |
+| R2 | 2.0 | B1+R | 100% | 97% | 0.46% | 4.0 min |
+| R2 | 2.0 | G2+R | 100% | 97% | 0.45% | 5.2 min |
+| R2 | 4.0 | B1+R | 100% | 98% | 0.50% | 7.4 min |
+| R2 | 4.0 | G2+R | 100% | 98% | 0.55% | 7.7 min |
+| R3 | 0.08 | B1+R | 100% | 98% | 0.58% | 3.9 min |
+| R3 | 0.08 | G2+R | 100% | 98% | 0.48% | 3.9 min |
+| R3 | 0.3 | B1+R | 100% | 93% | 0.60% | 6.3 min |
+| R3 | 0.3 | G2+R | 100% | 93% | 0.59% | 5.7 min |
+| R4 | all_active | B1+R | 100% | 97% | 0.56% | 3.5 min |
+| R4 | all_active | G2+R | 100% | 96% | 0.51% | 7.1 min |
+| R4 | default | B1+R | 100% | 98% | 0.58% | 3.9 min |
+| R4 | default | G2+R | 100% | 98% | 0.48% | 3.9 min |
+| R5 | 0.5 | B1+R | 100% | 98% | 0.48% | 2.5 min |
+| R5 | 0.5 | G2+R | 100% | 97% | 0.49% | 2.5 min |
+| R5 | 2.0 | B1+R | 100% | 98% | 0.48% | 7.8 min |
+| R5 | 2.0 | G2+R | 100% | 99% | 0.48% | 7.8 min |
+| R6 | round_trip | B1+R | 100% (held-out typology recall 100% vs 100% when trained with it) | 98% | 0.45% | 3.9 min |
+| R6 | round_trip | G2+R | 100% (held-out typology recall 100% vs 100% when trained with it) | 98% | 0.45% | 4.6 min |
 <!--/r-->
 
 ![Robustness heatmap (ChainWorld)](figures/robustness_heatmap.png)
@@ -199,17 +218,17 @@ names the ChainWorld splits and perturbations:
 <!--r:table.leakage-->
 Table: leakage checks, ChainWorld (synthetic) unless the world name says otherwise.
 
-| Check | world_small_seed0 | world_small_seed1 | world_tiny_seed7 |
-|---|---|---|---|
-| L1 temporal integrity and causality | pass | pass | pass |
-| L2 ID-only model | FAIL (PR-AUC 0.1755, bound 0.0109) | FAIL (PR-AUC 0.0301, bound 0.0109) | pass |
-| L3 label-shuffle control | pass (PR-AUC 0.0092, bound 0.0109) | pass (PR-AUC 0.0058, bound 0.0109) | pass |
-| L4 single-feature screen | pass (top: s_out_amt_1h AUC 0.912) | pass (top: d_in_amt_1h AUC 0.917) | pass (top: d_in_amt_1h AUC 0.970) |
-| L5 importance concentration | pass | pass | pass |
-| L6 account reuse | pass (19% of test mule accounts seen in train rings) | pass (15% of test mule accounts seen in train rings) | pass |
-| L7 threshold hygiene | pass | pass | FAIL |
-| L8 burn-in excluded | pass | pass | pass |
-| L9 no label fields when serving | pass | pass | pass |
+| Check | world_medium_seed0 | world_medium_seed1 | world_medium_seed2 | world_medium_seed3 | world_medium_seed4 | world_small_seed0 | world_small_seed1 | world_tiny_seed7 |
+|---|---|---|---|---|---|---|---|---|
+| L1 temporal integrity and causality | pass | pass | pass | pass | pass | pass | pass | pass |
+| L2 ID-only model | pass (PR-AUC 0.0018, bound 0.0024) | FAIL (PR-AUC 0.0044, bound 0.0028) | pass (PR-AUC 0.0027, bound 0.0028) | FAIL (PR-AUC 0.0068, bound 0.0032) | FAIL (PR-AUC 0.0033, bound 0.0026) | FAIL (PR-AUC 0.1755, bound 0.0109) | FAIL (PR-AUC 0.0301, bound 0.0109) | pass |
+| L3 label-shuffle control | pass (PR-AUC 0.0021, bound 0.0024) | pass (PR-AUC 0.0015, bound 0.0028) | pass (PR-AUC 0.0022, bound 0.0028) | pass (PR-AUC 0.0014, bound 0.0032) | pass (PR-AUC 0.0024, bound 0.0026) | pass (PR-AUC 0.0092, bound 0.0109) | pass (PR-AUC 0.0058, bound 0.0109) | pass |
+| L4 single-feature screen | pass (top: s_out_amt_1h AUC 0.841) | pass (top: s_out_amt_1h AUC 0.860) | pass (top: s_out_amt_1h AUC 0.829) | pass (top: s_out_amt_1h AUC 0.855) | pass (top: s_out_amt_1h AUC 0.858) | pass (top: s_out_amt_1h AUC 0.912) | pass (top: d_in_amt_1h AUC 0.917) | pass (top: d_in_amt_1h AUC 0.970) |
+| L5 importance concentration | pass | pass | pass | pass | pass | pass | pass | pass |
+| L6 account reuse | pass (12% of test mule accounts seen in train rings) | pass (12% of test mule accounts seen in train rings) | pass (10% of test mule accounts seen in train rings) | pass (15% of test mule accounts seen in train rings) | pass (14% of test mule accounts seen in train rings) | pass (19% of test mule accounts seen in train rings) | pass (15% of test mule accounts seen in train rings) | pass |
+| L7 threshold hygiene | pass | pass | pass | pass | pass | pass | pass | FAIL |
+| L8 burn-in excluded | pass | pass | pass | pass | pass | pass | pass | pass |
+| L9 no label fields when serving | pass | pass | pass | pass | pass | pass | pass | pass |
 <!--/r-->
 
 A pass here means the headline numbers survive the removal of each leak vector; a failure
@@ -257,12 +276,12 @@ Each expectation was registered in the spec before the run; the measured verdict
 come from `results/expectations.json` written by `make report` on ChainWorld. Each bullet
 below is rendered from that file:
 
-- **E1 — account history lifts transaction recall (B1 versus B0)**: <!--r:decisions.E1.status-->confirmed<!--/r--> — <!--r:decisions.E1.detail-->deployed transaction recall B1 84% vs B0 32%<!--/r-->
-- **E2 — the ring layer adds recall and earliness (G2+R versus B1+R)**: <!--r:decisions.E2.status-->refuted<!--/r--> — <!--r:decisions.E2.detail-->ring recall G2+R 97% vs B1+R 97%, paired interval +0 pts to +0 pts; median time difference +0.0 min, interval +0.0 min to +0.0 min<!--/r-->
-- **E3 — slow roll is the hardest typology for every variant**: <!--r:decisions.E3.status-->partly confirmed<!--/r--> — <!--r:decisions.E3.detail-->hardest typology per variant: {'B0': 'round_trip', 'B1+R': 'slow_roll', 'G2+R': 'slow_roll'}<!--/r-->
-- **E4 — agents and traders carry the highest account-level false-alert rates**: <!--r:decisions.E4.status-->partly confirmed<!--/r--> — <!--r:decisions.E4.detail-->highest account-level false-alert shares (G2+R): salary_payer 93.3%, trader 73.0%<!--/r-->
+- **E1 — account history lifts transaction recall (B1 versus B0)**: <!--r:decisions.E1.status-->confirmed<!--/r--> — <!--r:decisions.E1.detail-->deployed transaction recall B1 96% vs B0 33%<!--/r-->
+- **E2 — the ring layer adds recall and earliness (G2+R versus B1+R)**: <!--r:decisions.E2.status-->refuted<!--/r--> — <!--r:decisions.E2.detail-->ring recall G2+R 100% vs B1+R 100%, paired interval +0 pts to +0 pts; median time difference +0.0 min, interval +0.0 min to +0.0 min<!--/r-->
+- **E3 — slow roll is the hardest typology for every variant**: <!--r:decisions.E3.status-->refuted<!--/r--> — <!--r:decisions.E3.detail-->hardest typology per variant: {'B0': 'structuring', 'B1+R': 'funnel', 'G2+R': 'funnel'}<!--/r-->
+- **E4 — agents and traders carry the highest account-level false-alert rates**: <!--r:decisions.E4.status-->partly confirmed<!--/r--> — <!--r:decisions.E4.detail-->highest account-level false-alert shares (G2+R): salary_payer 75.9%, trader 75.5%<!--/r-->
 - **E5 — PaySim: balance-field dependence, little gain from graph features**: <!--r:decisions.E5.status-->not tested<!--/r--> — <!--r:decisions.E5.detail-->PaySim data not available; see results/paysim_profile.json<!--/r-->
-- **E6 — the ring layer alone cannot rescue a weak scorer (B0+R versus B0)**: <!--r:decisions.E6.status-->confirmed<!--/r--> — <!--r:decisions.E6.detail-->ring recall B0+R 89% vs B0 89% (G2+R minus B0+R: +9 pts)<!--/r-->
+- **E6 — the ring layer alone cannot rescue a weak scorer (B0+R versus B0)**: <!--r:decisions.E6.status-->confirmed<!--/r--> — <!--r:decisions.E6.detail-->ring recall B0+R 90% vs B0 90% (G2+R minus B0+R: +10 pts)<!--/r-->
 
 `make check-claims` re-checks the rendered report against the result files, so a verdict
 line above cannot disagree with the JSON it came from.

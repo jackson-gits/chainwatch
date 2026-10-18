@@ -1,0 +1,45 @@
+{
+ "worlds": {
+  "world_medium_seed0": {
+   "events_sha256": "sha256:12e55f67864df81d681dab3881cc6cc1b4a38ba5c192affc0b255bca5b48b374",
+   "n_events": 3068462,
+   "fraud_share": 0.0012938077773164537,
+   "rings": 140,
+   "config_hash": "sha256:9ffd1e4f7da11242358c3aa4e36727bc9c49a8ac54aba1c4c5eca8f0f10b3dfb",
+   "frozen_utc": "2026-10-18T00:30:23+00:00"
+  },
+  "world_medium_seed1": {
+   "events_sha256": "sha256:dcdd50449d92acd660f196532d31ce5bec0f065c08a285846b21955eadc3292d",
+   "n_events": 3060366,
+   "fraud_share": 0.0014576687886350848,
+   "rings": 140,
+   "config_hash": "sha256:9ffd1e4f7da11242358c3aa4e36727bc9c49a8ac54aba1c4c5eca8f0f10b3dfb",
+   "frozen_utc": "2026-10-18T00:30:24+00:00"
+  },
+  "world_medium_seed2": {
+   "events_sha256": "sha256:63ef1c8618d70c9d79ee0696eaa9b008cbd703d1d4849e656b39e3a0a1afb245",
+   "n_events": 3068009,
+   "fraud_share": 0.0011988230803755791,
+   "rings": 140,
+   "config_hash": "sha256:9ffd1e4f7da11242358c3aa4e36727bc9c49a8ac54aba1c4c5eca8f0f10b3dfb",
+   "frozen_utc": "2026-10-18T00:30:24+00:00"
+  },
+  "world_medium_seed3": {
+   "events_sha256": "sha256:1f13175c4399b66d86ebeb6b0119a6e41a639a2811e206931c54cef7a15e3ca4",
+   "n_events": 3083272,
+   "fraud_share": 0.0014231634445485185,
+   "rings": 140,
+   "config_hash": "sha256:9ffd1e4f7da11242358c3aa4e36727bc9c49a8ac54aba1c4c5eca8f0f10b3dfb",
+   "frozen_utc": "2026-10-18T00:30:24+00:00"
+  },
+  "world_medium_seed4": {
+   "events_sha256": "sha256:290c767d8858d96aee3c3c553b84b12ccce5a5ca42e38538b53d6102d64521d0",
+   "n_events": 3047623,
+   "fraud_share": 0.0012691858540245955,
+   "rings": 140,
+   "config_hash": "sha256:9ffd1e4f7da11242358c3aa4e36727bc9c49a8ac54aba1c4c5eca8f0f10b3dfb",
+   "frozen_utc": "2026-10-18T00:30:24+00:00"
+  }
+ },
+ "note": "Worlds are frozen: never regenerate a world listed here after G2 results have been seen."
+}

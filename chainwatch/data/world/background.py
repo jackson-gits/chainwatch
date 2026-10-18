@@ -72,6 +72,7 @@ def generate_background(
     ``extra_bg`` lists ``(account, active_from_ts, active_to_ts)`` for mule-pool accounts that need ordinary
     history before going dormant.
     """
+    print("[DEBUG BG] Entering generate_background", flush=True)
     w = cfg.world
     days = int(w.days)
     end = days * DAY_S
@@ -86,6 +87,7 @@ def generate_background(
     m_start = pop.start("merchant")
     n_m = pop.count("merchant")
     p_new_payee = min(0.5, 0.15 * noise)
+    print(f"[DEBUG BG] days={days}, noise={noise}, boost={boost}, C={C}, len(extra_bg)={len(extra_bg)}", flush=True)
 
     plain = PlainIntents()
     specials: list[Intent] = []
@@ -124,6 +126,8 @@ def generate_background(
     coff, cidx = pop.contacts_off, pop.contacts_idx
 
     for d in range(days + 1):
+        if d % 5 == 0:
+            print(f'[DEBUG BG] Processing day {d}', flush=True)
         for typ, share in TYPE_SHARES:
             rate = lam_a * (share * calendar_weight(cfg, typ, d))
             cnt = rng.poisson(rate)
@@ -379,4 +383,5 @@ def generate_background(
             )
             t += rng.uniform(120.0, 1200.0)
 
+    print('[DEBUG BG] About to return', flush=True)
     return plain, specials

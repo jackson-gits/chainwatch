@@ -96,7 +96,7 @@ def heldout_package(cfg: Config, typ: str = "round_trip", seed: int = 0) -> Path
 
 def run_robustness(
     cfg: Config,
-    models_dir: str | Path = "models/default",
+    models_dir: str | Path = "models/eval/medium_seed0",
     seeds: list[int] | None = None,
     jobs: int = 1,
     cells: str | None = None,
@@ -164,6 +164,15 @@ def run_robustness(
                             }
                         )
                 heldout = str(md)
+    def display_path(path: str | Path | None) -> str | None:
+        if path is None:
+            return None
+        p = Path(path)
+        try:
+            return p.resolve().relative_to(ROOT.resolve()).as_posix()
+        except ValueError:
+            return str(p)
+
     table = []
     keyset = sorted({(r["cell"], str(r["value"]), r["variant"]) for r in rows})
     for cid, val, v in keyset:
@@ -191,8 +200,8 @@ def run_robustness(
         "provenance": "ChainWorld",
         "preset": preset,
         "seeds": seeds,
-        "models": models_dir,
-        "heldout_models": heldout,
+        "models": display_path(models_dir),
+        "heldout_models": display_path(heldout),
         "rows": rows,
         "table": table,
         "note": "Models were not retrained (except R6). Thresholds are the package's validation thresholds.",

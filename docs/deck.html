@@ -186,7 +186,7 @@
           <li><strong>Real-Time AI for Critical Decisions:</strong> Stream processing that watches UPI payments as they happen.</li>
           <li><strong>Ring-Aware Detection:</strong> Maintains rolling graph state and links mule accounts into coordinated rings.</li>
           <li><strong>Decision Support:</strong> Delivers <code>allow</code>, <code>verify</code>, or <code>hold</code> with 3 plain-language reasons.</li>
-          <li><strong>Zero-Dependency Serving:</strong> Pure-Python tree evaluator executed natively on IBM LinuxONE (s390x).</li>
+          <li><strong>Portable Serving:</strong> Pure-Python tree evaluator; s390x execution was rehearsed under QEMU, with physical LinuxONE validation pending.</li>
         </ul>
       </div>
       <div class="card">
@@ -195,11 +195,10 @@
           <li><strong>Author:</strong> Jackson Raj A (GitHub: <code>jackson-gits</code>)</li>
           <li><strong>Event:</strong> IBM Z Datathon 2026 (Global 24h Hackathon)</li>
           <li><strong>Target Platform:</strong> IBM LinuxONE (s390x big-endian architecture)</li>
-          <li><strong>Status:</strong> Pre-registered evaluation complete · Decision parity &lt; 1e-16 verified</li>
+          <li><strong>Status:</strong> Five-world ChainWorld evaluation complete; QEMU s390x parity verified; physical LinuxONE pending.</li>
         </ul>
         <div class="callout">
-          <strong>Honesty Notice:</strong> Evaluated on synthetic benchmark (ChainWorld) with PaySim secondary validation. Research prototype for human decision support; no customer data used.
-        </div>
+          <strong>Honesty Notice:</strong> Evaluated on synthetic ChainWorld data; PaySim was not available. Research prototype for human decision support; no customer data used.</div>
       </div>
     </div>
     <div class="speaker-notes">
@@ -296,7 +295,7 @@
           <li><strong>ChainWorld Simulator:</strong> 60,000 customers, 3,000 merchants, 500 agents, and 140 planted campaigns across 6 typologies.</li>
           <li><strong>Strict Temporal Split:</strong> Train, Validation, Test splits split chronologically. Zero future data leakage.</li>
           <li><strong>Operating Point Hygiene:</strong> Operating thresholds fixed strictly on validation data at 0.5% target FPR, then evaluated once on test.</li>
-          <li><strong>PaySim Public Benchmark:</strong> Secondary profile cross-check confirming known balance-leak caveats.</li>
+          <li><strong>PaySim:</strong> Planned secondary validation was not run because the CSV dataset was unavailable.</li>
         </ul>
       </div>
       <div class="card">
@@ -311,189 +310,76 @@
       </div>
     </div>
     <div class="speaker-notes">
-      <strong>Speaker Notes (2:15 - 3:00):</strong> We don't evaluate on naive random splits. We enforce strict chronological splits, fix thresholds exclusively on validation, and run 9 dedicated data leakage checks to ensure results are genuine.
-    </div>
+      <strong>Speaker Notes (2:15 - 3:00):</strong> We use chronological splits and set thresholds on validation. Nine leakage controls ran on five worlds. All release-blocking controls passed; the ID-only control remains a non-blocking signal in three worlds.</div>
   </article>
 
   <!-- Slide 5 -->
   <article class="slide" id="slide-5">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">Slide 5 / 11</div>
-        <h2 class="slide-title">Headline Results: Ring Recall vs Baseline</h2>
-      </div>
-      <span class="badge verified">Verified Results</span>
-    </div>
+    <div class="slide-header"><div><div class="slide-num">Slide 5 / 11</div><h2 class="slide-title">Five-World Results: G2+R Ties B1+R</h2></div><span class="badge">ChainWorld Synthetic Evaluation</span></div>
     <div class="grid-2">
-      <div class="card">
-        <div class="metric-highlight">97%</div>
-        <h3 class="card-title">Mule Ring Recall (G2+R Served Model)</h3>
-        <p>At 0.5% test false alarm rate, G2+R caught <strong>97% of mule rings</strong> (95% CI: 91% to 100%), compared to 89% for single-payment model B0.</p>
-        <div class="callout">
-          <strong>Headline Claim:</strong> Ring-aware detection achieves superior ring recall and detects coordinated operations that one-payment models miss.
-        </div>
+      <div class="card"><div class="metric-highlight">100%</div><h3 class="card-title">G2+R Ring Recall</h3>
+        <p>G2+R caught <strong>250/250 test rings</strong> (100%; bootstrap 95% CI: 100%-100%). B0 caught 224/250 (89.7%), and B1+R also caught 250/250.</p>
+        <div class="callout"><strong>Finding:</strong> G2+R beat B0 on ring recall but did not beat the account-history baseline B1+R.</div>
       </div>
-      <div class="card">
-        <div class="metric-highlight">94%</div>
-        <h3 class="card-title">Caught Before First Cash-Out</h3>
-        <p><strong>94% of rings</strong> were detected and alerted while funds were still in intermediate relay accounts, with a median of <strong>2 hops remaining</strong> before cash exit.</p>
-        <p style="margin-top:12px;"><strong>Median Time to Catch:</strong> 19.1 minutes from the first fraudulent transaction.</p>
+      <div class="card"><div class="metric-highlight">99.6%</div><h3 class="card-title">Caught Before First Cash-Out</h3>
+        <p><strong>249/250 rings</strong> with a cash-out were caught before it; median remaining distance was <strong>2 hops</strong>.</p>
+        <p style="margin-top:12px;"><strong>Pooled Median Time to Catch:</strong> 5.25 minutes (95% interval: 4.23-7.33 minutes).</p>
+        <p><strong>Test FPR caveat:</strong> G2+R ranged from 0.483% to 1.619%, against the 0.5% validation target.</p>
       </div>
     </div>
-    <div class="speaker-notes">
-      <strong>Speaker Notes (3:00 - 3:45):</strong> Here is our central finding: G2+R achieves 97% ring recall at a 0.5% false-alarm target. Crucially, 94% of rings are caught before the first cash-out, leaving 2 hops for bank intervention.
-    </div>
-  </article>
+    <div class="speaker-notes"><strong>Speaker Notes (3:00 - 3:45):</strong> These are five frozen synthetic test worlds. G2+R caught all 250 rings and tied B1+R. It caught 249 before cash-out, but the realised test false-alarm rate drifted above target in some worlds.</div>
+</article>
 
   <!-- Slide 6 -->
   <article class="slide" id="slide-6">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">Slide 6 / 11</div>
-        <h2 class="slide-title">Detailed Model Comparison</h2>
-      </div>
-      <span class="badge">Results Matrix</span>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Variant</th>
-          <th>Ring Recall (95% CI)</th>
-          <th>Caught Before Exit</th>
-          <th>Median Time to Catch</th>
-          <th>Txn Recall</th>
-          <th>Test FPR</th>
-          <th>PR-AUC</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>RULE</strong> (Relay rule only)</td>
-          <td>54% (37%–71%)</td>
-          <td>40%</td>
-          <td>21.8 min</td>
-          <td>10%</td>
-          <td>0.50%</td>
-          <td>0.019</td>
-        </tr>
-        <tr>
-          <td><strong>B0</strong> (Single payment GBDT)</td>
-          <td>89% (77%–97%)</td>
-          <td>74%</td>
-          <td>23.6 min</td>
-          <td>32%</td>
-          <td>0.38%</td>
-          <td>0.287</td>
-        </tr>
-        <tr>
-          <td><strong>B1</strong> (Account history)</td>
-          <td>100% (100%–100%)</td>
-          <td>100%</td>
-          <td>18.2 min</td>
-          <td>84%</td>
-          <td>0.60%</td>
-          <td>0.844</td>
-        </tr>
-        <tr>
-          <td><strong>B1+R</strong> (History + Rings)</td>
-          <td>97% (91%–100%)</td>
-          <td>97%</td>
-          <td>12.6 min</td>
-          <td>85%</td>
-          <td>0.54%</td>
-          <td>0.852</td>
-        </tr>
-        <tr style="background: rgba(6, 182, 212, 0.12); font-weight: bold;">
-          <td><strong>G2+R (Served Detector)</strong></td>
-          <td>97% (91%–100%)</td>
-          <td>94%</td>
-          <td>19.1 min</td>
-          <td>84%</td>
-          <td>0.50%</td>
-          <td>0.842</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="speaker-notes">
-      <strong>Speaker Notes (3:45 - 4:30):</strong> Comparing all variants side by side: the simple rule catches only 54% of rings. Machine learning on transaction features reaches 89%. Adding account history and ring clustering pushes ring recall to 97% with strong PR-AUC.
-    </div>
-  </article>
+    <div class="slide-header"><div><div class="slide-num">Slide 6 / 11</div><h2 class="slide-title">Detailed Model Comparison</h2></div><span class="badge">5-World Held-Out Results</span></div>
+    <table><thead><tr><th>Variant</th><th>Ring Recall (95% CI)</th><th>Before Exit</th><th>Median Catch Time</th><th>Txn Recall</th><th>Test FPR (mean, range)</th><th>PR-AUC</th></tr></thead><tbody>
+      <tr><td><strong>RULE</strong> (Relay rule)</td><td>74% (68%-79%)</td><td>68%</td><td>10.1 min</td><td>18%</td><td>1.16% (1.15%-1.18%), off target</td><td>0.005</td></tr>
+      <tr><td><strong>B0</strong> (Single payment)</td><td>90% (86%-93%)</td><td>80%</td><td>14.7 min</td><td>33%</td><td>0.46% (0.45%-0.48%), off target</td><td>0.117</td></tr>
+      <tr><td><strong>B0+R</strong></td><td>90% (86%-93%)</td><td>79%</td><td>16.2 min</td><td>57%</td><td>0.45% (0.44%-0.47%), off target</td><td>0.240</td></tr>
+      <tr><td><strong>B1</strong> (Account history)</td><td>100% (100%-100%)</td><td>100%</td><td>4.4 min</td><td>96%</td><td>0.53% (0.49%-0.58%), off target</td><td>0.924</td></tr>
+      <tr><td><strong>B1+R</strong> (History + rings)</td><td>100% (100%-100%)</td><td>100%</td><td>4.7 min</td><td>96%</td><td>0.63% (0.35%-0.91%), off target</td><td>0.915</td></tr>
+      <tr><td><strong>G2</strong> (Graph features)</td><td>100% (100%-100%)</td><td>100%</td><td>4.8 min</td><td>96%</td><td>0.55% (0.50%-0.63%), off target</td><td>0.921</td></tr>
+      <tr style="background: rgba(6, 182, 212, 0.12); font-weight: bold;"><td><strong>G2+R</strong> (Served detector)</td><td>100% (100%-100%)</td><td>100%</td><td>5.2 min</td><td>96%</td><td>0.90% (0.48%-1.62%), off target</td><td>0.912</td></tr>
+    </tbody></table>
+    <div class="speaker-notes"><strong>Speaker Notes (3:45 - 4:30):</strong> Account history and graph features reached 100% ring recall in these worlds. G2+R tied B1+R; test FPR drift is shown rather than hidden. Thresholds were set on validation at a 0.5% target.</div>
+</article>
 
   <!-- Slide 7 -->
   <article class="slide" id="slide-7">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">Slide 7 / 11</div>
-        <h2 class="slide-title">Recall by Typology: Where It Helps and Where It Struggles</h2>
-      </div>
-      <span class="badge">Typology Breakdown</span>
-    </div>
-    <div class="grid-2">
-      <div class="card">
-        <h3 class="card-title">&#9670; Typology Recall Breakdown</h3>
-        <table>
-          <thead>
-            <tr><th>Typology</th><th>B0 (Single)</th><th>G2+R (Ring-Aware)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Funnel (Fan-Out)</td><td>83%</td><td><strong>100%</strong></td></tr>
-            <tr><td>Layered Chain</td><td>100%</td><td><strong>100%</strong></td></tr>
-            <tr><td>Round Trip (Wash)</td><td>0%</td><td><strong>100%</strong></td></tr>
-            <tr><td>Slow Roll (Drip)</td><td>100%</td><td><strong>90%</strong></td></tr>
-            <tr><td>Split / Merge</td><td>100%</td><td><strong>100%</strong></td></tr>
-            <tr><td>Structuring (Smurfing)</td><td>75%</td><td><strong>100%</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card">
-        <h3 class="card-title">&#9670; Honest Error Analysis</h3>
-        <ul>
-          <li><strong>Round Trips:</strong> Single payment checks miss 100% of round trips (0% recall); ring grouping catches them via cycle detection.</li>
-          <li><strong>Structuring:</strong> Funnel and smurfing detection improve from 75–83% to 100%.</li>
-          <li><strong>Hard Case — Slow Roll:</strong> Small amounts transferred slowly over weeks test the time window; recall drops to 90%. We highlight this limitation openly.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="speaker-notes">
-      <strong>Speaker Notes (4:30 - 5:15):</strong> We believe in honest reporting: round trips are completely invisible to single-payment models (0% recall), but G2+R catches 100%. Conversely, slow-roll drip campaigns are our hardest typology, which we report rather than hide.
-    </div>
-  </article>
+    <div class="slide-header"><div><div class="slide-num">Slide 7 / 11</div><h2 class="slide-title">Recall by Typology: Synthetic Test Results</h2></div><span class="badge">Limited Sample Sizes</span></div>
+    <div class="grid-2"><div class="card"><h3 class="card-title">Ring Recall Breakdown</h3>
+      <table><thead><tr><th>Typology</th><th>B0</th><th>G2+R</th></tr></thead><tbody>
+        <tr><td>Funnel (n=92)</td><td>86%</td><td><strong>100%</strong></td></tr>
+        <tr><td>Layered chain (n=62)</td><td>98%</td><td><strong>100%</strong></td></tr>
+        <tr><td>Round trip (n=11)</td><td>91%</td><td><strong>100%</strong></td></tr>
+        <tr><td>Slow roll (n=21)</td><td>95%</td><td><strong>100%</strong></td></tr>
+        <tr><td>Split / merge (n=37)</td><td>86%</td><td><strong>100%</strong></td></tr>
+        <tr><td>Structuring (n=27)</td><td>81%</td><td><strong>100%</strong></td></tr>
+      </tbody></table>
+    </div><div class="card"><h3 class="card-title">Interpretation</h3><ul>
+      <li><strong>B0 hardest group:</strong> Structuring had 81% ring recall.</li>
+      <li><strong>G2+R ceiling:</strong> It caught all observed rings in each typology; group sizes ranged from 11 to 92.</li>
+      <li><strong>Limit:</strong> Ceiling performance on this synthetic sample does not establish zero misses in real payment traffic.</li>
+      <li><strong>Operating point:</strong> Test FPR varied; interpret recall together with the FPR table.</li>
+    </ul></div></div>
+    <div class="speaker-notes"><strong>Speaker Notes (4:30 - 5:15):</strong> G2+R caught every observed typology, but the smallest group had only 11 rings. B0 was weakest on structuring. We report the FPR drift and the synthetic-sample limitation alongside these recall figures.</div>
+</article>
 
   <!-- Slide 8 -->
   <article class="slide" id="slide-8">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">Slide 8 / 11</div>
-        <h2 class="slide-title">IBM LinuxONE (s390x): Zero-Drift Deployment</h2>
-      </div>
-      <span class="badge verified">Hardware Execution</span>
-    </div>
-    <div class="grid-2">
-      <div class="card">
-        <h3 class="card-title">&#9670; Solving the Big-Endian Byte-Order Trap</h3>
-        <ul>
-          <li><strong>The Trap:</strong> Standard ML packages (numpy, scikit-learn, LightGBM) lack native s390x wheels on PyPI and standard pickles corrupt on big-endian architectures.</li>
-          <li><strong>The Solution:</strong> Models are exported into portable JSON trees. A custom pure-Python tree walker evaluates inference without binary dependencies.</li>
-          <li><strong>Decision Parity:</strong> &lt; 1e-16 absolute prediction difference between x86 training and s390x serving.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3 class="card-title">&#9670; Measured Baseline Performance</h3>
-        <ul>
-          <li><strong>Single-Worker Throughput:</strong> <strong>1,399 events/second</strong> (benchmarked in <code>results/bench_engine_laptop.json</code>).</li>
-          <li><strong>Median Latency (p50):</strong> <strong>336 &micro;s</strong> per transaction across all 59 streaming features.</li>
-          <li><strong>Tail Latency (p95):</strong> <strong>1,004 &micro;s</strong> (p99: 2,016 &micro;s).</li>
-          <li><strong>End-to-End HTTP Latency:</strong> <strong>7.3 ms p50 / 15.4 ms p95</strong> at concurrency 1 (<code>results/bench_load_laptop.json</code>).</li>
-        </ul>
-        <div class="callout">
-          <strong>Honesty Rule (Spec &sect;16.6):</strong> Decision parity (&lt; 1e-16 delta) is verified via s390x QEMU; native LinuxONE hardware throughput is reported as pending physical instance access.
-        </div>
-      </div>
-    </div>
-    <div class="speaker-notes">
-      <strong>Speaker Notes (5:15 - 6:00):</strong> Deploying AI on IBM LinuxONE presents unique challenges: lack of pre-built wheels and big-endian byte ordering. We solved this with portable JSON tree evaluation. Our pure-Python engine runs at 1,399 events/second on the measured baseline with sub-millisecond median latency and zero numerical drift across architectures.
-    </div>
-  </article>
+    <div class="slide-header"><div><div class="slide-num">Slide 8 / 11</div><h2 class="slide-title">s390x Portability: QEMU Rehearsal</h2></div><span class="badge">Physical LinuxONE Pending</span></div>
+    <div class="grid-2"><div class="card"><h3 class="card-title">Portable Inference</h3><ul>
+      <li><strong>Approach:</strong> Exported JSON trees and a pure-Python evaluator avoid native model dependencies at serving time.</li>
+      <li><strong>Rehearsal:</strong> s390x/big-endian execution and parity were checked under QEMU, with zero decision mismatches over 20,000 events and score delta below 1e-16.</li>
+      <li><strong>Scope:</strong> This is emulation evidence, not execution on physical IBM LinuxONE hardware.</li>
+    </ul></div><div class="card"><h3 class="card-title">Measured Laptop Baseline</h3><ul>
+      <li><strong>Engine:</strong> 1,399 events/second; p50 336 microseconds, p95 1,004 microseconds.</li>
+      <li><strong>HTTP:</strong> p50 7.3 ms / p95 15.4 ms at concurrency 1.</li>
+      <li><strong>Native hardware performance:</strong> Pending a physical LinuxONE instance.</li>
+    </ul><div class="callout"><strong>Platform status:</strong> QEMU rehearsal complete; physical platform record, native parity, and native benchmarks remain pending.</div></div></div>
+    <div class="speaker-notes"><strong>Speaker Notes (5:15 - 6:00):</strong> Portable JSON inference produced zero mismatches in the s390x QEMU rehearsal. The throughput and latency numbers are from the laptop baseline; we do not extrapolate them to LinuxONE.</div>
+</article>
 
   <!-- Slide 9 -->
   <article class="slide" id="slide-9">
@@ -562,37 +448,20 @@
 
   <!-- Slide 11 -->
   <article class="slide" id="slide-11">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">Slide 11 / 11</div>
-        <h2 class="slide-title">Summary & Deliverables</h2>
-      </div>
-      <span class="badge verified">Ready for Review</span>
-    </div>
-    <div class="grid-2">
-      <div class="card">
-        <h3 class="card-title">&#9670; Key Takeaways</h3>
-        <ul>
-          <li><strong>Superior Detection:</strong> Ring-aware model catches 97% of mule rings vs 89% for single payments.</li>
-          <li><strong>Intervention Window:</strong> 94% caught before exit with 2 hops remaining.</li>
-          <li><strong>LinuxONE Ready:</strong> Pure-Python portable JSON inference with &lt; 1e-16 decision parity and sub-100&micro;s latency.</li>
-          <li><strong>Transparent Engineering:</strong> 100% deterministic, passing 444 tests and 9 leakage checks.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3 class="card-title">&#9670; Submission Links & Deliverables</h3>
-        <ul>
-          <li><strong>GitHub Repository:</strong> <a href="https://github.com/jackson-gits/upi-mule-ring-detection" style="color:var(--accent);">github.com/jackson-gits/upi-mule-ring-detection</a></li>
-          <li><strong>Live Dashboard:</strong> <code>http://localhost:8000</code> (or via tunnel)</li>
-          <li><strong>Offline Fallback:</strong> <code>docs/demo_fallback.html</code></li>
-          <li><strong>Full Audit & Reports:</strong> <code>reports/REPORT.md</code></li>
-        </ul>
-      </div>
-    </div>
-    <div class="speaker-notes">
-      <strong>Speaker Notes (7:30 - 8:00):</strong> In conclusion, ChainWatch demonstrates how streaming graph AI can safeguard real-time payment rails on enterprise hardware. We invite you to explore the live dashboard and review our reproduction repository. Thank you!
-    </div>
-  </article>
+    <div class="slide-header"><div><div class="slide-num">Slide 11 / 11</div><h2 class="slide-title">Summary & Deliverables</h2></div><span class="badge">Evaluation Complete; Platform Work Pending</span></div>
+    <div class="grid-2"><div class="card"><h3 class="card-title">Key Takeaways</h3><ul>
+      <li><strong>Synthetic result:</strong> G2+R caught 250/250 rings; B1+R also caught 250/250, while B0 caught 224/250.</li>
+      <li><strong>Intervention window:</strong> 249/250 caught before cash-out; median 2 hops remained.</li>
+      <li><strong>Evaluation caveat:</strong> Some test FPRs were above the 0.5% target. L2 ID-only control flagged three worlds; all release-blocking leakage checks passed.</li>
+      <li><strong>Platform scope:</strong> s390x parity was rehearsed under QEMU; physical LinuxONE performance is pending.</li>
+    </ul></div><div class="card"><h3 class="card-title">Submission Artifacts</h3><ul>
+      <li><strong>Repository:</strong> <a href="https://github.com/jackson-gits/upi-mule-ring-detection" style="color:var(--accent);">github.com/jackson-gits/upi-mule-ring-detection</a></li>
+      <li><strong>Live dashboard:</strong> <code>http://localhost:8000</code> (tunnel setup is manual)</li>
+      <li><strong>Offline fallback:</strong> <code>docs/demo_fallback.html</code></li>
+      <li><strong>Evaluation report:</strong> <code>reports/REPORT.md</code></li>
+    </ul></div></div>
+    <div class="speaker-notes"><strong>Speaker Notes (7:30 - 8:00):</strong> ChainWatch is a synthetic-evaluation research prototype for human decision support. G2+R tied B1+R on ring recall. Test false-alarm drift, missing PaySim validation, and physical LinuxONE access remain limitations.</div>
+</article>
 
 </div>
 

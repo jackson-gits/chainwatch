@@ -33,29 +33,29 @@ point, test split, thresholds fixed on validation; all values rendered from
 
 | Metric | Value (bootstrap interval where pooled) |
 | --- | --- |
-| Ring recall, pooled | <!--r:summary.variants.G2+R.pooled.ring_recall-->97.1%<!--/r--> (<!--r:summary.variants.G2+R.pooled.ring_recall_ci-->(95% interval 91% to 100%)<!--/r-->) |
-| Rings caught, n | <!--r:summary.variants.G2+R.pooled.n_caught-->34<!--/r--> of <!--r:summary.variants.G2+R.pooled.n_rings-->35<!--/r--> evaluated |
-| Caught before first cash-out | <!--r:summary.variants.G2+R.pooled.before_exit-->94.3%<!--/r--> (<!--r:summary.variants.G2+R.pooled.before_exit_ci-->(95% interval 86% to 100%)<!--/r-->) |
-| Median time to catch | <!--r:summary.variants.G2+R.pooled.ttc_median_min-->19.1 min<!--/r--> min (<!--r:summary.variants.G2+R.pooled.ttc_median_ci-->(95% interval 710% to 2309%)<!--/r-->) |
-| Deployed transaction recall | <!--r:summary.variants.G2+R.pooled.deployed_recall-->83.9%<!--/r--> (<!--r:summary.variants.G2+R.pooled.deployed_recall_ci-->(95% interval 78% to 90%)<!--/r-->) |
-| Realised test FPR (mean over worlds) | <!--r:summary.variants.G2+R.test_fpr.mean-->0.5%<!--/r--> |
-| PR-AUC (mean over worlds) | <!--r:summary.variants.G2+R.pr_auc.mean-->0.84<!--/r--> |
-| ROC-AUC (mean over worlds) | <!--r:summary.variants.G2+R.roc_auc.mean-->0.99<!--/r--> |
+| Ring recall, pooled | <!--r:summary.variants.G2+R.pooled.ring_recall-->100.0%<!--/r--> (<!--r:summary.variants.G2+R.pooled.ring_recall_ci-->(95% interval 100% to 100%)<!--/r-->) |
+| Rings caught, n | <!--r:summary.variants.G2+R.pooled.n_caught-->250<!--/r--> of <!--r:summary.variants.G2+R.pooled.n_rings-->250<!--/r--> evaluated |
+| Caught before first cash-out | <!--r:summary.variants.G2+R.pooled.before_exit-->99.6%<!--/r--> (<!--r:summary.variants.G2+R.pooled.before_exit_ci-->(95% interval 99% to 100%)<!--/r-->) |
+| Median time to catch | <!--r:summary.variants.G2+R.pooled.ttc_median_min-->5.2 min<!--/r--> min (<!--r:summary.variants.G2+R.pooled.ttc_median_ci-->(95% interval 423% to 733%)<!--/r-->) |
+| Deployed transaction recall | <!--r:summary.variants.G2+R.pooled.deployed_recall-->96.3%<!--/r--> (<!--r:summary.variants.G2+R.pooled.deployed_recall_ci-->(95% interval 95% to 97%)<!--/r-->) |
+| Realised test FPR (mean over worlds) | <!--r:summary.variants.G2+R.test_fpr.mean-->0.9%<!--/r--> |
+| PR-AUC (mean over worlds) | <!--r:summary.variants.G2+R.pr_auc.mean-->0.91<!--/r--> |
+| ROC-AUC (mean over worlds) | <!--r:summary.variants.G2+R.roc_auc.mean-->1.00<!--/r--> |
 
 Per-variant comparison (generated caption names the ChainWorld splits and target rate):
 
 <!--r:table.main-->
-Table: main results, ChainWorld (synthetic), 2 worlds, test split, thresholds fixed on validation, target false-alarm rate 0.5%.
+Table: main results, ChainWorld (synthetic), 5 worlds, test split, thresholds fixed on validation, target false-alarm rate 0.5%.
 
 | Variant | Ring recall (pooled, 95% CI) | Caught before first cash-out | Median time to catch | Transaction recall (deployed) | Realised test FPR (mean, min to max) | PR-AUC (mean) |
 |---|---|---|---|---|---|---|
-| RULE (relay rule only) | 54% (37% to 71%), n=35 | 40% | 21.8 min | 10% | 0.50% (0.49% to 0.51%) | 0.019 |
-| B0 one payment at a time | 89% (77% to 97%), n=35 | 74% | 23.6 min | 32% | 0.38% (0.37% to 0.40%) (off target) | 0.287 |
-| B0+R | 89% (77% to 97%), n=35 | 74% | 23.6 min | 52% | 0.38% (0.35% to 0.41%) (off target) | 0.442 |
-| B1 account history | 100% (100% to 100%), n=35 | 100% | 18.2 min | 84% | 0.60% (0.56% to 0.64%) (off target) | 0.844 |
-| B1+R account history + rings | 97% (91% to 100%), n=35 | 97% | 12.6 min | 85% | 0.54% (0.48% to 0.60%) (off target) | 0.852 |
-| G2 graph features | 100% (100% to 100%), n=35 | 97% | 19.4 min | 83% | 0.64% (0.58% to 0.69%) (off target) | 0.831 |
-| G2+R ring-aware (served) | 97% (91% to 100%), n=35 | 94% | 19.1 min | 84% | 0.50% (0.41% to 0.58%) (off target) | 0.842 |
+| RULE (relay rule only) | 74% (68% to 79%), n=250 | 68% | 10.1 min | 18% | 1.16% (1.15% to 1.18%) | 0.005 |
+| B0 one payment at a time | 90% (86% to 93%), n=250 | 80% | 14.7 min | 33% | 0.46% (0.45% to 0.48%) (off target) | 0.117 |
+| B0+R | 90% (86% to 93%), n=250 | 79% | 16.2 min | 57% | 0.45% (0.44% to 0.47%) (off target) | 0.240 |
+| B1 account history | 100% (100% to 100%), n=250 | 100% | 4.4 min | 96% | 0.53% (0.49% to 0.58%) (off target) | 0.924 |
+| B1+R account history + rings | 100% (100% to 100%), n=250 | 100% | 4.7 min | 96% | 0.63% (0.35% to 0.91%) (off target) | 0.915 |
+| G2 graph features | 100% (100% to 100%), n=250 | 100% | 4.8 min | 96% | 0.55% (0.50% to 0.63%) (off target) | 0.921 |
+| G2+R ring-aware (served) | 100% (100% to 100%), n=250 | 100% | 5.2 min | 96% | 0.90% (0.48% to 1.62%) (off target) | 0.912 |
 <!--/r-->
 
 Per-typology ring recall — the weakest row is the honest difficulty statement for this
@@ -66,19 +66,19 @@ Table: ring recall by typology (pooled over worlds), ChainWorld (synthetic).
 
 | Typology | B0 one payment at a time | B1+R account history + rings | G2+R ring-aware (served) |
 |---|---|---|---|
-| funnel | 83% (n=12) | 100% (n=12) | 100% (n=12) |
-| layered chain | 100% (n=6) | 100% (n=6) | 100% (n=6) |
-| round trip | 0% (n=1) | 100% (n=1) | 100% (n=1) |
-| slow roll | 100% (n=10) | 90% (n=10) | 90% (n=10) |
-| split merge | 100% (n=2) | 100% (n=2) | 100% (n=2) |
-| structuring | 75% (n=4) | 100% (n=4) | 100% (n=4) |
+| funnel | 86% (n=92) | 100% (n=92) | 100% (n=92) |
+| layered chain | 98% (n=62) | 100% (n=62) | 100% (n=62) |
+| round trip | 91% (n=11) | 100% (n=11) | 100% (n=11) |
+| slow roll | 95% (n=21) | 100% (n=21) | 100% (n=21) |
+| split merge | 86% (n=37) | 100% (n=37) | 100% (n=37) |
+| structuring | 81% (n=27) | 100% (n=27) | 100% (n=27) |
 <!--/r-->
 
 Operating point: target measured false-alarm rate <!--r:summary.fpr_target-->0.5%<!--/r--> of
 legitimate test transactions at the verify tier (<!--r:cfg.thresholds.fpr_hold-->0.1%<!--/r--> at
 hold, at most <!--r:cfg.thresholds.max_false_rings_per_day-->5<!--/r--> false rings per day on
 validation); bootstrap CIs use <!--r:cfg.eval.bootstrap-->2,000<!--/r--> replicates on
-<!--r:summary.n_worlds-->2<!--/r--> worlds.
+<!--r:summary.n_worlds-->5<!--/r--> worlds.
 
 ## Intended use
 

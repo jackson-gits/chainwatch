@@ -1,0 +1,146 @@
+{
+ "world": "world_medium_seed1",
+ "provenance": "ChainWorld",
+ "checks": {
+  "L1": {
+   "pass": true,
+   "max_train_ts": 1295988.353,
+   "min_val_ts": 1296004.39,
+   "max_val_ts": 1727998.812,
+   "min_test_ts": 1728001.419,
+   "causality": {
+    "pass": true,
+    "events": 3000,
+    "cuts": [
+     500,
+     1500,
+     2500
+    ]
+   }
+  },
+  "L2": {
+   "pass": false,
+   "pr_auc": 0.004393004385594068,
+   "positive_rate": 0.0013838589052792745,
+   "bound": 0.002767717810558549,
+   "train_unique_accounts": 65648,
+   "val_events_with_seen_src": 0.9992702142247235,
+   "val_events_with_seen_dst": 0.9991124795470702,
+   "val_events_with_both_seen": 0.9985951098043669,
+   "positive_rate_both_seen": 0.0004085810443668468,
+   "account_id_numeric_auc_for_mule_status": 0.5089472755595293,
+   "remapped_id_seed": 2067,
+   "remapped_unseen_id_pr_auc": 0.0014260535645321277,
+   "remapped_unseen_id_pass": true
+  },
+  "L3": {
+   "pass": true,
+   "pr_auc": 0.0014826365886783698,
+   "positive_rate": 0.0013838589052792745,
+   "bound": 0.002767717810558549
+  },
+  "L4": {
+   "pass": true,
+   "top": [
+    {
+     "feature": "s_out_amt_1h",
+     "auc": 0.8602953770181466
+    },
+    {
+     "feature": "t_s_drain",
+     "auc": 0.8406042079414918
+    },
+    {
+     "feature": "t_amount",
+     "auc": 0.8360247747788117
+    },
+    {
+     "feature": "t_log_amount",
+     "auc": 0.8360247747788117
+    },
+    {
+     "feature": "g_flow_comp_edges",
+     "auc": 0.8175985504813122
+    },
+    {
+     "feature": "d_in_amt_1h",
+     "auc": 0.8083729837097984
+    },
+    {
+     "feature": "s_dwell_s",
+     "auc": 0.7954346702873032
+    },
+    {
+     "feature": "s_in_amt_1h",
+     "auc": 0.785242674399734
+    },
+    {
+     "feature": "g_flow_comp_size",
+     "auc": 0.7829634088192243
+    },
+    {
+     "feature": "d_age_s",
+     "auc": 0.7766752238180129
+    }
+   ],
+   "above_0.98": [],
+   "note": "report only; features above 0.98 need a manual note in docs/decisions.md"
+  },
+  "L5": {
+   "pass": true,
+   "gain_share_by_group": {
+    "T": 0.0717105870651544,
+    "S": 0.6359555523490082,
+    "D": 0.2532390039040742,
+    "E": 0.02249518877431841,
+    "G": 0.01659966790744459
+   },
+   "balance_feature_share": 0.02366440051600266
+  },
+  "L6": {
+   "pass": true,
+   "test_mule_accounts": 206,
+   "seen_in_train_rings": 25,
+   "share_reused": 0.12135922330097088,
+   "test_rings": 51,
+   "test_rings_all_unseen": 30,
+   "recall_subset": {
+    "B1+R": {
+     "recall_all": 1.0,
+     "recall_unseen_only": 1.0,
+     "n_unseen": 30
+    },
+    "G2+R": {
+     "recall_all": 1.0,
+     "recall_unseen_only": 1.0,
+     "n_unseen": 30
+    }
+   },
+   "criterion": "unseen-account subset recall within 15 points of the whole"
+  },
+  "L7": {
+   "pass": true,
+   "split": "validation",
+   "threshold_world_matches_training": true,
+   "evaluated_world_is_training_world": true
+  },
+  "L8": {
+   "pass": true,
+   "burn_end": 259200.0,
+   "min_ts": 259201.598
+  },
+  "L9": {
+   "pass": true,
+   "rejected_fields": [
+    "is_fraud",
+    "ring_id",
+    "hop",
+    "src_role",
+    "dst_role"
+   ],
+   "event_type_has_no_label_fields": true
+  }
+ },
+ "blocking_ok": true,
+ "bug_signal": true
+}

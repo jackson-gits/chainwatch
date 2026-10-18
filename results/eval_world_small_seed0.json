@@ -46,7 +46,7 @@
    "n": 77543,
    "n_pos": 335,
    "n_neg": 77208,
-   "pr_auc": 0.25725087216017156,
+   "pr_auc": 0.2572508721601716,
    "roc_auc": 0.9130422839176824,
    "deployed": {
     "recall": {
@@ -88,7 +88,7 @@
    "n": 77543,
    "n_pos": 335,
    "n_neg": 77208,
-   "pr_auc": 0.4288763616774551,
+   "pr_auc": 0.42887636167745513,
    "roc_auc": 0.9396650954119672,
    "deployed": {
     "recall": {
@@ -172,7 +172,7 @@
    "n": 77543,
    "n_pos": 335,
    "n_neg": 77208,
-   "pr_auc": 0.9000479967517547,
+   "pr_auc": 0.900047996751755,
    "roc_auc": 0.9921354720027467,
    "deployed": {
     "recall": {
@@ -11178,8 +11178,8 @@
   "provenance": "ChainWorld",
   "world_events_sha256": "sha256:293677d3c341b386233d9a142f4d7aca4f0f8f830f125fb097a3ab9b92dfc1d8",
   "config_hash": "sha256:08f022cd8f66b32082082d050a344a7ea4b20ecc4e296460349f3de56432d686",
-  "model_hash": "sha256:af0b3ac2943e24d50dedd10c55725821c200311162af61e787217c31e1e8bd0b",
-  "models_dir": "D:/projects/upi-mule-ring-detection/models/eval/small_seed0",
+  "model_hash": "sha256:7643313e2b95e69dca903002b107df6b2fa8f4fe25f40317fad67c5207b3ddb2",
+  "models_dir": "D:/projects/chainwatch/models/eval/small_seed0",
   "test_days": 10.0,
   "test_rows": 77543,
   "test_positives": 335,
@@ -11195,8 +11195,8 @@
    "G2+R"
   ],
   "rerun": false,
-  "code_commit": "3ea4159ca7dbed6c87a0b05444a9eabf015633b4",
-  "utc": "2026-10-17T20:21:45+00:00"
+  "code_commit": "8a3119cf6270ffb560b6be0ebbda4bd31b0acd6f",
+  "utc": "2026-10-18T00:22:25+00:00"
  },
  "headline": {
   "B0": {

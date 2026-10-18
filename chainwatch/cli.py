@@ -389,7 +389,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.set_defaults(fn=cmd_ablate)
 
     s = sub.add_parser("robustness", help="robustness grid R1 to R6")
-    s.add_argument("--models", default="models/default")
+    s.add_argument("--models", default="models/eval/medium_seed0")
     s.add_argument("--seeds", type=int, nargs="*")
     s.add_argument("--cells")
     s.add_argument("--jobs", type=int, default=1)

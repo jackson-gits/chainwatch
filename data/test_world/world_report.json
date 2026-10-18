@@ -1,0 +1,149 @@
+{
+ "world": "test_world",
+ "provenance": "ChainWorld",
+ "seed": 1000,
+ "preset": "small",
+ "days": 30,
+ "config_hash": "sha256:7ccaef728ed4efcc23e7360e95a6b758b9091977b85b9fff464798079348f6e7",
+ "n_events": 235777,
+ "n_accounts": 6555,
+ "n_accounts_seen": 6555,
+ "archetype_counts": {
+  "agent": 50,
+  "customer": 5460,
+  "dormant_customer": 180,
+  "family_hub": 60,
+  "landlord": 150,
+  "merchant": 300,
+  "new_customer": 300,
+  "salary_payer": 15,
+  "trader": 40
+ },
+ "counts_by_type": {
+  "CASH_IN": 21224,
+  "CASH_OUT": 14724,
+  "DEBIT": 1712,
+  "PAYMENT": 95016,
+  "TRANSFER": 103101
+ },
+ "counts_by_src_archetype": {
+  "agent": 21224,
+  "customer": 179017,
+  "dormant_customer": 2257,
+  "family_hub": 2074,
+  "landlord": 1873,
+  "merchant": 8096,
+  "new_customer": 4531,
+  "salary_payer": 13902,
+  "trader": 2803
+ },
+ "counts_by_dst_archetype": {
+  "agent": 14724,
+  "customer": 109044,
+  "dormant_customer": 2935,
+  "family_hub": 1652,
+  "landlord": 1068,
+  "merchant": 96728,
+  "new_customer": 4609,
+  "trader": 5017
+ },
+ "fraud_events": 8461,
+ "fraud_share": 0.03588560376966371,
+ "fraud_target_share": [
+  0.0008,
+  0.004
+ ],
+ "fraud_share_in_band": false,
+ "campaigns_planned": 300,
+ "rings_written": 300,
+ "rings_invalid": [],
+ "rings_by_typology": {
+  "structuring": 39,
+  "funnel": 106,
+  "split_merge": 38,
+  "layered_chain": 84,
+  "slow_roll": 22,
+  "round_trip": 11
+ },
+ "ring_accounts": {
+  "n": 300,
+  "q10": 8.0,
+  "q25": 10.0,
+  "q50": 13.0,
+  "q75": 19.0,
+  "q90": 25.0
+ },
+ "ring_hops": {
+  "n": 300,
+  "q10": 3.0,
+  "q25": 3.0,
+  "q50": 3.0,
+  "q75": 4.0,
+  "q90": 6.0
+ },
+ "mule_accounts": 1164,
+ "mule_kinds": {
+  "active": 1164
+ },
+ "dwell_s": {
+  "ring_mules": {
+   "n": 1352,
+   "q10": 171.60440000008094,
+   "q25": 312.7599999999511,
+   "q50": 991.8835000000545,
+   "q75": 1569.5277499999793,
+   "q90": 2630.984000000265
+  },
+  "trader": {
+   "n": 2799,
+   "q10": 3683.942612732667,
+   "q25": 8122.952486845609,
+   "q50": 19152.508515952835,
+   "q75": 62382.859740572036,
+   "q90": 79305.24519999996
+  },
+  "agent": {
+   "n": 13639,
+   "q10": 542.9180790129747,
+   "q25": 1730.0149326704468,
+   "q50": 5909.016999999993,
+   "q75": 19424.81150000007,
+   "q90": 49163.49632408564
+  }
+ },
+ "pass_through": {
+  "ring_mules": {
+   "n": 1352,
+   "q10": 0.9572884813638068,
+   "q25": 0.979251933913851,
+   "q50": 0.9933758663331591,
+   "q75": 0.998532060895176,
+   "q90": 0.999828653269532
+  },
+  "trader": {
+   "n": 40,
+   "q10": 0.6723706882863476,
+   "q25": 0.7027187433060711,
+   "q50": 0.7689690071537724,
+   "q75": 0.8521399612068228,
+   "q90": 0.9119591442029493
+  },
+  "agent": {
+   "n": 50,
+   "q10": 1.3071262273908335,
+   "q25": 1.5156419998094952,
+   "q50": 2.0434873250969106,
+   "q75": 2.5686596614191153,
+   "q90": 2.924152926603251
+  }
+ },
+ "typologies": [
+  "funnel",
+  "layered_chain",
+  "split_merge",
+  "round_trip",
+  "structuring",
+  "slow_roll"
+ ],
+ "generation_seconds": 18.2
+}

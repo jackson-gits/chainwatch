@@ -8,7 +8,7 @@ graphs generated from `configs/default.toml` and the world presets
 (`configs/world_<preset>.toml`), each world containing archetypal user behaviour, a
 flow-regime cycle, and planted layering rings with full ground truth (ring membership, hop
 path, cash-out hop, taint). `make eval-all` evaluates
-<!--r:summary.n_worlds-->2<!--/r--> such worlds; the same seed reproduces the same worlds, so the
+<!--r:summary.n_worlds-->5<!--/r--> such worlds; the same seed reproduces the same worlds, so the
 dataset is auditable line by line in code rather than distributed as a binary.
 
 - Content: accounts, payments, cash-outs, ring annotations. Fully synthetic — no real
